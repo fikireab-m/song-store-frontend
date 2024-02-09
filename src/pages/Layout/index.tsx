@@ -5,7 +5,8 @@ import { CiMusicNote1 } from "react-icons/ci";
 import { IoAlbumsOutline } from "react-icons/io5";
 import { BsSoundwave } from "react-icons/bs";
 import { FiUsers } from "react-icons/fi";
-import Header from "../../components/widgets/Header";
+import Header from "../../components/Header";
+import Home from "../Home";
 
 const GridLayout = styled.div`
 display: grid;
@@ -105,7 +106,7 @@ const PageLayout = () => {
                     </SidebarMenuButton>
                 </SidebarContainer>
                 <MainContainer>
-                    <h1>Content</h1>
+                    <Home />
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab fugiat beatae incidunt consequatur aliquam. Nam, facere obcaecati cum nulla voluptate ad sequi nisi in repellat mollitia modi ab animi magnam.
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ratione quasi maiores iusto quia eos, illo nobis consequatur minima impedit, repudiandae soluta nulla beatae corporis dolor possimus tempore laboriosam. Hic.
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat ipsam magnam et obcaecati perferendis impedit quia tenetur in officia harum blanditiis cum soluta, nulla unde quas alias. Ipsa, facilis necessitatibus.
