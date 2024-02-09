@@ -1,7 +1,9 @@
+import PageLayout from "./pages/Layout"
+
 function App() {
   return (
     <>
-    <h1>Hello Song</h1>
+      <PageLayout />
     </>
   )
 }
