@@ -2,10 +2,9 @@ import styled from '@emotion/styled'
 import { ReactNode } from 'react';
 
 interface StyledButonProp {
-    isActive?: boolean
     children: ReactNode
 }
-export const SidebarButton = styled.button<StyledButonProp>`
+export const SidebarButton = styled.button`
 width: 12rem;
 height: 2.5rem;
 display: flex;
@@ -13,15 +12,14 @@ align-items: center;
 justify-content: flex-start;
 gap: 10px;
 padding: 0px 1rem;
-margin: 0.25rem 0.5rem;
+margin: 0.5rem 0.75rem;
 border-radius: 0.5rem;
 border: none;
 position: relative;
+font-size:1rem;
 cursor: pointer;
-background:white;
-transition-duration: .2s;
-${(props) => props.isActive && `background: #F2EFE5;`}
-${(props) => !props.isActive && `background: #FFFFFF;`}
+background:whiteSmoke;
+transition-duration: .5s;
 
 &>div{
     position: absolute;
@@ -35,8 +33,10 @@ ${(props) => !props.isActive && `background: #FFFFFF;`}
 }
 
 &:hover{
-    background:#F2EFE5;
-    transition-duration: .2s;
+    background:#7360DF;
+    color:white;
+    letter-spacing:5px;
+    transition-duration: .5s;
 }
 
 &:active{
@@ -45,9 +45,9 @@ ${(props) => !props.isActive && `background: #FFFFFF;`}
 }
 
 `
-const SidebarMenuButton = ({ isActive, children }: StyledButonProp) => {
+const SidebarMenuButton = ({children}:StyledButonProp) => {
     return (
-        <SidebarButton isActive={isActive}>
+        <SidebarButton>
             {children}
             <div>›</div>
         </SidebarButton>

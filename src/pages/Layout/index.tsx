@@ -4,23 +4,30 @@ import { GoHome } from "react-icons/go";
 import { CiMusicNote1 } from "react-icons/ci";
 import { IoAlbumsOutline } from "react-icons/io5";
 import { BsSoundwave } from "react-icons/bs";
+import { FiUsers } from "react-icons/fi";
+import Header from "../../components/widgets/Header";
 
 const GridLayout = styled.div`
 display: grid;
 grid-template-areas:
   'sidemenu header header header header header header header header'
   'sidemenu main main main main main main right right';
-gap: 10px;
+gap: 0.75rem;
 `
 const HeaderContainer = styled.div`
 height:2rem;
 grid-area: header;
 background-color: white;
-box-shadow: 0 2px 2px gray;
+padding:1rem;
+border-radius:1rem;
+display:flex;
+align-items:center;
+box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.3);
 `
 const SidebarHeader = styled.div`
 width:100%;
-padding:1rem 0.5rem;
+padding:0.5rem 1rem;
+padding-top:1rem;
 display:flex;
 align-items:center;
 gap:0.5rem;
@@ -30,43 +37,63 @@ font-size:1.2rem;
 &>img{
     height:2.5rem;
 }
-
 `
 const SidebarContainer = styled.div`
 max-width:max-content;
 grid-area: sidemenu;
-background-color: whiteSmoke;
-box-shadow: 0 2px 2px gray;
+background-color: white;
+border-top-left-radius: 1rem;
+border-top-right-radius: 1rem;
+box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.3);
 `
 const MainContainer = styled.div`
 grid-area: main;
 height: max-content;
+border-top-left-radius: 1rem;
+border-top-right-radius: 1rem;
+padding:1rem;
 background-color: white;
+box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.3);
 `
 const RightSide = styled.div`
 width:16rem;
 grid-area: right;
 background-color: white;
-box-shadow: 0 2px 2px gray;
+border-top-left-radius: 1rem;
+border-top-right-radius: 1rem;
+padding:1rem;
+box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.3);
 `
-
+const Divider = styled.hr`
+width:80%;
+text-align:center;
+opacity:0.5;
+margin-bottom:1rem;
+`
 const PageLayout = () => {
     return (
         <div>
             <GridLayout>
-                <HeaderContainer>Header</HeaderContainer>
+                <HeaderContainer>
+                    <Header />
+                </HeaderContainer>
                 <SidebarContainer>
                     <SidebarHeader>
-                        <img src="./public/icon.svg" alt="logo" />
+                        <img src="/icon.svg" alt="logo" />
                         <span>Melody-Mall</span>
                     </SidebarHeader>
-                    <SidebarMenuButton isActive={true} >
+                    <Divider />
+                    <SidebarMenuButton >
                         <GoHome />
                         <span>Home</span>
                     </SidebarMenuButton>
                     <SidebarMenuButton>
                         <CiMusicNote1 />
                         <span>Songs</span>
+                    </SidebarMenuButton>
+                    <SidebarMenuButton>
+                        <FiUsers />
+                        <span>Artists</span>
                     </SidebarMenuButton>
                     <SidebarMenuButton >
                         <IoAlbumsOutline />
