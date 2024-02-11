@@ -3,7 +3,7 @@ import { FaPlus } from "react-icons/fa";
 
 const SearchForm = styled.form`
 position: relative;
-width: 18rem;
+width: 16rem;
 height: 2.75rem;
 display: flex;
 align-items: center;
