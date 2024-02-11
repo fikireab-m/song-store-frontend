@@ -4,6 +4,7 @@ import { ReactNode } from 'react';
 interface StyledButonProp {
     children: ReactNode
 }
+
 export const SidebarButton = styled.button`
 width: 12rem;
 height: 2.5rem;
@@ -43,7 +44,6 @@ transition-duration: .5s;
     transform: translate(1px , 1px);
     transition-duration: .2s;
 }
-
 `
 const SidebarMenuButton = ({children}:StyledButonProp) => {
     return (

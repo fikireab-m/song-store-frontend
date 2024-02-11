@@ -7,7 +7,7 @@ const initialState: ArtistState = {
     errorMessage: null,
 };
 
-const albumSlice = createSlice({
+const artistSlice = createSlice({
     name: "artists",
     initialState,
     reducers: {
@@ -31,6 +31,6 @@ export const {
     getArtistsFetch,
     getArtistsSuccess,
     getArtistsFailure,
-} = albumSlice.actions;
+} = artistSlice.actions;
 
-export default albumSlice.reducer;
+export default artistSlice.reducer;

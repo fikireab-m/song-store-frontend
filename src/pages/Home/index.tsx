@@ -3,7 +3,8 @@ import { CardContainer } from "../../components/Card"
 import { FaMusic, FaUsers } from "react-icons/fa"
 import { IoIosAlbums } from "react-icons/io"
 import { GiSoundWaves } from "react-icons/gi"
-
+import { useEffect, useState } from "react"
+import { Album, Artist, Song } from "../../features/interfaces"
 
 const HomeContainer = styled.div`
 display:grid;
@@ -13,7 +14,25 @@ justify-content:center;
 align-items:center;
 margin-bottom:2rem;
 `
-const Home = () => {
+interface HomeProp {
+    songs: Song[];
+    albums: Album[];
+    artists: Artist[];
+    genres: string[];
+}
+const Home = ({ songs, albums, artists, genres }: HomeProp) => {
+    const [artistCount, setArtistCount] = useState<number>();
+    const [albumtCount, setAlbumCount] = useState<number>();
+    const [genreCount, setGenreCount] = useState<number>();
+    const [songCount, setSongCount] = useState<number>();
+
+    useEffect(() => {
+        setSongCount(songs.length);
+        setAlbumCount(albums.length);
+        setArtistCount(artists.length);
+        setGenreCount(genres.length);
+    }, [songs, albums, artists, genres])
+    console.log(genres)
     return (
         <HomeContainer>
             <CardContainer>
@@ -21,7 +40,7 @@ const Home = () => {
                     <FaMusic />
                 </span>
                 <div>
-                    <span>25 Songs</span>
+                    <span>{songCount} Songs</span>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
                 </div>
             </CardContainer>
@@ -30,7 +49,7 @@ const Home = () => {
                     <FaUsers />
                 </span>
                 <div>
-                    <span>3 Artists</span>
+                    <span>{artistCount} Artists</span>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
                 </div>
             </CardContainer>
@@ -39,7 +58,7 @@ const Home = () => {
                     <IoIosAlbums />
                 </span>
                 <div>
-                    <span>5 Albums</span>
+                    <span>{albumtCount} Albums</span>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
                 </div>
             </CardContainer>
@@ -48,7 +67,7 @@ const Home = () => {
                     <GiSoundWaves />
                 </span>
                 <div>
-                    <span>2 Genres</span>
+                    <span>{genreCount} Genres</span>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
                 </div>
             </CardContainer>

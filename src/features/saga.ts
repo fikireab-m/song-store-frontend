@@ -10,11 +10,12 @@ import {
   updateSongFailure,
 } from "./song/songSlice";
 
-import { addSong, deleteSong, updateSong, getSongs, getAlbums, getArtists } from "../api";
+import { addSong, deleteSong, updateSong, getSongs, getAlbums, getArtists, getGenres } from "../api";
 import { AxiosResponse } from "axios";
 import { Album, Artist, Song, SongActionType } from "./interfaces";
 import { getAlbumsFailure, getAlbumsSuccess } from "./album/albumSlice";
 import { getArtistsFailure, getArtistsSuccess } from "./artist/artistSlice";
+import { getGenresFailure, getGenresSuccess } from "./genre/genreSlice";
 
 // Saga for fetching songs
 function* fetchSongs() {
@@ -79,6 +80,17 @@ function* fetchArtists() {
       yield put(getArtistsFailure(e));
   }
 }
+
+// Saga for fetching genres
+function* fetchGenres() {
+  try {
+      const response: AxiosResponse<string[]> = yield call(getGenres);
+      const genres: string[] = response.data;
+      yield put(getGenresSuccess(genres));
+  } catch (e: unknown) {
+      yield put(getGenresFailure(e));
+  }
+}
 // watcher saga
 function* watcherSaga() {
   yield takeEvery("songs/addSongFetch", addsong);
@@ -87,6 +99,7 @@ function* watcherSaga() {
   yield takeEvery("songs/updateSongFetch", updatesong);
   yield takeEvery("albums/getAlbumsFetch", fetchAlbums);
   yield takeEvery("artists/getArtistsFetch", fetchArtists);
+  yield takeEvery("genres/getGenresFetch", fetchGenres);
 }
 
 //root saga
