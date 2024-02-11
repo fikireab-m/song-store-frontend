@@ -1,35 +1,46 @@
 import styled from "@emotion/styled"
 
-const CardContainer = styled.div`
-width:18rem;
+export const CardContainer = styled.div`
+min-width:16rem;
 height:8rem;
-background-color: whiteSmoke;
+background-color: #fff;
 box-shadow: 0px 0.5rem 1rem rgba(0, 0, 0, 0.2);
 border-radius: 1rem;
 padding: 0.5rem;
 display:flex;
 justify-content:space-between;
 align-items:center;
+gap:1rem;
 
 &>span{
-    width:6rem;
-    height:6rem;
-    border-radius:50%;
-    background:grey;
+    width:8rem;
+    height:8rem;
+    box-shadow: 0px 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    border-radius: 1rem;
     display:flex;
     justify-content:center;
     align-items:center;
-}
-`
-const Card = () => {
-    return (
-        <CardContainer>
-            <span>
-                Icon
-            </span>
-            <h3>25 songs</h3>
-        </CardContainer>
-    )
+    color:#7360df60;
+    font-size:6rem;
 }
 
-export default Card
+&>div{
+    border-radius: 1rem;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    &>span{
+        font-size:1.5rem;
+        font-weight:bold;
+        color:#afafaf;
+    }
+
+    &>p{
+        text-align:center;
+        font-size:1rem;
+        font-weight:300;
+    }
+}
+`

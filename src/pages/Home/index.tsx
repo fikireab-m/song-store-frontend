@@ -1,19 +1,57 @@
 import styled from "@emotion/styled"
-import Card from "../../components/Card"
+import { CardContainer } from "../../components/Card"
+import { FaMusic, FaUsers } from "react-icons/fa"
+import { IoIosAlbums } from "react-icons/io"
+import { GiSoundWaves } from "react-icons/gi"
+
+
 const HomeContainer = styled.div`
-display:flex;
+display:grid;
+grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
 gap:1rem;
 justify-content:center;
-align-itmes:center;
-flex-wrap:wrap;
+align-items:center;
 margin-bottom:2rem;
 `
 const Home = () => {
     return (
         <HomeContainer>
-            {
-                Array.from(Array(4)).map((item)=><Card key={item}/>)
-            }
+            <CardContainer>
+                <span>
+                    <FaMusic />
+                </span>
+                <div>
+                    <span>25 Songs</span>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                </div>
+            </CardContainer>
+            <CardContainer>
+                <span>
+                    <FaUsers />
+                </span>
+                <div>
+                    <span>3 Artists</span>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                </div>
+            </CardContainer>
+            <CardContainer>
+                <span>
+                    <IoIosAlbums />
+                </span>
+                <div>
+                    <span>5 Albums</span>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                </div>
+            </CardContainer>
+            <CardContainer>
+                <span>
+                    <GiSoundWaves />
+                </span>
+                <div>
+                    <span>2 Genres</span>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                </div>
+            </CardContainer>
         </HomeContainer>
     )
 }
