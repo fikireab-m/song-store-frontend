@@ -4,6 +4,7 @@ import { MdClose } from 'react-icons/md';
 import { Song } from '../../features/interfaces';
 import { useDispatch } from 'react-redux';
 import { addSongFetch, getSongsFetch } from '../../features/song/songSlice';
+import { InputWrapper } from './InputWrapper';
 
 interface FormProps {
     isOpen: boolean;
@@ -98,16 +99,6 @@ export const SongForm = ({ isOpen, closeForm }: FormProps) => {
     margin-top: 0.5rem;
   `;
 
-    const Input = styled.input`
-    padding: 0.5rem 1rem;
-    border: 1px solid #ddd;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    &:focus {
-        outline: 2px solid #7360DF;
-      }
-  `;
-
     return (
         <div>
             {isOpen && (
@@ -117,16 +108,29 @@ export const SongForm = ({ isOpen, closeForm }: FormProps) => {
                     </button>
                     <FormContent onSubmit={handleSubmit}>
                         <Label htmlFor="songTitle">Song Title</Label>
-                        <Input
-                            type="text" id="songTitle" name="title"
-                            value={title} onChange={handleInputChange} />
+                        <InputWrapper>
+                            <input
+                                type="text" id="songTitle" name="title"
+                                value={title} onChange={handleInputChange} />
+                        </InputWrapper>
 
                         <Label htmlFor="albumName">Album Name</Label>
-                        <Input type="text" id="albumName" name="albumName" value={albumName} onChange={handleInputChange} />
+                        <InputWrapper>
+                            <input type="text" id="albumName" name="albumName"
+                                value={albumName} onChange={handleInputChange} />
+                        </InputWrapper>
+
                         <Label htmlFor="artistName">Artist Name</Label>
-                        <Input type="text" id="artistName" name="artistName" value={artistName} onChange={handleInputChange} />
+                        <InputWrapper>
+                            <input type="text" id="artistName" name="artistName"
+                                value={artistName} onChange={handleInputChange} />
+                        </InputWrapper>
+
                         <Label htmlFor="genre">Artist Name</Label>
-                        <Input type="text" id="genre" name="genre" value={genre} onChange={handleInputChange} />
+                        <InputWrapper>
+                            <input type="text" id="genre" name="genre"
+                                value={genre} onChange={handleInputChange} />
+                        </InputWrapper>
                     </FormContent>
                 </FormContainer>
             )}
