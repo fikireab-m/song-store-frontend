@@ -8,7 +8,7 @@ box-shadow: 0px 0.5rem 1rem rgba(0, 0, 0, 0.2);
 border-radius: 1rem;
 padding-right: 0.5rem;
 display:flex;
-justify-content:space-between;
+justify-content:stretch;
 align-items:center;
 gap:1rem;
 
@@ -28,7 +28,7 @@ gap:1rem;
     border-radius: 1rem;
     display:flex;
     flex-direction:column;
-    justify-content:center;
+    justify-content:start;
     align-items:center;
     padding:0.5rem;
 
@@ -36,8 +36,6 @@ gap:1rem;
         font-size:1.5rem;
         font-weight:bold;
         color:#afafaf;
-        text-align:left;
-        width:80%;
     }
 
     &>p{
