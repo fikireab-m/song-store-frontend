@@ -1,6 +1,10 @@
 import styled from '@emotion/styled'
 import { FaPlus } from "react-icons/fa";
 
+interface HeaderProps {
+    openForm: React.Dispatch<React.SetStateAction<boolean>>
+}
+
 const SearchForm = styled.form`
 position: relative;
 width: 16rem;
@@ -69,7 +73,6 @@ padding:0 2rem;
     border-radius:50%;
     padding:0.5rem;
     background: none;
-    color: #7360DF;
     border:2px solid #7360DF;
     cursor:pointer;
     transition: all .3s ease;
@@ -80,7 +83,7 @@ padding:0 2rem;
     }
 }
 `
-const Header = () => {
+const Header = ({ openForm }: HeaderProps) => {
     return (
         <HeaderComp>
             <SearchForm >
@@ -91,7 +94,7 @@ const Header = () => {
                 </button>
                 <input placeholder="Search here ..." required type="text" />
             </SearchForm>
-            <button>
+            <button onClick={() => openForm(true)}>
                 <FaPlus />
             </button>
         </HeaderComp>

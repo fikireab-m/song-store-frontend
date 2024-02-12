@@ -36,9 +36,11 @@ function* addsong(action: SongActionType) {
     );
     const song: Song = response.data;
     yield put(addSongSuccess(song));
+    return song;
   } catch (e: unknown) {
     yield put(addSongFailure(e));
   }
+  return;
 }
 
 function* updatesong(action: SongActionType) {
@@ -62,33 +64,33 @@ function* deletesong(action: SongActionType) {
 // Saga for fetching albums
 function* fetchAlbums() {
   try {
-      const response: AxiosResponse<Album[]> = yield call(getAlbums);
-      const albums: Album[] = response.data;
-      yield put(getAlbumsSuccess(albums));
+    const response: AxiosResponse<Album[]> = yield call(getAlbums);
+    const albums: Album[] = response.data;
+    yield put(getAlbumsSuccess(albums));
   } catch (e: unknown) {
-      yield put(getAlbumsFailure(e));
+    yield put(getAlbumsFailure(e));
   }
 }
 
 // Saga for fetching artists
 function* fetchArtists() {
   try {
-      const response: AxiosResponse<Album[]> = yield call(getArtists);
-      const artists: Artist[] = response.data;
-      yield put(getArtistsSuccess(artists));
+    const response: AxiosResponse<Album[]> = yield call(getArtists);
+    const artists: Artist[] = response.data;
+    yield put(getArtistsSuccess(artists));
   } catch (e: unknown) {
-      yield put(getArtistsFailure(e));
+    yield put(getArtistsFailure(e));
   }
 }
 
 // Saga for fetching genres
 function* fetchGenres() {
   try {
-      const response: AxiosResponse<string[]> = yield call(getGenres);
-      const genres: string[] = response.data;
-      yield put(getGenresSuccess(genres));
+    const response: AxiosResponse<string[]> = yield call(getGenres);
+    const genres: string[] = response.data;
+    yield put(getGenresSuccess(genres));
   } catch (e: unknown) {
-      yield put(getGenresFailure(e));
+    yield put(getGenresFailure(e));
   }
 }
 // watcher saga

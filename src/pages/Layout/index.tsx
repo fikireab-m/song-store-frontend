@@ -9,18 +9,22 @@ import Header from "../../components/Header";
 import Home from "../Home";
 import { useDispatch, useSelector } from "react-redux";
 import { rootState } from "../../features/interfaces";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getSongsFetch } from "../../features/song/songSlice";
 import { getAlbumsFetch } from "../../features/album/albumSlice";
 import { getArtistsFetch } from "../../features/artist/artistSlice";
 import { getGenresFetch } from "../../features/genre/genreSlice";
 import Songs from "../Songs";
+import SimpleBarChart from "../../components/charts/BarChart";
+import PieChart from "../../components/charts/PieChart";
+import SongTile from "../../components/SongTile";
+import { SongForm } from "../../components/songform/Form";
 
 const HeaderContainer = styled.div`
 position:fixed;
 top:0.5rem;
-right:22rem;
-left:16rem;
+right:19rem;
+left:15rem;
 grid-area: header;
 background-color: #ffffffc8;
 padding:0.5rem 0;
@@ -59,7 +63,7 @@ box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.3);
 const MainContainer = styled.div`
 margin-top:5rem;
 margin-left:14rem;
-margin-right:20rem;
+margin-right:18rem;
 height: max-content;
 border-radius: 1rem;
 padding:1rem;
@@ -70,11 +74,10 @@ position:fixed;
 top:0.5rem;;
 right:0.5rem;
 width:18rem;
-height:100vh;
+min-height:100vh;
 background-color: white;
 border-top-left-radius: 1rem;
 border-top-right-radius: 1rem;
-padding:1rem;
 box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.3);
 `
 const Divider = styled.hr`
@@ -85,6 +88,7 @@ margin-bottom:1rem;
 `
 const PageLayout = () => {
     const dispatch = useDispatch();
+    const [isOpen, setIsOpen] = useState(false);
     const songs = useSelector((state: rootState) => state.songs.songs);
     const albums = useSelector((state: rootState) => state.albums.albums);
     const artists = useSelector((state: rootState) => state.artists.artists);
@@ -99,8 +103,9 @@ const PageLayout = () => {
 
     return (
         <>
+            <SongForm isOpen={isOpen} closeForm={setIsOpen}/>
             <HeaderContainer>
-                <Header />
+                <Header openForm={setIsOpen} />
             </HeaderContainer>
             <SidebarContainer>
                 <SidebarHeader>
@@ -131,12 +136,57 @@ const PageLayout = () => {
             </SidebarContainer>
             <MainContainer>
                 <Home songs={songs} albums={albums} artists={artists} genres={genres} />
-                <Songs songs={songs} />
+                <Songs songs={songs} title="Recently added songs" />
+                {/* <SimpleBarChart title="Weekly view" dataset={[
+                     {
+                        label: "Songs",
+                        data: [4, 2, 1, 4, 3, 2, 5],
+                        borderColor: "#7360DF",
+                        backgroundColor: "#7360df86",
+                        lineTension: 0.5,
+                    },
+                    {
+                        label: "Artists",
+                        data: [1, 0, 2, 2, 4, 4, 2],
+                        borderColor: "#00d9ff",
+                        backgroundColor: "#00d9ff97",
+                        lineTension: 0.5,
+                    },
+                    {
+                        label: "Albums",
+                        data: [3, 5, 3, 1, 3, 1, 3],
+                        borderColor: "#009952",
+                        backgroundColor: "#00995289",
+                        lineTension: 0.5,
+                    },
+                    {
+                        label: "Genres",
+                        data: [2, 2, 0, 1, 0, 3, 1],
+                        borderColor: "#a900ec",
+                        backgroundColor: "#a900ec88",
+                        lineTension: 0.5,
+                    }
+                ]} /> */}
             </MainContainer>
             <RightSide>
-                <h1>Right</h1>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, facilis perferendis. Delectus repellat obcaecati aliquid itaque, quaerat nesciunt eos molestiae voluptatum! Debitis ea eaque iusto obcaecati, quae odio quisquam ad.
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi eius facilis quo non, in magni nesciunt ut aliquid delectus earum ratione reiciendis doloribus exercitationem at, dignissimos unde ea repellendus. Eaque.
+                <PieChart
+                    titleText="All time analysis"
+                    legendOrientation={"left"}
+                    dataValue={[songs.length, artists.length, albums.length, genres.length]} />
+                <SimpleBarChart title="Songs this week" dataset={[
+                    {
+                        label: "Songs",
+                        data: [4, 2, 1, 4, 3, 2, 5],
+                        borderColor: "#7360DF",
+                        backgroundColor: "#7360df86",
+                        lineTension: 0.5,
+                    }
+                ]} />
+                {
+                    songs.length > 3 ? songs.slice(0, 3)
+                        .map((song, index) => <SongTile song={song} key={index} />) :
+                        songs.map((song, index) => <SongTile song={song} key={index} />)
+                }
             </RightSide>
         </>
     )
