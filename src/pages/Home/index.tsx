@@ -5,8 +5,9 @@ import { IoIosAlbums } from "react-icons/io"
 import { GiSoundWaves } from "react-icons/gi"
 import { useEffect, useState } from "react"
 import { Album, Artist, Song } from "../../features/interfaces"
+import Songs from "../Songs"
 
-const HomeContainer = styled.div`
+const GridContainer = styled.div`
 display:grid;
 grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
 gap:1rem;
@@ -34,44 +35,47 @@ const Home = ({ songs, albums, artists, genres }: HomeProp) => {
     }, [songs, albums, artists, genres])
     console.log(genres)
     return (
-        <HomeContainer>
-            <CardContainer>
-                <span>
-                    <FaMusic />
-                </span>
-                <div>
-                    <span>{songCount} Songs</span>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-                </div>
-            </CardContainer>
-            <CardContainer>
-                <span>
-                    <FaUsers />
-                </span>
-                <div>
-                    <span>{artistCount} Artists</span>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-                </div>
-            </CardContainer>
-            <CardContainer>
-                <span>
-                    <IoIosAlbums />
-                </span>
-                <div>
-                    <span>{albumtCount} Albums</span>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-                </div>
-            </CardContainer>
-            <CardContainer>
-                <span>
-                    <GiSoundWaves />
-                </span>
-                <div>
-                    <span>{genreCount} Genres</span>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-                </div>
-            </CardContainer>
-        </HomeContainer>
+        <>
+            <GridContainer>
+                <CardContainer>
+                    <span>
+                        <FaMusic />
+                    </span>
+                    <div>
+                        <span>{songCount} Songs</span>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                    </div>
+                </CardContainer>
+                <CardContainer>
+                    <span>
+                        <FaUsers />
+                    </span>
+                    <div>
+                        <span>{artistCount} Artists</span>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                    </div>
+                </CardContainer>
+                <CardContainer>
+                    <span>
+                        <IoIosAlbums />
+                    </span>
+                    <div>
+                        <span>{albumtCount} Albums</span>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                    </div>
+                </CardContainer>
+                <CardContainer>
+                    <span>
+                        <GiSoundWaves />
+                    </span>
+                    <div>
+                        <span>{genreCount} Genres</span>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                    </div>
+                </CardContainer>
+            </GridContainer>
+            <Songs songs={songs} title="Recently added songs" />
+        </>
     )
 }
 
