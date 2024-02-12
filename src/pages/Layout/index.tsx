@@ -1,10 +1,4 @@
 import styled from "@emotion/styled"
-import SidebarMenuButton from "../../components/widgets/SidebarMenuButton"
-import { GoHome } from "react-icons/go";
-import { CiMusicNote1 } from "react-icons/ci";
-import { IoAlbumsOutline } from "react-icons/io5";
-import { BsSoundwave } from "react-icons/bs";
-import { FiUsers } from "react-icons/fi";
 import Header from "../../components/Header";
 import Home from "../Home";
 import { useDispatch, useSelector } from "react-redux";
@@ -32,18 +26,6 @@ border-radius:1rem;
 display:flex;
 align-items:center;
 box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.3);
-`
-const SidebarHeader = styled.div`
-padding-top:1rem;
-display:flex;
-align-items:center;
-gap:0.5rem;
-color:#7360DF;
-font-size:1.2rem;
-
-&>img{
-    height:2.5rem;
-}
 `
 const SidebarContainer = styled.div`
 position:fixed;
@@ -80,12 +62,6 @@ border-top-left-radius: 1rem;
 border-top-right-radius: 1rem;
 box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.3);
 `
-const Divider = styled.hr`
-width:80%;
-text-align:center;
-opacity:0.5;
-margin-bottom:1rem;
-`
 const PageLayout = () => {
     const dispatch = useDispatch();
     const [isOpen, setIsOpen] = useState(false);
@@ -108,31 +84,7 @@ const PageLayout = () => {
                 <Header openForm={setIsOpen} />
             </HeaderContainer>
             <SidebarContainer>
-                <SidebarHeader>
-                    <img src="/icon.svg" alt="logo" />
-                    <span>Melody-Mall</span>
-                </SidebarHeader>
-                <Divider />
-                <SidebarMenuButton >
-                    <GoHome />
-                    <span>Home</span>
-                </SidebarMenuButton>
-                <SidebarMenuButton>
-                    <CiMusicNote1 />
-                    <span>Songs</span>
-                </SidebarMenuButton>
-                <SidebarMenuButton>
-                    <FiUsers />
-                    <span>Artists</span>
-                </SidebarMenuButton>
-                <SidebarMenuButton >
-                    <IoAlbumsOutline />
-                    <span>Albums</span>
-                </SidebarMenuButton>
-                <SidebarMenuButton >
-                    <BsSoundwave />
-                    <span>Genres</span>
-                </SidebarMenuButton>
+
             </SidebarContainer>
             <MainContainer>
                 <Home songs={songs} albums={albums} artists={artists} genres={genres} />
