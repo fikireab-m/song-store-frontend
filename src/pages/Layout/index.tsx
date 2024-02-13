@@ -3,7 +3,7 @@ import Header from "../../components/Header";
 import Home from "../Home";
 import { useDispatch, useSelector } from "react-redux";
 import { rootState } from "../../features/interfaces";
-import { ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getSongsFetch } from "../../features/song/songSlice";
 import { getAlbumsFetch } from "../../features/album/albumSlice";
 import { getArtistsFetch } from "../../features/artist/artistSlice";
@@ -46,8 +46,8 @@ box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.3);
 `
 const MainContainer = styled.div`
 margin-top:5rem;
-margin-left:14rem;
-margin-right:18rem;
+margin-left:15rem;
+margin-right:19rem;
 height: max-content;
 border-radius: 1rem;
 padding:1rem;

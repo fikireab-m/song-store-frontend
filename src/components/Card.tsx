@@ -1,7 +1,7 @@
 import styled from "@emotion/styled"
 
 export const CardContainer = styled.div`
-min-width:16rem;
+min-width:18.5rem;
 height:8rem;
 background-color: #fff;
 box-shadow: 0px 0.5rem 1rem rgba(0, 0, 0, 0.2);
@@ -42,6 +42,7 @@ gap:1rem;
         text-align:center;
         font-size:1rem;
         font-weight:300;
+        margin:0;
     }
 }
 `
