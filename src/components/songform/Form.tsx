@@ -41,7 +41,7 @@ export const SongForm = ({ isOpen, closeForm }: FormProps) => {
     background-color: white;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
-    box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.3);
+    box-shadow: -4rem 0 32rem rgba(0,0,0,0.5);
     z-index: 10;
     opacity: ${isOpen ? 1 : 0};
     transition: opacity 0.5s ease-in-out;
@@ -105,12 +105,12 @@ export const SongForm = ({ isOpen, closeForm }: FormProps) => {
                 top: 0;
                 font-size: 0.6rem;
                 font-weight: 500;
-                }
+            }
             input:valid + span {
                 top: 0;
                 font-size: 0.6rem;
                 color: green;
-                }
+            }
         }
 
         button {
@@ -128,21 +128,17 @@ export const SongForm = ({ isOpen, closeForm }: FormProps) => {
             &:hover {
             background-color: #60a2df;
             cursor: pointer;
-            }
-            }
-            span{
-            color: rgba(88, 87, 87, 0.822);
-            font-size: 1rem;
+                }
             }
 
         @keyframes pulse {
         from {
-            transform: scale(0.9);
+            transform: scale(1);
             opacity: 1;
         }
 
         to {
-            transform: scale(1.8);
+            transform: scale(2);
             opacity: 0;
         }
         }
