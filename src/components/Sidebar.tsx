@@ -8,17 +8,17 @@ import styled from "@emotion/styled";
 import { Divider } from "./Divider";
 
 const SidebarHeader = styled.div`
-padding-top:1rem;
-display:flex;
-align-items:center;
-gap:0.5rem;
-color:#7360DF;
-font-size:1.2rem;
+    padding-top:1rem;
+    display:flex;
+    align-items:center;
+    gap:0.5rem;
+    color:#7360DF;
+    font-size:1.2rem;
 
-img{
-    height:2.5rem;
-}
-`
+    img{
+        height:2.5rem;
+    }
+`;
 const Sidebar = () => {
     return (
         <>
