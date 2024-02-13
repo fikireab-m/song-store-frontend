@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from '@emotion/styled';
 import { MdClose } from 'react-icons/md';
 import { Song } from '../../features/interfaces';
 import { useDispatch } from 'react-redux';
 import { addSongFetch, getSongsFetch } from '../../features/song/songSlice';
-import { InputWrapper } from './InputWrapper';
 
 interface FormProps {
     isOpen: boolean;
@@ -14,30 +13,35 @@ interface FormProps {
 export const SongForm = ({ isOpen, closeForm }: FormProps) => {
     const dispatch = useDispatch();
 
-    const [formData, setFormData] = useState({
-        title: "",
-        artistName: "",
-        albumName: "",
-        genre: "",
-    });
+    // const [formData, setFormData] = useState({
+    //     title: "",
+    //     artistName: "",
+    //     albumName: "",
+    //     genre: "",
+    // });
 
-    const { title, artistName, albumName, genre } = formData;
+    // const { title, artistName, albumName, genre } = formData;
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        e.preventDefault();
-        setFormData((prevState) => ({
-            ...prevState,
-            [e.target.name]: e.target.value,
-        }));
-    };
+    const titleRef = useRef<HTMLInputElement>(null);
+    const albumRef = useRef<HTMLInputElement>(null);
+    const artistRef = useRef<HTMLInputElement>(null);
+    const genreRef = useRef<HTMLInputElement>(null);
+
+    // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     e.preventDefault();
+    //     setFormData((prevState) => ({
+    //         ...prevState,
+    //         [e.target.name]: e.target.value,
+    //     }));
+    // };
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const newSong: Song = {
-            artist: { name: artistName },
-            title,
-            album: { name: albumName },
-            genre,
+            artist: { name: artistRef.current!.value },
+            title:titleRef.current!.value,
+            album: { name: albumRef.current!.value },
+            genre:genreRef.current!.value,
         };
         dispatch(addSongFetch(newSong));
     };
@@ -50,8 +54,7 @@ export const SongForm = ({ isOpen, closeForm }: FormProps) => {
     position:fixed;
     top:0.5rem;;
     right:0;
-    width:100%;
-    height:100vh;
+    min-height:100vh;
     background-color: white;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
@@ -64,41 +67,136 @@ export const SongForm = ({ isOpen, closeForm }: FormProps) => {
       width: 28rem;
     }
     &>button{
-        margin-top:1rem;
-        margin-left:1rem;
-        width:2rem;
-        height:2rem;
-        font-size:1.5rem;
+        margin:1rem;
+        font-size:2rem;
         color: #7360DF;
-        border-radius:50%;
-        padding:0.25rem;
         background: none;
         cursor:pointer;
         border:none;
         transition: all .3s ease;
 
         &:hover{
-            background:#910050;
-            color:white;
+            font-weight:bolder;
+            color: #ff0062d6;
+            transform:scale(1.5);
         }
         }
   `;
 
-    const FormContent = styled.form`
-    background-color: #fff;
-    padding: 0 2rem;
-    display: flex;
-    flex-direction: column;
-    gap:0.2rem;
+    const Form = styled.form`
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        max-width: 350px;
+        padding: 0 2rem;
+        position: relative;
+
+        label{
+            position: relative;
+
+            &>input{
+                width: 100%;
+                padding: 0.75rem 1rem;
+                outline: 0;
+                border: 1px solid #7360df63;
+                border-radius: 0.75rem;
+
+                &:focus{
+                    border: 1px solid #7360df;
+                }
+            }
+            &>span{
+                position: absolute;
+                left: 0.75rem;
+                top: 0.75rem;
+                color: grey;
+                font-size: 0.9rem;
+                cursor: text;
+                transition: 0.3s ease;
+            }
+            input:placeholder-shown + span {
+                top: 1rem;
+                font-size: 0.9em;
+            }
+            input:focus + span,.form label .input:valid + span {
+                top: 0;
+                font-size: 0.6rem;
+                font-weight: 500;
+                }
+            input:valid + span {
+                top: 0;
+                font-size: 0.6rem;
+                color: green;
+                }
+        }
+
+        button {
+            width: 100%;
+            border: none;
+            outline: none;
+            background-color: #7360DF;
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            color: #fff;
+            font-size: 16px;
+            margin-top:1rem;
+            transform: .3s ease;
+
+            &:hover {
+            background-color: #60a2df;
+            cursor: pointer;
+            }
+            }
+            span{
+            color: rgba(88, 87, 87, 0.822);
+            font-size: 1rem;
+            }
+
+        @keyframes pulse {
+        from {
+            transform: scale(0.9);
+            opacity: 1;
+        }
+
+        to {
+            transform: scale(1.8);
+            opacity: 0;
+        }
+        }
   `;
 
-    const Label = styled.label`
-    display: block;
-    font-size:1rem;
-    font-weight: 300;
-    margin-top: 0.5rem;
-  `;
+    const TitleText = styled.span`
+        font-size: 2rem;
+        color: #7360df;
+        font-weight: 600;
+        letter-spacing: -1px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding-left: 2rem;
 
+        &::before, &::after {
+        position: absolute;
+        content: "";
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        left: 0px;
+        background-color: #7360df;
+        }
+
+        &::before {
+        width: 18px;
+        height: 18px;
+        background-color: #7360df;
+        }
+
+        &::after {
+        width: 18px;
+        height: 18px;
+        animation: pulse 3s linear infinite;
+        }
+`;
     return (
         <div>
             {isOpen && (
@@ -106,32 +204,40 @@ export const SongForm = ({ isOpen, closeForm }: FormProps) => {
                     <button onClick={() => closeForm(false)}>
                         <MdClose />
                     </button>
-                    <FormContent onSubmit={handleSubmit}>
-                        <Label htmlFor="songTitle">Song Title</Label>
-                        <InputWrapper>
-                            <input
-                                type="text" id="songTitle" name="title"
-                                value={title} onChange={handleInputChange} />
-                        </InputWrapper>
+                    <Form onSubmit={handleSubmit}>
+                        <TitleText>New Song </TitleText>
+                        <span>Fill necessary song informations </span>
 
-                        <Label htmlFor="albumName">Album Name</Label>
-                        <InputWrapper>
-                            <input type="text" id="albumName" name="albumName"
-                                value={albumName} onChange={handleInputChange} />
-                        </InputWrapper>
+                        <label>
+                            <input type="text" required name="title" ref={titleRef}  />
+                            <span>Song title</span>
+                        </label>
+                        <label>
+                            <input type="text" required name="artistName" ref={artistRef}/>
+                            <span>Artist name</span>
+                        </label>
 
-                        <Label htmlFor="artistName">Artist Name</Label>
-                        <InputWrapper>
-                            <input type="text" id="artistName" name="artistName"
-                                value={artistName} onChange={handleInputChange} />
-                        </InputWrapper>
+                        <label>
+                            <input type="text" required name="albumName" ref={albumRef}/>
+                            <span>Album name</span>
+                        </label>
 
-                        <Label htmlFor="genre">Artist Name</Label>
-                        <InputWrapper>
-                            <input type="text" id="genre" name="genre"
-                                value={genre} onChange={handleInputChange} />
-                        </InputWrapper>
-                    </FormContent>
+                        <label>
+                            <input type="text" required name="genre" ref={genreRef}/>
+                            <span>Song genre</span>
+                        </label>
+
+                        <span>Upload aritst avatar(optional)</span>
+                        <label>
+                            <input type="file" name="atistAvatar"/>
+                        </label>
+                        <span>Upload album art(optional)</span>
+                        <label>
+                            <input type="file" name="albumArt"/>
+                        </label>
+
+                        <button >Submit</button>
+                    </Form>
                 </FormContainer>
             )}
         </div>
