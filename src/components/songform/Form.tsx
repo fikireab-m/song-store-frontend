@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
 import { MdClose } from 'react-icons/md';
 import { Song } from '../../features/interfaces';
@@ -13,29 +13,12 @@ interface FormProps {
 export const SongForm = ({ isOpen, closeForm }: FormProps) => {
     const dispatch = useDispatch();
 
-    // const [formData, setFormData] = useState({
-    //     title: "",
-    //     artistName: "",
-    //     albumName: "",
-    //     genre: "",
-    // });
-
-    // const { title, artistName, albumName, genre } = formData;
-
     const titleRef = useRef<HTMLInputElement>(null);
     const albumRef = useRef<HTMLInputElement>(null);
     const artistRef = useRef<HTMLInputElement>(null);
     const genreRef = useRef<HTMLInputElement>(null);
 
-    // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //     e.preventDefault();
-    //     setFormData((prevState) => ({
-    //         ...prevState,
-    //         [e.target.name]: e.target.value,
-    //     }));
-    // };
-
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const newSong: Song = {
             artist: { name: artistRef.current!.value },
@@ -204,7 +187,7 @@ export const SongForm = ({ isOpen, closeForm }: FormProps) => {
                     <button onClick={() => closeForm(false)}>
                         <MdClose />
                     </button>
-                    <Form onSubmit={handleSubmit}>
+                    <Form onSubmit={onSubmit}>
                         <TitleText>New Song </TitleText>
                         <span>Fill necessary song informations </span>
 
