@@ -11,7 +11,7 @@ import { getGenresFetch } from "../../features/genre/genreSlice";
 import SimpleBarChart from "../../components/charts/BarChart";
 import PieChart from "../../components/charts/PieChart";
 import SongTile from "../../components/SongTile";
-import { SongForm } from "../../components/songform/Form";
+import { NewSongForm } from "../../components/NewSongForm";
 import Sidebar from "../../components/Sidebar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Songs from "../Songs";
@@ -75,7 +75,7 @@ const PageLayout = () => {
 
     return (
         <>
-            <SongForm isOpen={isOpen} closeForm={setIsOpen} />
+            <NewSongForm isOpen={isOpen} closeForm={setIsOpen} />
             <HeaderContainer>
                 <Header openForm={setIsOpen} />
             </HeaderContainer>

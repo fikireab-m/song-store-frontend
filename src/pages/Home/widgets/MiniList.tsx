@@ -10,12 +10,13 @@ export const MiniList = styled.div`
     div:not(:nth-child(1)){  
     margin-top:0.2rem;
     }
+
     div{
-    border-radius:1rem;
-    display:flex;
-    flex-direction:column;
-    justify-items:start;
-    background-color:#f7f7f7;
+        border-radius:1rem;
+        display:flex;
+        flex-direction:column;
+        justify-items:start;
+        background-color:#f7f7f7;
 
     span{
         color:#999;

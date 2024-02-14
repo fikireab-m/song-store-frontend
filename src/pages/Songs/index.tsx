@@ -2,6 +2,10 @@ import styled from '@emotion/styled';
 import { Song } from '../../features/interfaces';
 import { Table } from '../../components/TableLayout';
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
+import { UpdateSongForm } from './widgets/UpdateSongForm';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { getSongsFetch } from '../../features/song/songSlice';
 interface SongsProp {
     songs: Song[];
     title: string;
@@ -43,6 +47,9 @@ button{
 `
 
 const Songs = ({ songs, title }: SongsProp) => {
+    const dispatch = useDispatch();
+    const [songToEdit, setSong] = useState<Song>(songs[0]);
+    const [openForm, setOpenForm] = useState<boolean>(false);
     /* const dateString = (dateStr: string) => {
         const dateObj = new Date(dateStr);
         const formattedDate = dateObj.toLocaleDateString(
@@ -50,8 +57,16 @@ const Songs = ({ songs, title }: SongsProp) => {
             { day: '2-digit', month: '2-digit', year: 'numeric' });
         return formattedDate;
     } */
+    const handleEdit = (song: Song) => {
+        setSong(song);
+        setOpenForm(true);
+    }
+    useEffect(() => {
+        dispatch(getSongsFetch());
+    }, [dispatch, openForm])
     return (
         <Container show={songs.length > 0}>
+            <UpdateSongForm song={songToEdit} isOpen={openForm} formOpen={setOpenForm} />
             <TitleText>
                 {title}
             </TitleText>
@@ -74,7 +89,7 @@ const Songs = ({ songs, title }: SongsProp) => {
                             <td>{song.genre}</td>
                             <td>
                                 <ActionBar>
-                                    <button><FaRegEdit /></button>
+                                    <button onClick={() => handleEdit(song)}><FaRegEdit /></button>
                                     <button><FaRegTrashAlt /></button>
                                 </ActionBar>
                             </td>

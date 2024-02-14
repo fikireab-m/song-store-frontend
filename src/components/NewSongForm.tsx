@@ -1,16 +1,16 @@
 import React, { useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
 import { MdClose } from 'react-icons/md';
-import { Song } from '../../features/interfaces';
+import { Song } from '../features/interfaces';
 import { useDispatch } from 'react-redux';
-import { addSongFetch, getSongsFetch } from '../../features/song/songSlice';
+import { addSongFetch, getSongsFetch } from '../features/song/songSlice';
 
 interface FormProps {
     isOpen: boolean;
     closeForm: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const SongForm = ({ isOpen, closeForm }: FormProps) => {
+export const NewSongForm = ({ isOpen, closeForm }: FormProps) => {
     const dispatch = useDispatch();
 
     const titleRef = useRef<HTMLInputElement>(null);
@@ -61,7 +61,7 @@ export const SongForm = ({ isOpen, closeForm }: FormProps) => {
         &:hover{
             font-weight:bolder;
             color: #ff0062d6;
-            transform:scale(1.5);
+            transform:scale(1.25);
         }
         }
   `;
