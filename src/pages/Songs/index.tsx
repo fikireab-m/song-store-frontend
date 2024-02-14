@@ -24,6 +24,7 @@ const TitleText = styled.span`
 const Container = styled.div<{ show: boolean }>`
     background-color:#fff;
     border-radius:1rem;
+    margin-bottom:1rem;
     display: ${props => props.show ? "block" : "none"}
 `
 const ActionBar = styled.span`
@@ -56,13 +57,7 @@ const Songs = ({ songs, title }: SongsProp) => {
     const [openForm, setOpenForm] = useState<boolean>(false);
     const [songToDelete, setSongToDelete] = useState<Song>(songs[0]);
     const [openModal, setOpenModal] = useState<boolean>(false);
-    /* const dateString = (dateStr: string) => {
-        const dateObj = new Date(dateStr);
-        const formattedDate = dateObj.toLocaleDateString(
-            'en-US',
-            { day: '2-digit', month: '2-digit', year: 'numeric' });
-        return formattedDate;
-    } */
+
     const handleEdit = (song: Song) => {
         setSong(song);
         setOpenForm(true);

@@ -16,6 +16,12 @@ border-radius: 1rem;
 transition: border-radius 0.5s ease;
 background: whitesmoke;
 
+@media only screen and (max-width: 660px)  {
+        &{
+            width:12rem;
+        }
+    }
+
 &>button{
     border: none;
     background: none;

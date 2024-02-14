@@ -8,9 +8,6 @@ import { getSongsFetch } from "../../features/song/songSlice";
 import { getAlbumsFetch } from "../../features/album/albumSlice";
 import { getArtistsFetch } from "../../features/artist/artistSlice";
 import { getGenresFetch } from "../../features/genre/genreSlice";
-import SimpleBarChart from "../../components/charts/BarChart";
-import PieChart from "../../components/charts/PieChart";
-import SongTile from "../../components/SongTile";
 import { NewSongForm } from "../../components/NewSongForm";
 import Sidebar from "../../components/Sidebar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
@@ -20,8 +17,8 @@ import Loader from "../../components/Loader";
 const HeaderContainer = styled.div`
 position:fixed;
 top:0.5rem;
-right:19rem;
-left:15rem;
+right:1rem;
+left:15.5rem;
 grid-area: header;
 background-color: #ffffffc8;
 padding:0.5rem 0;
@@ -29,6 +26,13 @@ border-radius:1rem;
 display:flex;
 align-items:center;
 box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.3);
+
+@media only screen and (max-width: 660px) {
+  & {
+    right:0.5rem;
+    left:0.5rem;
+  }
+}
 `
 const SidebarContainer = styled.div`
 position:fixed;
@@ -41,23 +45,17 @@ box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.3);
 `
 const MainContainer = styled.div`
 margin-top:5rem;
-margin-left:14rem;
-margin-right:18rem;
+margin-left:15rem;
+margin-right:0.5rem;
 height: max-content;
 border-radius: 1rem;
-padding:1rem;
-`
-const RightSide = styled.div`
-position:fixed;
-top:0.5rem;;
-right:0.5rem;
-width:18rem;
-min-height:100vh;
-background-color: white;
-border-top-left-radius: 1rem;
-border-top-right-radius: 1rem;
-box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.3);
-`
+
+@media only screen and (max-width: 660px) {
+  & {
+    margin-left:0.5rem;
+  }
+}
+`;
 const PageLayout = () => {
     const dispatch = useDispatch();
     const [isOpen, setIsOpen] = useState(false);
@@ -71,11 +69,11 @@ const PageLayout = () => {
         dispatch(getAlbumsFetch());
         dispatch(getArtistsFetch());
         dispatch(getGenresFetch());
-    }, [dispatch]);
+    }, [dispatch, isOpen]);
 
     return (
         <>
-            <NewSongForm isOpen={isOpen} closeForm={setIsOpen} />
+            <NewSongForm isOpen={isOpen} openForm={setIsOpen} />
             <HeaderContainer>
                 <Header openForm={setIsOpen} />
             </HeaderContainer>
@@ -93,26 +91,7 @@ const PageLayout = () => {
                         </Router>
                 }
             </MainContainer>
-            <RightSide>
-                <PieChart
-                    titleText="All time analysis"
-                    legendOrientation={"left"}
-                    dataValue={[songs.length, artists.length, albums.length, genres.length]} />
-                <SimpleBarChart title="Songs this week" dataset={[
-                    {
-                        label: "Songs",
-                        data: [4, 2, 1, 4, 3, 2, 5],
-                        borderColor: "#7360DF",
-                        backgroundColor: "#7360df86",
-                        lineTension: 0.5,
-                    }
-                ]} />
-                {
-                    songs.length > 3 ? songs.slice(0, 3)
-                        .map((song, index) => <SongTile song={song} key={index} />) :
-                        songs.map((song, index) => <SongTile song={song} key={index} />)
-                }
-            </RightSide>
+
         </>
     )
 }

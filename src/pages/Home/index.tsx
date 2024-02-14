@@ -7,14 +7,39 @@ import { useEffect, useState } from "react"
 import { Album, Artist, Song } from "../../features/interfaces"
 import Songs from "../Songs"
 import { MiniList } from "./widgets/MiniList"
+import PieChart from "../../components/charts/PieChart"
+import SimpleBarChart from "../../components/charts/BarChart"
 
 const GridContainer = styled.div`
 display:grid;
-grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+flex-grow:1;
+grid-template-columns: repeat(auto-fill, minmax(18.5rem, 1fr));
 gap:1rem;
 justify-content:center;
 align-items:center;
-margin-bottom:2rem;
+margin-top: 0.5rem;
+margin-bottom: 1.5rem;
+`;
+
+const HomeContainer = styled.div`
+    display:flex;
+    justify-content:space-between;
+    gap:1rem;
+`
+
+const RightSide = styled.div`
+top:0.5rem;
+width:18rem;
+min-height:max-content;
+background-color: white;
+border-radius:1rem;
+box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.2);
+
+@media only screen and (max-width: 660px) {
+  & {
+    width:100%;
+  }
+}
 `;
 
 interface HomeProp {
@@ -38,69 +63,85 @@ const Home = ({ songs, albums, artists, genres }: HomeProp) => {
     console.log(genres)
     return (
         <>
-            <GridContainer>
-                <CardContainer>
-                    <span>
-                        <FaMusic />
-                    </span>
-                    <div>
-                        <span>{songCount} Songs</span>
-                        <MiniList>
-                            {songs.slice(0, 2).map((song, index) => (
-                                <div key={index}>
-                                    <span>{song.title}</span>
-                                    <span>{song.artist.name}</span>
-                                </div>
-                            ))}
-                        </MiniList>
-                    </div>
-                </CardContainer>
-                <CardContainer>
-                    <span>
-                        <FaUsers />
-                    </span>
-                    <div>
-                        <span>{artistCount} Artists</span>
-                        <MiniList>
-                            {artists.slice(0, 4).map((artist, index) => (
-                                <div key={index}>
-                                    <span>{artist.name}</span>
-                                </div>
-                            ))}
-                        </MiniList>
-                    </div>
-                </CardContainer>
-                <CardContainer>
-                    <span>
-                        <IoIosAlbums />
-                    </span>
-                    <div>
-                        <span>{albumtCount} Albums</span>
-                        <MiniList>
-                            {albums.slice(0, 4).map((album, index) => (
-                                <div key={index}>
-                                    <span>{album.name}</span>
-                                </div>
-                            ))}
-                        </MiniList>
-                    </div>
-                </CardContainer>
-                <CardContainer>
-                    <span>
-                        <GiSoundWaves />
-                    </span>
-                    <div>
-                        <span>{genreCount} Genres</span>
-                        <MiniList>
-                            {genres.slice(0, 4).map((genre, index) => (
-                                <div key={index}>
-                                    <span>{genre}</span>
-                                </div>
-                            ))}
-                        </MiniList>
-                    </div>
-                </CardContainer>
-            </GridContainer>
+            <HomeContainer>
+                <GridContainer>
+                    <CardContainer>
+                        <span>
+                            <FaMusic />
+                        </span>
+                        <div>
+                            <span>{songCount} Songs</span>
+                            <MiniList>
+                                {songs.slice(0, 10).map((song, index) => (
+                                    <div key={index}>
+                                        <span>{song.title}</span>
+                                    </div>
+                                ))}
+                            </MiniList>
+                        </div>
+                    </CardContainer>
+                    <CardContainer>
+                        <span>
+                            <FaUsers />
+                        </span>
+                        <div>
+                            <span>{artistCount} Artists</span>
+                            <MiniList>
+                                {artists.slice(0, 10).map((artist, index) => (
+                                    <div key={index}>
+                                        <span>{artist.name}</span>
+                                    </div>
+                                ))}
+                            </MiniList>
+                        </div>
+                    </CardContainer>
+                    <CardContainer>
+                        <span>
+                            <IoIosAlbums />
+                        </span>
+                        <div>
+                            <span>{albumtCount} Albums</span>
+                            <MiniList>
+                                {albums.slice(0, 10).map((album, index) => (
+                                    <div key={index}>
+                                        <span>{album.name}</span>
+                                    </div>
+                                ))}
+                            </MiniList>
+                        </div>
+                    </CardContainer>
+                    <CardContainer>
+                        <span>
+                            <GiSoundWaves />
+                        </span>
+                        <div>
+                            <span>{genreCount} Genres</span>
+                            <MiniList>
+                                {genres.slice(0, 10).map((genre, index) => (
+                                    <div key={index}>
+                                        <span>{genre}</span>
+                                    </div>
+                                ))}
+                            </MiniList>
+                        </div>
+                    </CardContainer>
+                </GridContainer>
+                <RightSide>
+                    <PieChart
+                        legendOrientation={"left"}
+                        dataValue={[songs.length, artists.length, albums.length, genres.length]} />
+                    <SimpleBarChart title="Songs this week" dataset={[
+                        {
+                            label: "Songs",
+                            data: [4, 2, 1, 4, 3, 2, 5],
+                            borderColor: "#7360DF",
+                            backgroundColor: "#7360df86",
+                            lineTension: 0.5,
+                        }
+                    ]} />
+                </RightSide>
+            </HomeContainer>
+
             <Songs songs={songs} title="Recently added songs" />
         </>
     )

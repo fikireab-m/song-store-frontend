@@ -1,16 +1,16 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import styled from '@emotion/styled';
 import { MdClose } from 'react-icons/md';
 import { Song } from '../features/interfaces';
 import { useDispatch } from 'react-redux';
-import { addSongFetch, getSongsFetch } from '../features/song/songSlice';
+import { addSongFetch } from '../features/song/songSlice';
 
 interface FormProps {
     isOpen: boolean;
-    closeForm: React.Dispatch<React.SetStateAction<boolean>>
+    openForm: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const NewSongForm = ({ isOpen, closeForm }: FormProps) => {
+export const NewSongForm = ({ isOpen, openForm }: FormProps) => {
     const dispatch = useDispatch();
 
     const titleRef = useRef<HTMLInputElement>(null);
@@ -22,19 +22,17 @@ export const NewSongForm = ({ isOpen, closeForm }: FormProps) => {
         event.preventDefault();
         const newSong: Song = {
             artist: { name: artistRef.current!.value },
-            title:titleRef.current!.value,
+            title: titleRef.current!.value,
             album: { name: albumRef.current!.value },
-            genre:genreRef.current!.value,
+            genre: genreRef.current!.value,
         };
         dispatch(addSongFetch(newSong));
+        openForm(false);
     };
-
-    useEffect(() => {
-        dispatch(getSongsFetch());
-    }, [dispatch]);
 
     const FormContainer = styled.div`
     position:fixed;
+    width: 28rem;
     top:0.5rem;;
     right:0;
     min-height:100vh;
@@ -46,8 +44,10 @@ export const NewSongForm = ({ isOpen, closeForm }: FormProps) => {
     opacity: ${isOpen ? 1 : 0};
     transition: opacity 0.5s ease-in-out;
 
-    @media (min-width: 768px) {
-      width: 28rem;
+    @media only screen and (max-width: 660px)  {
+        &{
+            width:100%;
+        }
     }
     &>button{
         margin:1rem;
@@ -180,7 +180,7 @@ export const NewSongForm = ({ isOpen, closeForm }: FormProps) => {
         <div>
             {isOpen && (
                 <FormContainer>
-                    <button onClick={() => closeForm(false)}>
+                    <button onClick={() => openForm(false)}>
                         <MdClose />
                     </button>
                     <Form onSubmit={onSubmit}>
@@ -188,31 +188,31 @@ export const NewSongForm = ({ isOpen, closeForm }: FormProps) => {
                         <span>Fill necessary song informations </span>
 
                         <label>
-                            <input type="text" required name="title" ref={titleRef}  />
+                            <input type="text" required name="title" ref={titleRef} />
                             <span>Song title</span>
                         </label>
                         <label>
-                            <input type="text" required name="artistName" ref={artistRef}/>
+                            <input type="text" required name="artistName" ref={artistRef} />
                             <span>Artist name</span>
                         </label>
 
                         <label>
-                            <input type="text" required name="albumName" ref={albumRef}/>
+                            <input type="text" required name="albumName" ref={albumRef} />
                             <span>Album name</span>
                         </label>
 
                         <label>
-                            <input type="text" required name="genre" ref={genreRef}/>
+                            <input type="text" required name="genre" ref={genreRef} />
                             <span>Song genre</span>
                         </label>
 
                         <span>Upload aritst avatar(optional)</span>
                         <label>
-                            <input type="file" name="atistAvatar"/>
+                            <input type="file" name="atistAvatar" />
                         </label>
                         <span>Upload album art(optional)</span>
                         <label>
-                            <input type="file" name="albumArt"/>
+                            <input type="file" name="albumArt" />
                         </label>
 
                         <button >Submit</button>

@@ -34,11 +34,10 @@ const borderColors = [
 
 
 interface PieProps {
-  titleText: string;
   legendOrientation: "bottom" | "top" | "chartArea" | "left";
   dataValue: number[];
 }
-const PieChart = ({ titleText, legendOrientation, dataValue }: PieProps) => {
+const PieChart = ({ legendOrientation, dataValue }: PieProps) => {
   const data = {
     labels,
     datasets: [
@@ -58,7 +57,6 @@ const PieChart = ({ titleText, legendOrientation, dataValue }: PieProps) => {
             position: legendOrientation,
             align: "center",
           },
-          title: { display: true, text: titleText, position: 'top' },
         },
       }}
       data={data}
