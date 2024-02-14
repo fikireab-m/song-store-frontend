@@ -11,9 +11,10 @@ const Ul = styled.ul`
         display:flex;
         justify-content:flex-start;
         align-items:center;
-        background-color:#7360df18;
+        background-color:#f2f2f2;
         margin-top:1px;
-        border-radius:0.5re,;
+        padding:0.1rem;
+        border-radius:0.5rem;
 
         &>span{
             font-size:1.5rem;
@@ -22,15 +23,17 @@ const Ul = styled.ul`
             margin-right:0.5rem;
         }
         div{
-            color:grey;
+            color:#888;
             h6{
-            font-weight:600;
-            font-size:1rem;
+            font-weight:500;
+            font-size:0.9rem;
             padding:0;
             margin:0;
         }
         span{
-            font-size:1rem;
+            padding:0;
+            margin:0;
+            font-size:0.85rem;
         }
         }
     }

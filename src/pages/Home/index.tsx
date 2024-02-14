@@ -6,6 +6,7 @@ import { GiSoundWaves } from "react-icons/gi"
 import { useEffect, useState } from "react"
 import { Album, Artist, Song } from "../../features/interfaces"
 import Songs from "../Songs"
+import { MiniList } from "./widgets/MiniList"
 
 const GridContainer = styled.div`
 display:grid;
@@ -14,7 +15,8 @@ gap:1rem;
 justify-content:center;
 align-items:center;
 margin-bottom:2rem;
-`
+`;
+
 interface HomeProp {
     songs: Song[];
     albums: Album[];
@@ -43,7 +45,14 @@ const Home = ({ songs, albums, artists, genres }: HomeProp) => {
                     </span>
                     <div>
                         <span>{songCount} Songs</span>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                        <MiniList>
+                            {songs.slice(0, 2).map((song, index) => (
+                                <div key={index}>
+                                    <span>{song.title}</span>
+                                    <span>{song.artist.name}</span>
+                                </div>
+                            ))}
+                        </MiniList>
                     </div>
                 </CardContainer>
                 <CardContainer>
@@ -52,7 +61,13 @@ const Home = ({ songs, albums, artists, genres }: HomeProp) => {
                     </span>
                     <div>
                         <span>{artistCount} Artists</span>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                        <MiniList>
+                            {artists.slice(0, 4).map((artist, index) => (
+                                <div key={index}>
+                                    <span>{artist.name}</span>
+                                </div>
+                            ))}
+                        </MiniList>
                     </div>
                 </CardContainer>
                 <CardContainer>
@@ -61,7 +76,13 @@ const Home = ({ songs, albums, artists, genres }: HomeProp) => {
                     </span>
                     <div>
                         <span>{albumtCount} Albums</span>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                        <MiniList>
+                            {albums.slice(0, 4).map((album, index) => (
+                                <div key={index}>
+                                    <span>{album.name}</span>
+                                </div>
+                            ))}
+                        </MiniList>
                     </div>
                 </CardContainer>
                 <CardContainer>
@@ -70,7 +91,13 @@ const Home = ({ songs, albums, artists, genres }: HomeProp) => {
                     </span>
                     <div>
                         <span>{genreCount} Genres</span>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                        <MiniList>
+                            {genres.slice(0, 4).map((genre, index) => (
+                                <div key={index}>
+                                    <span>{genre}</span>
+                                </div>
+                            ))}
+                        </MiniList>
                     </div>
                 </CardContainer>
             </GridContainer>

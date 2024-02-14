@@ -2,15 +2,20 @@ import styled from "@emotion/styled"
 
 export const CardContainer = styled.div`
 min-width:18.5rem;
-height:8rem;
 background-color: #fff;
 box-shadow: 0px 0.5rem 1rem rgba(0, 0, 0, 0.2);
 border-radius: 1rem;
-padding-right: 0.5rem;
 display:flex;
 justify-content:stretch;
 align-items:center;
 gap:1rem;
+transition:all .5s;
+
+&:hover{
+box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.2), 
+-0.5rem -0.5rem 0.5rem #c0c0c095 inset, 
+0.5rem 0.5rem 0.5rem #c0c0c095 inset;
+}
 
 &>span{
     width:8rem;
@@ -26,6 +31,7 @@ gap:1rem;
 
 &>div{
     border-radius: 1rem;
+    flex-grow:1;
     display:flex;
     flex-direction:column;
     justify-content:start;
@@ -35,7 +41,7 @@ gap:1rem;
     &>span{
         font-size:1.5rem;
         font-weight:bold;
-        color:#afafaf;
+        color:#aaa;
     }
 
     &>p{
