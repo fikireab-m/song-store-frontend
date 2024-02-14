@@ -15,6 +15,7 @@ import { SongForm } from "../../components/songform/Form";
 import Sidebar from "../../components/Sidebar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Songs from "../Songs";
+import Loader from "../../components/Loader";
 
 const HeaderContainer = styled.div`
 position:fixed;
@@ -33,12 +34,6 @@ const SidebarContainer = styled.div`
 position:fixed;
 top:0.5rem;
 left:0.5rem;
-width:14rem;
-height:100vh;
-display:flex;
-justify-content:flex-start;
-align-items:center;
-flex-direction:column;
 background-color: white;
 border-top-left-radius: 1rem;
 border-top-right-radius: 1rem;
@@ -46,12 +41,11 @@ box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.3);
 `
 const MainContainer = styled.div`
 margin-top:5rem;
-margin-left:15rem;
-margin-right:19rem;
+margin-left:14rem;
+margin-right:18rem;
 height: max-content;
 border-radius: 1rem;
 padding:1rem;
-background-color: white;
 `
 const RightSide = styled.div`
 position:fixed;
@@ -89,12 +83,15 @@ const PageLayout = () => {
                 <Sidebar />
             </SidebarContainer>
             <MainContainer>
-                <Router>
-                    <Routes>
-                        <Route path="/" element={<Home songs={songs} albums={albums} artists={artists} genres={genres} />} />
-                        <Route path="/songs" element={<Songs songs={songs} title="All songs"/>} />
-                    </Routes>
-                </Router>
+                {
+                    songs.length === 0 ? <Loader />
+                        : <Router>
+                            <Routes>
+                                <Route path="/" element={<Home songs={songs} albums={albums} artists={artists} genres={genres} />} />
+                                <Route path="/songs" element={<Songs songs={songs} title="All songs" />} />
+                            </Routes>
+                        </Router>
+                }
             </MainContainer>
             <RightSide>
                 <PieChart

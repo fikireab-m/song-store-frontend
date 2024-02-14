@@ -1,33 +1,40 @@
-import styled from "@emotion/styled"
-import React from "react"
+import styled from "@emotion/styled";
 
 const LoaderContainer = styled.div`
+margin-left:15rem;
+margin-right:19rem;
+margin-top:12rem;
+display: flex;
+justify-content:center;
+align-items: center;
 
+&>div{
   display: flex;
   align-items: center;
 
-span {
+  span {
   display: inline-block;
-  width: 3px;
-  height: 20px;
-  background-color: rgba(255, 255, 255, .5);
-  border-radius: 10px;
+  width: 0.175rem;
+  height: 1.25rem;
+  background-color: #dfdfdf;
+  border-radius: 0.75rem;
   animation: scale-up4 1s linear infinite;
 }
 
 span:nth-child(2) {
-  height: 35px;
-  margin: 0 5px;
-  animation-delay: .25s;
+  height: 2.25rem;
+  margin: 0 0.3rem;
+  animation-delay: .3s;
 }
 
 span:nth-child(3) {
-  animation-delay: .5s;
+  animation-delay: .6s;
+}
 }
 
 @keyframes scale-up4 {
   20% {
-    background-color: #ffff;
+    background-color: #7360DF;
     transform: scaleY(1.5);
   }
 
@@ -37,13 +44,15 @@ span:nth-child(3) {
 }
 `;
 const Loader = () => {
-    return (
-        <LoaderContainer>
-            <span></span>
-            <span></span>
-            <span></span>
-        </LoaderContainer>
-    )
+  return (
+    <LoaderContainer>
+      <div>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </LoaderContainer>
+  )
 }
 
 export default Loader

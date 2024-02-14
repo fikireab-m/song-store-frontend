@@ -6,17 +6,19 @@ export const Table = styled.table`
   
   th,
   td {
-    padding: 1rem;
+    padding: 0.5rem;
     text-align: left;
+    color:#555;
   }
 
   th {
     border-bottom: 1px solid #7360dfb9;
-    color:#7360df;
-    font-weight: 600;
+    color:#7360dfac;
+    font-size:1rem;
+    font-weight: 800;
   }
 
   tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #7360df39;
   }
 `;

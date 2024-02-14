@@ -7,6 +7,14 @@ import { FiUsers } from "react-icons/fi";
 import styled from "@emotion/styled";
 import { Divider } from "./Divider";
 
+const SidebarComp = styled.div`    
+    width:14rem;
+    height:100vh;
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
+    flex-direction:column;
+`
 const SidebarHeader = styled.div`
     padding-top:1rem;
     display:flex;
@@ -21,7 +29,7 @@ const SidebarHeader = styled.div`
 `;
 const Sidebar = () => {
     return (
-        <>
+        <SidebarComp>
             <SidebarHeader>
                 <img src="/icon.svg" alt="logo" />
                 <span>Melody-Mall</span>
@@ -47,7 +55,7 @@ const Sidebar = () => {
                 <BsSoundwave />
                 <span>Genres</span>
             </SidebarMenuButton>
-        </>
+        </SidebarComp>
     )
 }
 

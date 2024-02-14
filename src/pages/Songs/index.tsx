@@ -14,11 +14,13 @@ const TitleText = styled.span`
     padding-left:2rem;
 `
 const Container = styled.div<{ show: boolean }>`
+    background-color:#fff;
+    border-radius:1rem;
     display: ${props => props.show ? "block" : "none"}
 `
 const ActionBar = styled.span`
 display:flex;
-justify-content:center;
+justify-content:flex-start;
 align-items:center;
 gap:0.5rem;
 
@@ -60,7 +62,7 @@ const Songs = ({ songs, title }: SongsProp) => {
                         <th>Album</th>
                         <th>Artist</th>
                         <th>Genre</th>
-                        <th>Date Added</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
