@@ -18,7 +18,7 @@ export const updateSong = (song: Song): Promise<AxiosResponse<void>> => {
 };
 
 export const deleteSong = (song: Song): Promise<AxiosResponse<string>> => {
-  return axios.delete<string>(`songs/${song._id}`);
+  return axios.delete(`${baseUrl}/songs/${song._id}`);
 };
 
 /**

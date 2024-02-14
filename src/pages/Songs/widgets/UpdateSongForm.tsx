@@ -4,6 +4,7 @@ import { MdClose } from 'react-icons/md';
 import { Song } from '../../../features/interfaces';
 import { useDispatch } from 'react-redux';
 import { updateSongFetch } from '../../../features/song/songSlice';
+import { TitleText } from './TitleText';
 
 interface FormProps {
     song: Song;
@@ -130,52 +131,7 @@ export const UpdateSongForm = ({ isOpen, formOpen, song }: FormProps) => {
             cursor: pointer;
                 }
             }
-
-        @keyframes pulse {
-        from {
-            transform: scale(1);
-            opacity: 1;
-        }
-
-        to {
-            transform: scale(2);
-            opacity: 0;
-        }
-        }
   `;
-
-    const TitleText = styled.span`
-        font-size: 2rem;
-        color: #7360df;
-        font-weight: 600;
-        letter-spacing: -1px;
-        position: relative;
-        display: flex;
-        align-items: center;
-        padding-left: 2rem;
-
-        &::before, &::after {
-        position: absolute;
-        content: "";
-        height: 16px;
-        width: 16px;
-        border-radius: 50%;
-        left: 0px;
-        background-color: #7360df;
-        }
-
-        &::before {
-        width: 18px;
-        height: 18px;
-        background-color: #7360df;
-        }
-
-        &::after {
-        width: 18px;
-        height: 18px;
-        animation: pulse 3s linear infinite;
-        }
-`;
     return (
         <div>
             {isOpen && (

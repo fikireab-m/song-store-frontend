@@ -6,6 +6,10 @@ import { UpdateSongForm } from './widgets/UpdateSongForm';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getSongsFetch } from '../../features/song/songSlice';
+import ConfirmModal from './widgets/ConfirmModal';
+import { getAlbumsFetch } from '../../features/album/albumSlice';
+import { getArtistsFetch } from '../../features/artist/artistSlice';
+import { getGenresFetch } from '../../features/genre/genreSlice';
 interface SongsProp {
     songs: Song[];
     title: string;
@@ -44,12 +48,14 @@ button{
         color:white;
     }
 }
-`
+`;
 
 const Songs = ({ songs, title }: SongsProp) => {
     const dispatch = useDispatch();
     const [songToEdit, setSong] = useState<Song>(songs[0]);
     const [openForm, setOpenForm] = useState<boolean>(false);
+    const [songToDelete, setSongToDelete] = useState<Song>(songs[0]);
+    const [openModal, setOpenModal] = useState<boolean>(false);
     /* const dateString = (dateStr: string) => {
         const dateObj = new Date(dateStr);
         const formattedDate = dateObj.toLocaleDateString(
@@ -61,12 +67,20 @@ const Songs = ({ songs, title }: SongsProp) => {
         setSong(song);
         setOpenForm(true);
     }
+    const handleOpenModal = (song: Song) => {
+        setSongToDelete(song);
+        setOpenModal(true);
+    }
     useEffect(() => {
         dispatch(getSongsFetch());
-    }, [dispatch, openForm])
+        dispatch(getAlbumsFetch());
+        dispatch(getArtistsFetch());
+        dispatch(getGenresFetch());
+    }, [dispatch, openForm, openModal])
     return (
         <Container show={songs.length > 0}>
             <UpdateSongForm song={songToEdit} isOpen={openForm} formOpen={setOpenForm} />
+            <ConfirmModal isOpen={openModal} modalOpen={setOpenModal} song={songToDelete} />
             <TitleText>
                 {title}
             </TitleText>
@@ -90,7 +104,7 @@ const Songs = ({ songs, title }: SongsProp) => {
                             <td>
                                 <ActionBar>
                                     <button onClick={() => handleEdit(song)}><FaRegEdit /></button>
-                                    <button><FaRegTrashAlt /></button>
+                                    <button onClick={() => handleOpenModal(song)}><FaRegTrashAlt /></button>
                                 </ActionBar>
                             </td>
                         </tr>

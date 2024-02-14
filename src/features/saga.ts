@@ -54,8 +54,8 @@ function* updatesong(action: SongActionType) {
 
 function* deletesong(action: SongActionType) {
   try {
-    const songs: AxiosResponse<string> = yield deleteSong(action.payload);
-    yield put(deleteSongSuccess(songs));
+    const song: AxiosResponse<string> = yield deleteSong(action.payload);
+    yield put(deleteSongSuccess(song));
   } catch (e: unknown) {
     yield put(deleteSongFailure(e));
   }
