@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import createSagaMiddleWare from "redux-saga";
 import { configureStore } from "@reduxjs/toolkit";
 import SongReducer from "../features/song/songSlice";

@@ -44,12 +44,21 @@ export interface GenreState {
 
 export interface rootState {
   songs: SongState;
-  albums:AlbumState;
-  artists:ArtistState;
-  genres:GenreState;
+  albums: AlbumState;
+  artists: ArtistState;
+  genres: GenreState;
 }
 
 export interface SongActionType {
   type: string;
   payload: Song;
+}
+
+export interface FetchSongsAction {
+  type: 'FETCH_SONGS';
+  payload?: {
+    artist?: string;
+    album?: string;
+    genre?: string;
+  };
 }

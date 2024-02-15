@@ -12,22 +12,33 @@ import {
 
 import { addSong, deleteSong, updateSong, getSongs, getAlbums, getArtists, getGenres } from "../api";
 import { AxiosResponse } from "axios";
-import { Album, Artist, Song, SongActionType } from "./interfaces";
+import { Album, Artist, FetchSongsAction, Song, SongActionType } from "./interfaces";
 import { getAlbumsFailure, getAlbumsSuccess } from "./album/albumSlice";
 import { getArtistsFailure, getArtistsSuccess } from "./artist/artistSlice";
 import { getGenresFailure, getGenresSuccess } from "./genre/genreSlice";
 
-// Saga for fetching songs
-function* fetchSongs() {
+/**
+ * Saga for fetching songs
+ */
+function* fetchSongs(action: FetchSongsAction) {
+  const { payload } = action;
   try {
-    const response: AxiosResponse<Song[]> = yield call(getSongs);
+    let params: Record<string, string> = {};
+    if (payload && Object.keys(payload).length > 0) {
+      params = payload;
+    }
+    const response: AxiosResponse<Song[]> = yield call(getSongs, params);
     const songs: Song[] = response.data;
     yield put(getSongsSuccess(songs));
   } catch (e: unknown) {
     yield put(getSongsFailure(e));
   }
 }
-
+/**
+ * Saga to add a new song
+ * @param action 
+ * @returns 
+ */
 function* addsong(action: SongActionType) {
   try {
     const response: AxiosResponse<Song> = yield call(
@@ -42,7 +53,10 @@ function* addsong(action: SongActionType) {
   }
   return;
 }
-
+/**
+ * Saga to edit a song
+ * @param action 
+ */
 function* updatesong(action: SongActionType) {
   try {
     const song: AxiosResponse<Song> = yield call(updateSong, action.payload);
@@ -51,7 +65,10 @@ function* updatesong(action: SongActionType) {
     yield put(updateSongFailure(e));
   }
 }
-
+/**
+ * Saga to delete a song
+ * @param action 
+ */
 function* deletesong(action: SongActionType) {
   try {
     const song: AxiosResponse<string> = yield deleteSong(action.payload);
@@ -61,7 +78,9 @@ function* deletesong(action: SongActionType) {
   }
 }
 
-// Saga for fetching albums
+/**
+ * Saga for fetching albums
+ */
 function* fetchAlbums() {
   try {
     const response: AxiosResponse<Album[]> = yield call(getAlbums);
@@ -72,7 +91,9 @@ function* fetchAlbums() {
   }
 }
 
-// Saga for fetching artists
+/**
+ * Saga to fetch artists
+ */
 function* fetchArtists() {
   try {
     const response: AxiosResponse<Album[]> = yield call(getArtists);
@@ -83,7 +104,9 @@ function* fetchArtists() {
   }
 }
 
-// Saga for fetching genres
+/**
+ * Saga for fetching genres
+ */
 function* fetchGenres() {
   try {
     const response: AxiosResponse<string[]> = yield call(getGenres);
@@ -93,7 +116,9 @@ function* fetchGenres() {
     yield put(getGenresFailure(e));
   }
 }
-// watcher saga
+/**
+ * The watcher saga
+ */
 function* watcherSaga() {
   yield takeEvery("songs/addSongFetch", addsong);
   yield takeEvery("songs/getSongsFetch", fetchSongs);
@@ -104,7 +129,9 @@ function* watcherSaga() {
   yield takeEvery("genres/getGenresFetch", fetchGenres);
 }
 
-//root saga
+/**
+ * The root saga to be passed to the saga middleware
+ */
 export default function* rootSaga() {
   yield all([watcherSaga()]);
 }
