@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 const SidebarComp = styled.div`    
     width:14rem;
-    height:100vh;
+    height:100svh;
     display:flex;
     justify-content:flex-start;
     align-items:center;

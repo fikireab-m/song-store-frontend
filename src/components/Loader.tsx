@@ -1,9 +1,6 @@
 import styled from "@emotion/styled";
 
 const LoaderContainer = styled.div`
-margin-left:15rem;
-margin-right:19rem;
-margin-top:12rem;
 display: flex;
 justify-content:center;
 align-items: center;
@@ -11,7 +8,12 @@ align-items: center;
 &>div{
   display: flex;
   align-items: center;
-
+  margin-top:14rem;
+  @media only screen and (max-width: 760px)  {
+        &{
+            width:3.5rem;
+        }
+    }
   span {
   display: inline-block;
   width: 0.175rem;
