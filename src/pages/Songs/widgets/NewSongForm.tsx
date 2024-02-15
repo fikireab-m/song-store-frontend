@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
 import styled from '@emotion/styled';
 import { MdClose } from 'react-icons/md';
-import { Song } from '../features/interfaces';
+import { Song } from '../../../features/interfaces';
 import { useDispatch } from 'react-redux';
-import { addSongFetch } from '../features/song/songSlice';
+import { addSongFetch } from '../../../features/song/songSlice';
 
 interface FormProps {
     isOpen: boolean;

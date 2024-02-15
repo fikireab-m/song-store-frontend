@@ -21,7 +21,11 @@ padding-left: 2rem;
             opacity: 0;
         }
         }
-        
+@media only screen and (max-width: 760px) {
+    & {
+        font-size:1.5rem;
+    }
+    }
 &::before, &::after {
 position: absolute;
 content: "";

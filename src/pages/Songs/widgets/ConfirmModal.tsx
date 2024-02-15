@@ -31,6 +31,11 @@ const ConfirmModal = ({ modalOpen, isOpen, song }: ModalProp) => {
         padding:1rem;
         background-color:#fff;
         box-shadow: 0.5rem 0.5rem 1rem #ffffff68;
+        @media only screen and (max-width: 760px) {
+            & {
+                width:18.5rem;
+            }
+            }
 
         div{
             display:flex;

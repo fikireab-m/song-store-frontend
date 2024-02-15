@@ -28,21 +28,21 @@ export const deleteSong = (song: Song): Promise<AxiosResponse<string>> => {
 };
 
 /**
- * Album related calls
+ * Album call
  */
 export const getAlbums = (): Promise<AxiosResponse<Album[]>> => {
   return axios.get<Album[]>(`${BASE_URL}/albums`);
 };
 
 /**
- * Artist related calls
+ * Artist call
  */
 export const getArtists = (): Promise<AxiosResponse<Artist[]>> => {
   return axios.get<Artist[]>(`${BASE_URL}/artists`);
 };
 
 /**
- * Genre related calls
+ * Genre call
  */
 export const getGenres = (): Promise<AxiosResponse<string[]>> => {
   return axios.get<string[]>(`${BASE_URL}/genres`);

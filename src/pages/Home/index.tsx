@@ -25,7 +25,13 @@ const HomeContainer = styled.div`
     display:flex;
     justify-content:space-between;
     gap:1rem;
-`
+    
+    @media only screen and (max-width: 1160px) {
+    & {
+        display:block;
+    }
+    }
+`;
 
 const RightSide = styled.div`
 top:0.5rem;
@@ -35,9 +41,23 @@ background-color: white;
 border-radius:1rem;
 box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.2);
 
-@media only screen and (max-width: 660px) {
+@media only screen and (max-width: 1160px) {
   & {
+    margin:1rem 0;
     width:100%;
+  }
+  div{
+    display:flex;
+    justify-content:center;
+}
+}
+@media only screen and (max-width: 860px) {
+  & {
+    margin:1rem 0;
+    width:100%;
+  }
+  div{
+    display:block;
   }
 }
 `;
@@ -127,18 +147,20 @@ const Home = ({ songs, albums, artists, genres }: HomeProp) => {
                     </CardContainer>
                 </GridContainer>
                 <RightSide>
-                    <PieChart
-                        legendOrientation={"left"}
-                        dataValue={[songs.length, artists.length, albums.length, genres.length]} />
-                    <SimpleBarChart title="Songs this week" dataset={[
-                        {
-                            label: "Songs",
-                            data: [4, 2, 1, 4, 3, 2, 5],
-                            borderColor: "#7360DF",
-                            backgroundColor: "#7360df86",
-                            lineTension: 0.5,
-                        }
-                    ]} />
+                    <div>
+                        <PieChart
+                            legendOrientation={"left"}
+                            dataValue={[songs.length, artists.length, albums.length, genres.length]} />
+                        <SimpleBarChart title="Songs this week" dataset={[
+                            {
+                                label: "Songs",
+                                data: [4, 2, 1, 4, 3, 2, 5],
+                                borderColor: "#7360DF",
+                                backgroundColor: "#7360df86",
+                                lineTension: 0.5,
+                            }
+                        ]} />
+                    </div>
                 </RightSide>
             </HomeContainer>
 

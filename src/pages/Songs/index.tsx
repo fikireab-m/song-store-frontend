@@ -25,7 +25,13 @@ const Container = styled.div<{ show: boolean }>`
     background-color:#fff;
     border-radius:1rem;
     margin-bottom:1rem;
-    display: ${props => props.show ? "block" : "none"}
+    display: ${props => props.show ? "block" : "none"};
+
+    @media only screen and (max-width: 460px) {
+    & {
+        font-size:0.75rem;
+    }
+    }
 `
 const ActionBar = styled.span`
 display:flex;
