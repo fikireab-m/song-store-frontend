@@ -8,7 +8,6 @@ import { Album, Artist, Song } from "../../features/interfaces"
 import Songs from "../Songs"
 import { MiniList } from "../../components/MiniList"
 import PieChart from "../../components/charts/PieChart"
-import SimpleBarChart from "../../components/charts/BarChart"
 
 const GridContainer = styled.div`
 display:grid;
@@ -24,9 +23,10 @@ margin-bottom: 1.5rem;
 const HomeContainer = styled.div`
     display:flex;
     justify-content:space-between;
+    align-items:center;
     gap:1rem;
     
-    @media only screen and (max-width: 1160px) {
+    @media only screen and (max-width: 760px) {
     & {
         display:block;
     }
@@ -34,30 +34,19 @@ const HomeContainer = styled.div`
 `;
 
 const RightSide = styled.div`
-top:0.5rem;
 width:18rem;
-min-height:max-content;
+padding:2rem 0;
+max-height:max-content;
 background-color: white;
 border-radius:1rem;
-box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.2);
+box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.2), 
+-0.2rem -0.2rem 0.2rem #c0c0c095 inset, 
+0.2rem 0.2rem 0.2rem #c0c0c095 inset;
 
-@media only screen and (max-width: 1160px) {
+@media only screen and (max-width: 760px) {
   & {
     margin:1rem 0;
     width:100%;
-  }
-  div{
-    display:flex;
-    justify-content:center;
-}
-}
-@media only screen and (max-width: 860px) {
-  & {
-    margin:1rem 0;
-    width:100%;
-  }
-  div{
-    display:block;
   }
 }
 `;
@@ -147,20 +136,8 @@ const Home = ({ songs, albums, artists, genres }: HomeProp) => {
                     </CardContainer>
                 </GridContainer>
                 <RightSide>
-                    <div>
                         <PieChart
-                            legendOrientation={"left"}
                             dataValue={[songs.length, artists.length, albums.length, genres.length]} />
-                        <SimpleBarChart title="Songs this week" dataset={[
-                            {
-                                label: "Songs",
-                                data: [4, 2, 1, 4, 3, 2, 5],
-                                borderColor: "#7360DF",
-                                backgroundColor: "#7360df86",
-                                lineTension: 0.5,
-                            }
-                        ]} />
-                    </div>
                 </RightSide>
             </HomeContainer>
 

@@ -34,10 +34,9 @@ const borderColors = [
 
 
 interface PieProps {
-  legendOrientation: "bottom" | "top" | "chartArea" | "left";
   dataValue: number[];
 }
-const PieChart = ({ legendOrientation, dataValue }: PieProps) => {
+const PieChart = ({ dataValue }: PieProps) => {
   const data = {
     labels,
     datasets: [
@@ -54,9 +53,10 @@ const PieChart = ({ legendOrientation, dataValue }: PieProps) => {
         responsive: true,
         plugins: {
           legend: {
-            position: legendOrientation,
-            align: "center",
+            position: "top",
+            align: "start",
           },
+          title: { position: "top", padding: 16, text: "All Time Analysis", display: false,color:"#7360df" }
         },
       }}
       data={data}
