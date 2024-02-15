@@ -6,7 +6,7 @@ import { GiSoundWaves } from "react-icons/gi"
 import { useEffect, useState } from "react"
 import { Album, Artist, Song } from "../../features/interfaces"
 import Songs from "../Songs"
-import { MiniList } from "./widgets/MiniList"
+import { MiniList } from "../../components/MiniList"
 import PieChart from "../../components/charts/PieChart"
 import SimpleBarChart from "../../components/charts/BarChart"
 

@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const MiniList = styled.div`
     width:100%;
-    height:8rem;
+    max-height:8rem;
     background-color:#ffffff;
     padding:0.2rem;
     border-radius:1rem;

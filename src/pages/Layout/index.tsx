@@ -13,6 +13,7 @@ import Sidebar from "../../components/Sidebar";
 import { Routes, Route } from "react-router-dom"
 import Songs from "../Songs";
 import Loader from "../../components/Loader";
+import Artists from "../Artists";
 
 const HeaderContainer = styled.div`
 position:fixed;
@@ -92,7 +93,7 @@ const PageLayout = () => {
                         : <Routes>
                             <Route path="/" element={<Home songs={songs} albums={albums} artists={artists} genres={genres} />} />
                             <Route path="/songs" element={<Songs songs={songs} title="All songs" />} />
-                            <Route path="/artists" element={<Songs songs={songs} title="All songs" />} />
+                            <Route path="/artists" element={<Artists artists={artists} songs={songs} />} />
                             <Route path="/albums" element={<Songs songs={songs} title="All songs" />} />
                             <Route path="/genres" element={<Songs songs={songs} title="All songs" />} />
                         </Routes>
