@@ -3,7 +3,7 @@ import { FaMusic, FaUser } from "react-icons/fa"
 import { IoIosAlbums } from "react-icons/io"
 import { Artist, Song } from "../../features/interfaces"
 import { MiniList } from "../../components/MiniList"
-import { ArtistCard } from "./ArtistCard"
+import { ArtistCard } from "./components/ArtistCard"
 
 const GridContainer = styled.div`
 display:grid;
@@ -37,10 +37,6 @@ const Artists = ({ artists, songs }: ArtistsProp) => {
         console.log(albumsByArtist);
         return [...albumsByArtist];
     }
-    // useEffect(() => {
-    //     setSongCount(songs.length);
-    //     setArtistCount(artists.length);
-    // }, [songs, artists]);
     return (
         <GridContainer>
             {
