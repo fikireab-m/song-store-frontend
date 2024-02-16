@@ -206,7 +206,7 @@ export const NewSongForm = ({ isOpen, openForm }: FormProps) => {
                             <input type="text" required name="genre" ref={genreRef} />
                             <span>Song genre</span>
                         </label>
-
+{/* 
                         <span>Upload aritst avatar(optional)</span>
                         <label>
                             <input type="file" name="atistAvatar" />
@@ -214,7 +214,7 @@ export const NewSongForm = ({ isOpen, openForm }: FormProps) => {
                         <span>Upload album art(optional)</span>
                         <label>
                             <input type="file" name="albumArt" />
-                        </label>
+                        </label> */}
 
                         <button >Submit</button>
                     </Form>
