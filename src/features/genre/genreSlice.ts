@@ -12,7 +12,7 @@ const genreSlice = createSlice({
     initialState,
     reducers: {
         // get genres actions
-        getGenresFetch: (state) => {
+        getGenresRequest: (state) => {
             state.isLoading = true;
             state.errorMessage = null;
         },
@@ -28,7 +28,7 @@ const genreSlice = createSlice({
 });
 
 export const {
-    getGenresFetch,
+    getGenresRequest,
     getGenresSuccess,
     getGenresFailure,
 } = genreSlice.actions;

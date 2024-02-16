@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { createSlice } from "@reduxjs/toolkit";
 import { SongState } from "../interfaces";
 
@@ -13,7 +14,7 @@ const songSlice = createSlice({
   reducers: {
 
     // get songs actions
-    getSongsFetch: (state) => {
+    getSongsRequest: (state) => {
       state.isLoading = true;
       state.errorMessage = null;
     },
@@ -27,7 +28,7 @@ const songSlice = createSlice({
     },
 
     // add song actions
-    addSongFetch: (state) => {
+    addSongRequest: (state, _action) => {
       state.isLoading = true;
       state.errorMessage = null;
     },
@@ -41,7 +42,7 @@ const songSlice = createSlice({
     },
 
     // Update song actions
-    updateSongFetch: (state) => {
+    updateSongRequest: (state, _action) => {
       state.isLoading = true;
       state.errorMessage = null;
     },
@@ -63,7 +64,7 @@ const songSlice = createSlice({
     },
 
     // delete song actions
-    deleteSongFetch: (state) => {
+    deleteSongRequest: (state, _action) => {
       state.isLoading = true;
       state.errorMessage = null;
     },
@@ -81,16 +82,16 @@ const songSlice = createSlice({
 });
 
 export const {
-  getSongsFetch,
+  getSongsRequest,
   getSongsSuccess,
   getSongsFailure,
-  addSongFetch,
+  addSongRequest,
   addSongSuccess,
   addSongFailure,
-  updateSongFetch,
+  updateSongRequest,
   updateSongSuccess,
   updateSongFailure,
-  deleteSongFetch,
+  deleteSongRequest,
   deleteSongSuccess,
   deleteSongFailure,
 } = songSlice.actions;

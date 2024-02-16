@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { MdClose } from 'react-icons/md';
 import { Song } from '../../../features/interfaces';
 import { useDispatch } from 'react-redux';
-import { addSongFetch } from '../../../features/song/songSlice';
+import { addSongRequest, getSongsRequest } from '../../../features/song/songSlice';
 
 interface FormProps {
     isOpen: boolean;
@@ -26,7 +26,8 @@ export const NewSongForm = ({ isOpen, openForm }: FormProps) => {
             album: { name: albumRef.current!.value },
             genre: genreRef.current!.value,
         };
-        dispatch(addSongFetch(newSong));
+        dispatch(addSongRequest(newSong));
+        dispatch(getSongsRequest());
         openForm(false);
     };
 

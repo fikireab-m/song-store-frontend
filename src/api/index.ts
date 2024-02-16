@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { Song, Album, Artist } from "../features/interfaces";
-// const BASE_URL = "http://localhost:5000";
-const BASE_URL = "https://addiss-software-test.onrender.com";
+const BASE_URL = "http://localhost:5000";
+// const BASE_URL = "https://addiss-software-test.onrender.com";
 
 /**
  * Song related calls

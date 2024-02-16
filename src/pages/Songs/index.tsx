@@ -2,14 +2,14 @@ import styled from '@emotion/styled';
 import { Song } from '../../features/interfaces';
 import { Table } from '../../components/TableLayout';
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
-import { UpdateSongForm } from './widgets/UpdateSongForm';
+import { UpdateSongForm } from './components/UpdateSongForm';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getSongsFetch } from '../../features/song/songSlice';
-import ConfirmModal from './widgets/ConfirmModal';
-import { getAlbumsFetch } from '../../features/album/albumSlice';
-import { getArtistsFetch } from '../../features/artist/artistSlice';
-import { getGenresFetch } from '../../features/genre/genreSlice';
+import { getSongsRequest } from '../../features/song/songSlice';
+import ConfirmModal from './components/ConfirmModal';
+import { getAlbumsRequest } from '../../features/album/albumSlice';
+import { getArtistsRequest } from '../../features/artist/artistSlice';
+import { getGenresRequest } from '../../features/genre/genreSlice';
 interface SongsProp {
     songs: Song[];
     title: string;
@@ -73,10 +73,10 @@ const Songs = ({ songs, title }: SongsProp) => {
         setOpenModal(true);
     }
     useEffect(() => {
-        dispatch(getSongsFetch());
-        dispatch(getAlbumsFetch());
-        dispatch(getArtistsFetch());
-        dispatch(getGenresFetch());
+        dispatch(getSongsRequest());
+        dispatch(getAlbumsRequest());
+        dispatch(getArtistsRequest());
+        dispatch(getGenresRequest());
     }, [dispatch, openForm, openModal])
     return (
         <Container show={songs.length > 0}>

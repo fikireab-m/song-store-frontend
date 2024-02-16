@@ -12,7 +12,7 @@ const artistSlice = createSlice({
     initialState,
     reducers: {
         // Get artists actions
-        getArtistsFetch: (state) => {
+        getArtistsRequest: (state) => {
             state.isLoading = true;
             state.errorMessage = null;
         },
@@ -28,7 +28,7 @@ const artistSlice = createSlice({
 });
 
 export const {
-    getArtistsFetch,
+    getArtistsRequest,
     getArtistsSuccess,
     getArtistsFailure,
 } = artistSlice.actions;

@@ -120,13 +120,13 @@ function* fetchGenres() {
  * The watcher saga
  */
 function* watcherSaga() {
-  yield takeEvery("songs/addSongFetch", addsong);
-  yield takeEvery("songs/getSongsFetch", fetchSongs);
-  yield takeEvery("songs/deleteSongFetch", deletesong);
-  yield takeEvery("songs/updateSongFetch", updatesong);
-  yield takeEvery("albums/getAlbumsFetch", fetchAlbums);
-  yield takeEvery("artists/getArtistsFetch", fetchArtists);
-  yield takeEvery("genres/getGenresFetch", fetchGenres);
+  yield takeEvery("songs/addSongRequest", addsong);
+  yield takeEvery("songs/getSongsRequest", fetchSongs);
+  yield takeEvery("songs/deleteSongRequest", deletesong);
+  yield takeEvery("songs/updateSongRequest", updatesong);
+  yield takeEvery("albums/getAlbumsRequest", fetchAlbums);
+  yield takeEvery("artists/getArtistsRequest", fetchArtists);
+  yield takeEvery("genres/getGenresRequest", fetchGenres);
 }
 
 /**

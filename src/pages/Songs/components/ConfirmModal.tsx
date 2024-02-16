@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { TitleText } from "./TitleText";
 import { SubmitButton } from "../../../components/Buttons";
 import { useDispatch } from "react-redux";
-import { deleteSongFetch } from "../../../features/song/songSlice";
+import { deleteSongRequest, getSongsRequest } from "../../../features/song/songSlice";
 import { Song } from "../../../features/interfaces";
 
 interface ModalProp {
@@ -51,8 +51,8 @@ const ConfirmModal = ({ modalOpen, isOpen, song }: ModalProp) => {
         modalOpen(false);
     }
     const handleConfirm = () => {
-        console.log(song._id);
-        dispatch(deleteSongFetch(song));
+        dispatch(deleteSongRequest(song));
+        dispatch(getSongsRequest());
         modalOpen(false);
     }
     return (

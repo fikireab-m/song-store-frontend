@@ -4,11 +4,11 @@ import Home from "../Home";
 import { useDispatch, useSelector } from "react-redux";
 import { rootState } from "../../features/interfaces";
 import { useEffect, useState } from "react";
-import { getSongsFetch } from "../../features/song/songSlice";
-import { getAlbumsFetch } from "../../features/album/albumSlice";
-import { getArtistsFetch } from "../../features/artist/artistSlice";
-import { getGenresFetch } from "../../features/genre/genreSlice";
-import { NewSongForm } from "../Songs/widgets/NewSongForm";
+import { getSongsRequest } from "../../features/song/songSlice";
+import { getAlbumsRequest } from "../../features/album/albumSlice";
+import { getArtistsRequest } from "../../features/artist/artistSlice";
+import { getGenresRequest } from "../../features/genre/genreSlice";
+import { NewSongForm } from "../Songs/components/NewSongForm";
 import Sidebar from "../../components/Sidebar";
 import { Routes, Route } from "react-router-dom"
 import Songs from "../Songs";
@@ -72,10 +72,10 @@ const PageLayout = () => {
     const genres = useSelector((state: rootState) => state.genres.genres);
 
     useEffect(() => {
-        dispatch(getSongsFetch());
-        dispatch(getAlbumsFetch());
-        dispatch(getArtistsFetch());
-        dispatch(getGenresFetch());
+        dispatch(getSongsRequest());
+        dispatch(getAlbumsRequest());
+        dispatch(getArtistsRequest());
+        dispatch(getGenresRequest());
     }, [dispatch, isOpen]);
 
     return (

@@ -12,7 +12,7 @@ const albumSlice = createSlice({
     initialState,
     reducers: {
         // Get albums actions
-        getAlbumsFetch: (state) => {
+        getAlbumsRequest: (state) => {
             state.isLoading = true;
             state.errorMessage = null;
         },
@@ -28,7 +28,7 @@ const albumSlice = createSlice({
 });
 
 export const {
-    getAlbumsFetch,
+    getAlbumsRequest,
     getAlbumsSuccess,
     getAlbumsFailure,
 } = albumSlice.actions;
