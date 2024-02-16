@@ -1,9 +1,9 @@
 import styled from "@emotion/styled"
 import { FaMusic } from "react-icons/fa"
-import { Album, Song } from "../../features/interfaces"
+import { Song } from "../../features/interfaces"
 import { MiniList } from "../../components/MiniList"
 import { ArtistCard } from "../Artists/components/ArtistCard";
-import { IoIosAlbums } from "react-icons/io";
+import { GiSoundWaves } from "react-icons/gi";
 
 const GridContainer = styled.div`
 display:grid;
@@ -16,35 +16,36 @@ margin-top: 5.5rem;
 margin-bottom: 1.5rem;
 `;
 
-interface AlbumsProp {
-    songs: Song[];
-    albums: Album[];
-}
-const Albums = ({ albums, songs }: AlbumsProp) => {
 
-    const getSongsInAlbum = (album: Album) => {
-        const songsByArtist = songs.filter((song) => song.album.name === album.name);
+interface GenresProp {
+    songs: Song[];
+    genres: string[];
+}
+const Genres = ({ genres, songs }: GenresProp) => {
+
+    const getSongsInGenre = (genre: string) => {
+        const songsByArtist = songs.filter((song) => song.genre === genre);
         return songsByArtist;
     }
 
     return (
         <GridContainer>
             {
-                albums.map((album, index) => (
+                genres.map((genre, index) => (
                     <ArtistCard key={index}>
                         <div>
                             <span>
-                                <IoIosAlbums />
+                                <GiSoundWaves />
                             </span>
-                            <p> {album.name}</p>
+                            <p> {genre}</p>
                         </div>
                         <div>
                             <span>
-                                <h6>{getSongsInAlbum(album).length}</h6>
+                                <h6>{getSongsInGenre(genre).length}</h6>
                                 <FaMusic />
                             </span>
                             <MiniList>
-                                {getSongsInAlbum(album).map((song, index) => (
+                                {getSongsInGenre(genre).map((song, index) => (
                                     <div key={index}>
                                         <span>{song.title}</span>
                                     </div>
@@ -58,4 +59,4 @@ const Albums = ({ albums, songs }: AlbumsProp) => {
     )
 }
 
-export default Albums
+export default Genres

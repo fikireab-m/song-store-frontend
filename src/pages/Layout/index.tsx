@@ -15,6 +15,7 @@ import Songs from "../Songs";
 import Loader from "../../components/Loader";
 import Artists from "../Artists";
 import Albums from "../Albums";
+import Genres from "../Genres";
 
 const HeaderContainer = styled.div`
 position:fixed;
@@ -96,7 +97,7 @@ const PageLayout = () => {
                             <Route path="/songs" element={<Songs songs={songs} title="All songs" />} />
                             <Route path="/artists" element={<Artists artists={artists} songs={songs} />} />
                             <Route path="/albums" element={<Albums songs={songs} albums={albums}/>} />
-                            <Route path="/genres" element={<Songs songs={songs} title="All songs" />} />
+                            <Route path="/genres" element={<Genres songs={songs} genres={genres} />} />
                         </Routes>
                 }
             </MainContainer>
