@@ -1,20 +1,6 @@
-import styled from "@emotion/styled"
-import { FaMusic } from "react-icons/fa"
 import { Album, Song } from "../../features/interfaces"
-import { MiniList } from "../../components/MiniList"
-import { ArtistCard } from "../Artists/components/ArtistCard";
-import { IoIosAlbums } from "react-icons/io";
-
-const GridContainer = styled.div`
-display:grid;
-flex-grow:1;
-grid-template-columns: repeat(auto-fill, minmax(18.5rem, 1fr));
-gap:1rem;
-justify-content:center;
-align-items:center;
-margin-top: 5.5rem;
-margin-bottom: 1.5rem;
-`;
+import { AlbumCard } from "./Components";
+import { GridContainer } from "../../components/styled/GridContainer";
 
 interface AlbumsProp {
     songs: Song[];
@@ -22,36 +8,45 @@ interface AlbumsProp {
 }
 const Albums = ({ albums, songs }: AlbumsProp) => {
 
-    const getSongsInAlbum = (album: Album) => {
+    const songsInAlbum = (album: Album) => {
         const songsByArtist = songs.filter((song) => song.album.name === album.name);
         return songsByArtist;
     }
+    const genresInAlbum = (album: Album) => {
+        const filteredSongs = songsInAlbum(album);
 
+        const genresInAlbum = new Set<string>();
+        for (const song of filteredSongs) {
+            genresInAlbum.add(song.genre.trim());
+        }
+        return [...genresInAlbum];
+    }
     return (
         <GridContainer>
             {
                 albums.map((album, index) => (
-                    <ArtistCard key={index}>
+                    <AlbumCard key={index}>
                         <div>
-                            <span>
-                                <IoIosAlbums />
-                            </span>
-                            <p> {album.name}</p>
+                            <div />
                         </div>
                         <div>
-                            <span>
-                                <h6>{getSongsInAlbum(album).length}</h6>
-                                <FaMusic />
-                            </span>
-                            <MiniList>
-                                {getSongsInAlbum(album).map((song, index) => (
-                                    <div key={index}>
-                                        <span>{song.title}</span>
-                                    </div>
-                                ))}
-                            </MiniList>
+                            <span>{album.name}</span>
+                            <div>
+                                <div>
+                                    <span>{songsInAlbum(album).length}</span>
+                                    <span>Songs</span>
+                                </div>
+                                <div>
+                                    <span>{genresInAlbum(album).length}</span>
+                                    <span>Genres</span>
+                                </div>
+                                {/* <div>
+                                    <span>38,631</span>
+                                    <span>Contributers</span>
+                                </div> */}
+                            </div>
                         </div>
-                    </ArtistCard>
+                    </AlbumCard>
                 ))
             }
         </GridContainer>

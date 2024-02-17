@@ -4,7 +4,7 @@ import { IoAlbumsOutline } from "react-icons/io5";
 import { BsSoundwave } from "react-icons/bs";
 import { FiUsers } from "react-icons/fi";
 import styled from "@emotion/styled";
-import { Divider } from "./Divider";
+import { Divider } from "./styled/Divider";
 import { Link } from "react-router-dom";
 
 const SidebarComp = styled.div`    

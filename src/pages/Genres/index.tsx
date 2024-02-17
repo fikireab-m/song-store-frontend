@@ -1,21 +1,10 @@
-import styled from "@emotion/styled"
+
 import { FaMusic } from "react-icons/fa"
 import { Song } from "../../features/interfaces"
-import { MiniList } from "../../components/MiniList"
-import { ArtistCard } from "../Artists/components/ArtistCard";
+import { MiniList } from "../../components/styled/MiniList"
+import { ArtistCard } from "../Artists/Components";
 import { GiSoundWaves } from "react-icons/gi";
-
-const GridContainer = styled.div`
-display:grid;
-flex-grow:1;
-grid-template-columns: repeat(auto-fill, minmax(18.5rem, 1fr));
-gap:1rem;
-justify-content:center;
-align-items:center;
-margin-top: 5.5rem;
-margin-bottom: 1.5rem;
-`;
-
+import { GridContainer } from "../../components/styled/GridContainer";
 
 interface GenresProp {
     songs: Song[];

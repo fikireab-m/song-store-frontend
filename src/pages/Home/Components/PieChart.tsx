@@ -20,10 +20,10 @@ ChartJS.register(
 
 const labels = ["Songs", "Artists", "Albums", "Genres"];
 const barColors = [
-  "#7360DF",
   "#de32f5",
-  "#00bbbb",
-  "#00ff9d",
+  "#67aeff",
+  "#007777",
+  "#c59700",
 ];
 const borderColors = [
   "#FFFFFF",

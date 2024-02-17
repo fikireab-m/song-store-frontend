@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { TitleText } from "./TitleText";
+import { TitleText } from "../components/TitleText";
 import { SubmitButton } from "../../../components/Buttons";
 import { useDispatch } from "react-redux";
 import { deleteSongRequest, getSongsRequest } from "../../../features/song/songSlice";

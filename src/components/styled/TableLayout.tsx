@@ -16,7 +16,11 @@ export const Table = styled.table`
     color:#7360dfac;
     font-size:1rem;
     font-weight: 800;
-  }
+    @media only screen and (max-width: 460px) {
+    & {
+        font-size:0.75rem;
+    }
+  }}
 
   tr:nth-child(even) {
     background-color: #7360df39;

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled"
+
 export const ArtistCard = styled.div`
 min-width:18.5rem;
 height:100%;

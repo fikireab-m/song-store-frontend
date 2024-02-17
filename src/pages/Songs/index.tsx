@@ -1,61 +1,21 @@
-import styled from '@emotion/styled';
+
 import { Song } from '../../features/interfaces';
-import { Table } from '../../components/TableLayout';
+import { Table } from '../../components/styled/TableLayout';
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
-import { UpdateSongForm } from './components/UpdateSongForm';
+import { UpdateSongForm } from './updatesSong/UpdateSongForm';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getSongsRequest } from '../../features/song/songSlice';
-import ConfirmModal from './components/ConfirmModal';
+import ConfirmModal from './deleteSong/ConfirmModal';
 import { getAlbumsRequest } from '../../features/album/albumSlice';
 import { getArtistsRequest } from '../../features/artist/artistSlice';
 import { getGenresRequest } from '../../features/genre/genreSlice';
+import { TableTitleText } from './components/TitleText';
+import { ActionBar, Container } from './components/Container';
 interface SongsProp {
     songs: Song[];
     title: string;
 }
-
-const TitleText = styled.span`
-    font-size:1.5rem;
-    font-weight:bold;
-    color:#afafaf;
-    padding-left:2rem;
-`
-const Container = styled.div<{ show: boolean }>`
-    background-color:#fff;
-    border-radius:1rem;
-    margin-bottom:1rem;
-    display: ${props => props.show ? "block" : "none"};
-
-    @media only screen and (max-width: 460px) {
-    & {
-        font-size:0.75rem;
-    }
-    }
-`
-const ActionBar = styled.span`
-display:flex;
-justify-content:flex-start;
-align-items:center;
-gap:0.5rem;
-
-button{
-    width:2rem;
-    height:2rem;
-    color: #7360DF;
-    border-radius:50%;
-    padding:0.5rem;
-    background: none;
-    border:2px solid #7360DF;
-    cursor:pointer;
-    transition: all .3s ease;
-
-    &:hover{
-        background:#7360DF;
-        color:white;
-    }
-}
-`;
 
 const Songs = ({ songs, title }: SongsProp) => {
     const dispatch = useDispatch();
@@ -82,9 +42,9 @@ const Songs = ({ songs, title }: SongsProp) => {
         <Container show={songs.length > 0}>
             <UpdateSongForm song={songToEdit} isOpen={openForm} formOpen={setOpenForm} />
             <ConfirmModal isOpen={openModal} modalOpen={setOpenModal} song={songToDelete} />
-            <TitleText>
+            <TableTitleText>
                 {title}
-            </TitleText>
+            </TableTitleText>
             <Table>
                 <thead>
                     <tr>

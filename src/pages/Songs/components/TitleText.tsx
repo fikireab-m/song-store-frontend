@@ -48,3 +48,11 @@ height: 18px;
 animation: pulse 3s linear infinite;
 }
 `;
+
+
+export const TableTitleText = styled.span`
+    font-size:1.5rem;
+    font-weight:bold;
+    color:#afafaf;
+    padding-left:2rem;
+`
