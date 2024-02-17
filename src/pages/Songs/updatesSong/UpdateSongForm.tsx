@@ -57,11 +57,11 @@ export const UpdateSongForm = ({ isOpen, formOpen, song }: FormProps) => {
     const artistRef = useRef<HTMLInputElement>(null);
     const genreRef = useRef<HTMLInputElement>(null);
 
-    const { _id, title, album, artist, genre } = song;
+    const { title, album, artist, genre } = song;
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const newSong: Song = {
-            _id: _id,
+            _id: song._id,
             artist: { name: artistRef.current!.value },
             title: titleRef.current!.value,
             album: { name: albumRef.current!.value },

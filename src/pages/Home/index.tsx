@@ -2,35 +2,23 @@ import { CardContainer } from "../../components/styled/Card"
 import { FaMusic, FaUsers } from "react-icons/fa"
 import { IoIosAlbums } from "react-icons/io"
 import { GiSoundWaves } from "react-icons/gi"
-import { useEffect, useState } from "react"
-import { Album, Artist, Song } from "../../features/interfaces"
-import Songs from "../Songs"
+import { rootState } from "../../features/interfaces"
 import { MiniList } from "../../components/styled/MiniList"
 import PieChart from "./Components/PieChart"
 import { GridContainer } from "../../components/styled/GridContainer"
 import { Container, RightSide } from "./Components"
+import { useSelector } from "react-redux"
+import PageLayout from "../Layout"
 
-interface HomeProp {
-    songs: Song[];
-    albums: Album[];
-    artists: Artist[];
-    genres: string[];
-}
-const Home = ({ songs, albums, artists, genres }: HomeProp) => {
-    const [artistCount, setArtistCount] = useState<number>();
-    const [albumtCount, setAlbumCount] = useState<number>();
-    const [genreCount, setGenreCount] = useState<number>();
-    const [songCount, setSongCount] = useState<number>();
 
-    useEffect(() => {
-        setSongCount(songs.length);
-        setAlbumCount(albums.length);
-        setArtistCount(artists.length);
-        setGenreCount(genres.length);
-    }, [songs, albums, artists, genres])
-    console.log(genres)
+const Home = () => {
+    const songs = useSelector((state: rootState) => state.songs.songs);
+    const albums = useSelector((state: rootState) => state.albums.albums);
+    const artists = useSelector((state: rootState) => state.artists.artists);
+    const genres = useSelector((state: rootState) => state.genres.genres);
+
     return (
-        <>
+        <PageLayout>
             <Container>
                 <GridContainer>
                     <CardContainer>
@@ -38,7 +26,7 @@ const Home = ({ songs, albums, artists, genres }: HomeProp) => {
                             <FaMusic />
                         </span>
                         <div>
-                            <span>{songCount} Songs</span>
+                            <span>{songs.length} Songs</span>
                             <MiniList>
                                 {songs.slice(0, 10).map((song, index) => (
                                     <div key={index}>
@@ -53,7 +41,7 @@ const Home = ({ songs, albums, artists, genres }: HomeProp) => {
                             <FaUsers />
                         </span>
                         <div>
-                            <span>{artistCount} Artists</span>
+                            <span>{artists.length} Artists</span>
                             <MiniList>
                                 {artists.slice(0, 10).map((artist, index) => (
                                     <div key={index}>
@@ -68,7 +56,7 @@ const Home = ({ songs, albums, artists, genres }: HomeProp) => {
                             <IoIosAlbums />
                         </span>
                         <div>
-                            <span>{albumtCount} Albums</span>
+                            <span>{albums.length} Albums</span>
                             <MiniList>
                                 {albums.slice(0, 10).map((album, index) => (
                                     <div key={index}>
@@ -83,7 +71,7 @@ const Home = ({ songs, albums, artists, genres }: HomeProp) => {
                             <GiSoundWaves />
                         </span>
                         <div>
-                            <span>{genreCount} Genres</span>
+                            <span>{genres.length} Genres</span>
                             <MiniList>
                                 {genres.slice(0, 10).map((genre, index) => (
                                     <div key={index}>
@@ -100,8 +88,8 @@ const Home = ({ songs, albums, artists, genres }: HomeProp) => {
                 </RightSide>
             </Container>
 
-            <Songs songs={songs} title="Recently added songs" />
-        </>
+            {/* <Songs /> */}
+        </PageLayout>
     )
 }
 

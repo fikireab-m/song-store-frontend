@@ -1,12 +1,12 @@
-import { Album, Song } from "../../features/interfaces"
+import { Album, rootState } from "../../features/interfaces"
 import { AlbumCard } from "./Components";
 import { GridContainer } from "../../components/styled/GridContainer";
+import PageLayout from "../Layout";
+import { useSelector } from "react-redux";
 
-interface AlbumsProp {
-    songs: Song[];
-    albums: Album[];
-}
-const Albums = ({ albums, songs }: AlbumsProp) => {
+const Albums = () => {
+    const songs = useSelector((state: rootState) => state.songs.songs);
+    const albums = useSelector((state: rootState) => state.albums.albums);
 
     const songsInAlbum = (album: Album) => {
         const songsByArtist = songs.filter((song) => song.album.name === album.name);
@@ -22,34 +22,36 @@ const Albums = ({ albums, songs }: AlbumsProp) => {
         return [...genresInAlbum];
     }
     return (
-        <GridContainer>
-            {
-                albums.map((album, index) => (
-                    <AlbumCard key={index}>
-                        <div>
-                            <div />
-                        </div>
-                        <div>
-                            <span>{album.name}</span>
+        <PageLayout pageIndex={3}>
+            <GridContainer>
+                {
+                    albums.map((album, index) => (
+                        <AlbumCard key={index}>
                             <div>
+                                <div />
+                            </div>
+                            <div>
+                                <span>{album.name}</span>
                                 <div>
-                                    <span>{songsInAlbum(album).length}</span>
-                                    <span>Songs</span>
-                                </div>
-                                <div>
-                                    <span>{genresInAlbum(album).length}</span>
-                                    <span>Genres</span>
-                                </div>
-                                {/* <div>
+                                    <div>
+                                        <span>{songsInAlbum(album).length}</span>
+                                        <span>Songs</span>
+                                    </div>
+                                    <div>
+                                        <span>{genresInAlbum(album).length}</span>
+                                        <span>Genres</span>
+                                    </div>
+                                    {/* <div>
                                     <span>38,631</span>
                                     <span>Contributers</span>
                                 </div> */}
+                                </div>
                             </div>
-                        </div>
-                    </AlbumCard>
-                ))
-            }
-        </GridContainer>
+                        </AlbumCard>
+                    ))
+                }
+            </GridContainer>
+        </PageLayout>
     )
 }
 

@@ -5,6 +5,7 @@ position:fixed;
 top:0.5rem;
 right:1rem;
 left:15.5rem;
+z-index:10;
 grid-area: header;
 background-color: #ffffffc8;
 padding:0.5rem 0;

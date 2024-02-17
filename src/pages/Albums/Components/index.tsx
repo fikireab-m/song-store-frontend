@@ -26,6 +26,7 @@ export const AlbumCard = styled.div`
             position: absolute;
             top: 30px;
             left: 0;
+            z-index:2;
             background: rgba(255, 255, 255, 0);
             height: 15px;
             width: 15px;
@@ -45,6 +46,7 @@ export const AlbumCard = styled.div`
         &::before{
             content: "";
             position: absolute;
+            z-index:2;
             width: 15px;
             height: 15px;
             top: 0;

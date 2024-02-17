@@ -1,10 +1,10 @@
 
-import { Song } from '../../features/interfaces';
+import { Song, rootState } from '../../features/interfaces';
 import { Table } from '../../components/styled/TableLayout';
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
 import { UpdateSongForm } from './updatesSong/UpdateSongForm';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getSongsRequest } from '../../features/song/songSlice';
 import ConfirmModal from './deleteSong/ConfirmModal';
 import { getAlbumsRequest } from '../../features/album/albumSlice';
@@ -12,13 +12,12 @@ import { getArtistsRequest } from '../../features/artist/artistSlice';
 import { getGenresRequest } from '../../features/genre/genreSlice';
 import { TableTitleText } from './components/TitleText';
 import { ActionBar, Container } from './components/Container';
-interface SongsProp {
-    songs: Song[];
-    title: string;
-}
+import PageLayout from '../Layout';
 
-const Songs = ({ songs, title }: SongsProp) => {
+const Songs = () => {
     const dispatch = useDispatch();
+    const songs = useSelector((state: rootState) => state.songs.songs);
+
     const [songToEdit, setSong] = useState<Song>(songs[0]);
     const [openForm, setOpenForm] = useState<boolean>(false);
     const [songToDelete, setSongToDelete] = useState<Song>(songs[0]);
@@ -39,40 +38,42 @@ const Songs = ({ songs, title }: SongsProp) => {
         dispatch(getGenresRequest());
     }, [dispatch, openForm, openModal])
     return (
-        <Container show={songs.length > 0}>
-            <UpdateSongForm song={songToEdit} isOpen={openForm} formOpen={setOpenForm} />
-            <ConfirmModal isOpen={openModal} modalOpen={setOpenModal} song={songToDelete} />
-            <TableTitleText>
-                {title}
-            </TableTitleText>
-            <Table>
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Album</th>
-                        <th>Artist</th>
-                        <th>Genre</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {songs.map((song, index) => (
-                        <tr key={index}>
-                            <td>{song.title}</td>
-                            <td>{song.album.name}</td>
-                            <td>{song.artist.name}</td>
-                            <td>{song.genre}</td>
-                            <td>
-                                <ActionBar>
-                                    <button onClick={() => handleEdit(song)}><FaRegEdit /></button>
-                                    <button onClick={() => handleOpenModal(song)}><FaRegTrashAlt /></button>
-                                </ActionBar>
-                            </td>
+        <PageLayout pageIndex={1}>
+            <Container show={songs.length > 0}>
+                <UpdateSongForm song={songToEdit} isOpen={openForm} formOpen={setOpenForm} />
+                <ConfirmModal isOpen={openModal} modalOpen={setOpenModal} song={songToDelete} />
+                <TableTitleText>
+                    All Songs
+                </TableTitleText>
+                <Table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Album</th>
+                            <th>Artist</th>
+                            <th>Genre</th>
+                            <th>Actions</th>
                         </tr>
-                    ))}
-                </tbody>
-            </Table>
-        </Container>
+                    </thead>
+                    <tbody>
+                        {songs.map((song, index) => (
+                            <tr key={index}>
+                                <td>{song.title}</td>
+                                <td>{song.album.name}</td>
+                                <td>{song.artist.name}</td>
+                                <td>{song.genre}</td>
+                                <td>
+                                    <ActionBar>
+                                        <button onClick={() => handleEdit(song)}><FaRegEdit /></button>
+                                        <button onClick={() => handleOpenModal(song)}><FaRegTrashAlt /></button>
+                                    </ActionBar>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>
+            </Container>
+        </PageLayout>
     );
 }
 
