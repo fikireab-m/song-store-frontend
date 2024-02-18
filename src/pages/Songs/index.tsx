@@ -7,9 +7,6 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSongsRequest } from '../../features/song/songSlice';
 import ConfirmModal from './deleteSong/ConfirmModal';
-import { getAlbumsRequest } from '../../features/album/albumSlice';
-import { getArtistsRequest } from '../../features/artist/artistSlice';
-import { getGenresRequest } from '../../features/genre/genreSlice';
 import { TableTitleText } from './components/TitleText';
 import { ActionBar, Container } from './components/Container';
 import PageLayout from '../Layout';
@@ -33,13 +30,14 @@ const Songs = () => {
     }
     useEffect(() => {
         dispatch(getSongsRequest());
-        dispatch(getAlbumsRequest());
-        dispatch(getArtistsRequest());
-        dispatch(getGenresRequest());
+    }, [dispatch])
+
+    useEffect(() => {
+        dispatch(getSongsRequest());
     }, [dispatch, openForm, openModal])
     return (
         <PageLayout pageIndex={1}>
-            <Container show={songs.length > 0}>
+            <Container>
                 <UpdateSongForm song={songToEdit} isOpen={openForm} formOpen={setOpenForm} />
                 <ConfirmModal isOpen={openModal} modalOpen={setOpenModal} song={songToDelete} />
                 <TableTitleText>

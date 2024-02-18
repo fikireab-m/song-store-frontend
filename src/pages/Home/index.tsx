@@ -7,8 +7,11 @@ import { MiniList } from "../../components/styled/MiniList"
 import PieChart from "./Components/PieChart"
 import { GridContainer } from "../../components/styled/GridContainer"
 import { Container, RightSide } from "./Components"
+import { Container as TableContainer } from "../Songs/components/Container"
 import { useSelector } from "react-redux"
 import PageLayout from "../Layout"
+import { Table } from "../../components/styled/TableLayout"
+import { TableTitleText } from "../Songs/components/TitleText"
 
 
 const Home = () => {
@@ -88,7 +91,31 @@ const Home = () => {
                 </RightSide>
             </Container>
 
-            {/* <Songs /> */}
+            <TableContainer>
+                <TableTitleText>
+                    Recently Added Songs
+                </TableTitleText>
+                <Table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Album</th>
+                            <th>Artist</th>
+                            <th>Genre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {songs.slice().reverse().slice(0, 10).map((song, index) => (
+                            <tr key={index}>
+                                <td>{song.title}</td>
+                                <td>{song.album.name}</td>
+                                <td>{song.artist.name}</td>
+                                <td>{song.genre}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>
+            </TableContainer>
         </PageLayout>
     )
 }

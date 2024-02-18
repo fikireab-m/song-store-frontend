@@ -9,6 +9,7 @@ export const Container = styled.div`
     @media only screen and (max-width: 760px) {
     & {
         display:block;
+        margin-top:0.5rem;
     }
     }
 `;

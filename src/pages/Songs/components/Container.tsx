@@ -1,10 +1,9 @@
 import styled from "@emotion/styled";
 
-export const Container = styled.div<{ show: boolean }>`
+export const Container = styled.div`
     background-color:#fff;
     border-radius:1rem;
     margin-bottom:1rem;
-    display: ${props => props.show ? "block" : "none"};
 
     @media only screen and (max-width: 460px) {
     & {
