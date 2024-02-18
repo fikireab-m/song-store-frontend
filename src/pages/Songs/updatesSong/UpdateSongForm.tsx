@@ -25,13 +25,14 @@ export const UpdateSongForm = ({ isOpen, formOpen, song }: FormProps) => {
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
     box-shadow: -4rem 0 32rem rgba(0,0,0,0.5);
-    z-index: 10;
+    z-index: 20;
     opacity: ${isOpen ? 1 : 0};
     transition: opacity 0.5s ease-in-out;
 
     @media only screen and (max-width: 760px) {
     & {
         width:100%;
+        top:0;
     }
   }
     &>button{

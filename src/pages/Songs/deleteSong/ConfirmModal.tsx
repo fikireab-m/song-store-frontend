@@ -19,7 +19,7 @@ const ConfirmModal = ({ modalOpen, isOpen, song }: ModalProp) => {
     right:0;
     bottom:0;
     height:100vh;
-    z-index:10;
+    z-index:20;
     display:${isOpen ? 'flex' : 'none'};
     justify-content:center;
     align-items:center;
