@@ -34,7 +34,7 @@ const Songs = () => {
         dispatch(getSongsRequest());
     }, [dispatch, openForm, openModal])
     return (
-        <PageLayout pageIndex={1}>
+        <PageLayout pageIndex={1} pageTitle="Melody-Mall/Songs">
             <Container>
                 {songToEdit && <UpdateSongForm song={songToEdit} isOpen={openForm} formOpen={setOpenForm} />}
 

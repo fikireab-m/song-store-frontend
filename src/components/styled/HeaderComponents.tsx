@@ -2,7 +2,7 @@ import styled from "@emotion/styled"
 
 export const HeaderComp = styled.div`
 display:flex;
-justify-content:flex-end;
+justify-content:space-between;
 align-items:center;
 width:100%;
 gap:1rem;
@@ -12,6 +12,11 @@ padding:0 2rem;
  &{
     padding:0 0.25rem;
  }   
+}
+
+&>span{
+    font-size:1rem;
+    color:#aaa;
 }
 
 &>button{

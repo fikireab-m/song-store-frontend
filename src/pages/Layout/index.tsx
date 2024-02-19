@@ -10,13 +10,15 @@ import Sidebar from "../../components/Sidebar";
 import Loader from "../../components/Loader";
 import { HeaderContainer, MainContainer, SidebarContainer, } from "./Components";
 import { rootState } from "../../features/interfaces";
+import { motion } from "framer-motion";
 
 interface LayoutProp {
+    pageTitle: string;
     pageIndex?: number;
     children: ReactNode;
 }
 
-const PageLayout = ({ pageIndex = 0, children }: LayoutProp) => {
+const PageLayout = ({ pageIndex = 0, pageTitle, children }: LayoutProp) => {
     const dispatch = useDispatch();
     const [isOpen, setIsOpen] = useState(false);
     const loading = useSelector((state: rootState) => state.songs.songs).length === 0;
@@ -32,7 +34,7 @@ const PageLayout = ({ pageIndex = 0, children }: LayoutProp) => {
         <>
             <NewSongForm isOpen={isOpen} openForm={setIsOpen} />
             <HeaderContainer>
-                <Header openForm={setIsOpen} />
+                <Header openForm={setIsOpen} page={pageTitle}/>
             </HeaderContainer>
             <SidebarContainer>
                 <Sidebar pageIndex={pageIndex} />
@@ -40,7 +42,10 @@ const PageLayout = ({ pageIndex = 0, children }: LayoutProp) => {
             <MainContainer>
                 {
                     !loading
-                        ? <>{children}</>
+                        ? <motion.div
+                            initial={{ y: 150, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ duration: 1 }}>{children}</motion.div>
                         : <Loader />
 
                 }

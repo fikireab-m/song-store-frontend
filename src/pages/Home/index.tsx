@@ -21,7 +21,7 @@ const Home = () => {
     const genres = useSelector((state: rootState) => state.genres.genres);
 
     return (
-        <PageLayout>
+        <PageLayout pageTitle="Melody-Mall">
             <Container>
                 <GridContainer>
                     <CardContainer>

@@ -3,6 +3,7 @@ import { GridContainer } from "../../components/styled/GridContainer";
 import PageLayout from "../Layout";
 import { useSelector } from "react-redux";
 import { GenreCard } from "./Components";
+import { motion } from "framer-motion";
 
 const Genres = () => {
 
@@ -24,28 +25,33 @@ const Genres = () => {
         return [...albumsInGenre];
     }
     return (
-        <PageLayout pageIndex={4}>
+        <PageLayout pageIndex={4} pageTitle="Melody-Mall/Genres">
             <GridContainer>
                 {
                     genres.map((genre, index) => (
-                        <GenreCard key={index}>
-                            <div>
-                                <div />
-                            </div>
-                            <div>
-                                <span>{genre[0].toUpperCase() + genre.slice(1,)}</span>
+                        <motion.div
+                            initial={{ y: 150, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ duration: 0.5 * index }}>
+                            <GenreCard key={index}>
                                 <div>
+                                    <div />
+                                </div>
+                                <div>
+                                    <span>{genre[0].toUpperCase() + genre.slice(1,)}</span>
                                     <div>
-                                        <span>{getSongsInGenre(genre).length}</span>
-                                        <span>Songs</span>
-                                    </div>
-                                    <div>
-                                        <span>{getAlbumsInGenre(genre).length}</span>
-                                        <span>Albums</span>
+                                        <div>
+                                            <span>{getSongsInGenre(genre).length}</span>
+                                            <span>Songs</span>
+                                        </div>
+                                        <div>
+                                            <span>{getAlbumsInGenre(genre).length}</span>
+                                            <span>Albums</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </GenreCard>
+                            </GenreCard>
+                        </motion.div>
                     ))
                 }
             </GridContainer>

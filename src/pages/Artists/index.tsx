@@ -3,6 +3,7 @@ import { GridContainer } from "../../components/styled/GridContainer";
 import PageLayout from "../Layout";
 import { useSelector } from "react-redux";
 import { ArtistCard } from "./Components";
+import { motion } from "framer-motion";
 
 const Artists = () => {
     const songs = useSelector((state: rootState) => state.songs.songs);
@@ -23,34 +24,39 @@ const Artists = () => {
         return [...albumsByArtist];
     }
     return (
-        <PageLayout pageIndex={2}>
+        <PageLayout pageIndex={2} pageTitle="Melody-Mall/Artists">
             <GridContainer>
                 {
                     artists.map((artist, index) => (
-                        <ArtistCard key={index}>
-                            <div >
-                                <div>
-                                    <img src='/assets/artist.jpeg' alt="" />
-                                </div>
-                            </div>
-                            <div>
-                                <span>{artist.name}</span>
-                                <div>
-                                    <div>
-                                        <span>{getArtistSongs(artist).length}</span>
-                                        <span>Songs</span>
+                            <motion.div
+                                initial={{ y: 150, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                transition={{ duration: 0.5 * index }}>
+                                <ArtistCard key={index}>
+                                    <div >
+                                        <div>
+                                            <img src='/assets/artist.jpeg' alt="" />
+                                        </div>
                                     </div>
                                     <div>
-                                        <span>{getArtistAlbums(artist).length}</span>
-                                        <span>Albums</span>
+                                        <span>{artist.name}</span>
+                                        <div>
+                                            <div>
+                                                <span>{getArtistSongs(artist).length}</span>
+                                                <span>Songs</span>
+                                            </div>
+                                            <div>
+                                                <span>{getArtistAlbums(artist).length}</span>
+                                                <span>Albums</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </ArtistCard>
+                                </ArtistCard>
+                            </motion.div>
                     ))
                 }
             </GridContainer>
-        </PageLayout>
+        </PageLayout >
     )
 }
 
