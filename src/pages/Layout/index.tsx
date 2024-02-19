@@ -1,5 +1,5 @@
 import Header from "../../components/Header";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ReactNode, useEffect, useState } from "react";
 import { getSongsRequest } from "../../features/song/songSlice";
 import { getAlbumsRequest } from "../../features/album/albumSlice";
@@ -9,6 +9,7 @@ import { NewSongForm } from "../Songs/newSong/NewSongForm";
 import Sidebar from "../../components/Sidebar";
 import Loader from "../../components/Loader";
 import { HeaderContainer, MainContainer, SidebarContainer, } from "./Components";
+import { rootState } from "../../features/interfaces";
 
 interface LayoutProp {
     pageIndex?: number;
@@ -18,14 +19,13 @@ interface LayoutProp {
 const PageLayout = ({ pageIndex = 0, children }: LayoutProp) => {
     const dispatch = useDispatch();
     const [isOpen, setIsOpen] = useState(false);
-    const [isLoading, setLoading] = useState(true);
+    const loading = useSelector((state: rootState) => state.songs.isLoading);
 
     useEffect(() => {
         dispatch(getSongsRequest());
         dispatch(getAlbumsRequest());
         dispatch(getArtistsRequest());
         dispatch(getGenresRequest());
-        setLoading(false);
     }, [dispatch, isOpen]);
 
     return (
@@ -39,9 +39,10 @@ const PageLayout = ({ pageIndex = 0, children }: LayoutProp) => {
             </SidebarContainer>
             <MainContainer>
                 {
-                    isLoading
-                        ? <Loader />
-                        : <>{children}</>
+                    !loading
+                        ? <>{children}</>
+                        : <Loader />
+
                 }
             </MainContainer>
 
