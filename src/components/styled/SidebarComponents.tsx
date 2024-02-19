@@ -19,7 +19,9 @@ export const SidebarHeader = styled.div`
     align-items:center;
     gap:0.5rem;
     color:#7360DF;
-    font-size:1.2rem;
+    font-family:Sofia;
+    font-weight:700;
+    font-size:1.4rem;
 
     img{
         height:2.5rem;

@@ -55,4 +55,5 @@ export const TableTitleText = styled.span`
     font-weight:bold;
     color:#afafaf;
     padding-left:2rem;
+    display:block;
 `

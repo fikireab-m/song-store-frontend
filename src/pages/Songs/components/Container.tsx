@@ -35,3 +35,19 @@ button{
     }
 }
 `;
+
+
+export const TitleContainer = styled.div`
+    padding:0.5rem 2rem;
+    width:75%;
+    display:flex;
+    justify-content:flex-start;
+    gap:2rem;
+    align-items:center;
+
+    @media only screen and (max-width:760px) {
+        padding:1rem;
+        width:100%; 
+        display:block;
+    }
+`

@@ -1,11 +1,8 @@
-import { FaMusic, FaUser } from "react-icons/fa"
-import { IoIosAlbums } from "react-icons/io"
-import { Artist, rootState } from "../../features/interfaces"
-import { MiniList } from "../../components/styled/MiniList"
-import { ArtistCard } from "./Components"
-import { GridContainer } from "../../components/styled/GridContainer"
-import PageLayout from "../Layout"
-import { useSelector } from "react-redux"
+import { Artist, rootState } from "../../features/interfaces";
+import { GridContainer } from "../../components/styled/GridContainer";
+import PageLayout from "../Layout";
+import { useSelector } from "react-redux";
+import { ArtistCard } from "./Components";
 
 const Artists = () => {
     const songs = useSelector((state: rootState) => state.songs.songs);
@@ -31,37 +28,23 @@ const Artists = () => {
                 {
                     artists.map((artist, index) => (
                         <ArtistCard key={index}>
-                            <div>
-                                <span>
-                                    <FaUser />
-                                </span>
-                                <p> {artist.name}</p>
+                            <div >
+                                <div>
+                                    <img src='/assets/artist.jpeg' alt="" />
+                                </div>
                             </div>
                             <div>
-                                <span>
-                                    <h6>{getArtistSongs(artist).length}</h6>
-                                    <FaMusic />
-                                </span>
-                                <MiniList>
-                                    {getArtistSongs(artist).map((song, index) => (
-                                        <div key={index}>
-                                            <span>{song.title}</span>
-                                        </div>
-                                    ))}
-                                </MiniList>
-                            </div>
-                            <div>
-                                <span>
-                                    <h6>{getArtistAlbums(artist).length}</h6>
-                                    <IoIosAlbums />
-                                </span>
-                                <MiniList>
-                                    {getArtistAlbums(artist).map((album, index) => (
-                                        <div key={index}>
-                                            <span>{album}</span>
-                                        </div>
-                                    ))}
-                                </MiniList>
+                                <span>{artist.name}</span>
+                                <div>
+                                    <div>
+                                        <span>{getArtistSongs(artist).length}</span>
+                                        <span>Songs</span>
+                                    </div>
+                                    <div>
+                                        <span>{getArtistAlbums(artist).length}</span>
+                                        <span>Albums</span>
+                                    </div>
+                                </div>
                             </div>
                         </ArtistCard>
                     ))

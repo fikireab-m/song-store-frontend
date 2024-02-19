@@ -1,48 +1,51 @@
-
-import { FaMusic } from "react-icons/fa"
 import { rootState } from "../../features/interfaces"
-import { MiniList } from "../../components/styled/MiniList"
-import { ArtistCard } from "../Artists/Components";
-import { GiSoundWaves } from "react-icons/gi";
 import { GridContainer } from "../../components/styled/GridContainer";
 import PageLayout from "../Layout";
 import { useSelector } from "react-redux";
+import { GenreCard } from "./Components";
 
 const Genres = () => {
 
     const songs = useSelector((state: rootState) => state.songs.songs);
     const genres = useSelector((state: rootState) => state.genres.genres);
+
     const getSongsInGenre = (genre: string) => {
-        const songsByArtist = songs.filter((song) => song.genre === genre);
-        return songsByArtist;
+        const songsInGenre = songs.filter((song) => song.genre === genre);
+        return songsInGenre;
     }
 
+    const getAlbumsInGenre = (genre: string) => {
+        const filteredSongs = getSongsInGenre(genre);
+
+        const albumsInGenre = new Set<string>();
+        for (const song of filteredSongs) {
+            albumsInGenre.add(song.album.name)
+        }
+        return [...albumsInGenre];
+    }
     return (
         <PageLayout pageIndex={4}>
             <GridContainer>
                 {
                     genres.map((genre, index) => (
-                        <ArtistCard key={index}>
+                        <GenreCard key={index}>
                             <div>
-                                <span>
-                                    <GiSoundWaves />
-                                </span>
-                                <p> {genre}</p>
+                                <div />
                             </div>
                             <div>
-                                <span>
-                                    <h6>{getSongsInGenre(genre).length}</h6>
-                                    <FaMusic />
-                                </span>
-                                <MiniList>
-                                    {getSongsInGenre(genre).map((song, index) => (
-                                        <div key={index}>
-                                            <span>{song.title}</span>
-                                        </div>
-                                    ))}
-                                </MiniList>
+                                <span>{genre[0].toUpperCase() + genre.slice(1,)}</span>
+                                <div>
+                                    <div>
+                                        <span>{getSongsInGenre(genre).length}</span>
+                                        <span>Songs</span>
+                                    </div>
+                                    <div>
+                                        <span>{getAlbumsInGenre(genre).length}</span>
+                                        <span>Albums</span>
+                                    </div>
+                                </div>
                             </div>
-                        </ArtistCard>
+                        </GenreCard>
                     ))
                 }
             </GridContainer>

@@ -14,12 +14,15 @@ export const AlbumCard = styled.div`
         }
         
     &>div:nth-child(1) {
+        position: relative;
         height: 150px;
         border-radius: 15px;
         display: flex;
         flex-direction: column;
-        background: linear-gradient(45deg, rgb(4, 159, 187) 0%, rgb(156, 80, 255) 100%);
-        position: relative;
+        background: url(/assets/albumbg.jpeg);
+        background-size:auto;
+        background-repeat:no-repeat;
+        background-position:center;
 
         &::before{
             content: "";
@@ -84,7 +87,6 @@ export const AlbumCard = styled.div`
                     font-size: 2.5rem;
                     color:#999;
                     font-weight:800;
-                    display: block;
                 }
             }
             &>div:nth-child(2){

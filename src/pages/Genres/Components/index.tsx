@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 
-export const ArtistCard = styled.div`
+export const GenreCard = styled.div`
     min-width:18.5rem;
     height:max-content;
     border-radius: 1.5rem;
@@ -18,7 +18,7 @@ export const ArtistCard = styled.div`
         position: relative;
         height: 12rem;
         border-radius: 1rem;
-        background: url(/assets/artistbg.jpeg);
+        background: url(/assets/genre.jpeg);
         background-position:center;
         background-size:auto;
         background-repeat:no-repeat;
@@ -40,7 +40,6 @@ export const ArtistCard = styled.div`
         }
     }
     &>div:nth-child(2){
-        margin-top: 3rem;
         padding: 0.65rem 0.33rem;
         &>span{
             display: block;

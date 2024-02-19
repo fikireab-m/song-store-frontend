@@ -19,7 +19,7 @@ interface LayoutProp {
 const PageLayout = ({ pageIndex = 0, children }: LayoutProp) => {
     const dispatch = useDispatch();
     const [isOpen, setIsOpen] = useState(false);
-    const loading = useSelector((state: rootState) => state.songs.isLoading);
+    const loading = useSelector((state: rootState) => state.songs.songs).length === 0;
 
     useEffect(() => {
         dispatch(getSongsRequest());

@@ -8,8 +8,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getSongsRequest } from '../../features/song/songSlice';
 import ConfirmModal from './deleteSong/ConfirmModal';
 import { TableTitleText } from './components/TitleText';
-import { ActionBar, Container } from './components/Container';
+import { ActionBar, Container, TitleContainer } from './components/Container';
 import PageLayout from '../Layout';
+import { SearchForm } from './components/SearchForm';
 
 const Songs = () => {
     const dispatch = useDispatch();
@@ -38,9 +39,19 @@ const Songs = () => {
                 {songToEdit && <UpdateSongForm song={songToEdit} isOpen={openForm} formOpen={setOpenForm} />}
 
                 {songToDelete && <ConfirmModal isOpen={openModal} modalOpen={setOpenModal} song={songToDelete} />}
-                <TableTitleText>
-                    All Songs
-                </TableTitleText>
+                <TitleContainer>
+                    <TableTitleText>
+                        All Songs
+                    </TableTitleText>
+                    <SearchForm >
+                        <button>
+                            <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
+                                <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9" stroke="currentColor" strokeWidth="1.333" strokeLinecap="round" strokeLinejoin="round"></path>
+                            </svg>
+                        </button>
+                        <input placeholder="Search here ..." required type="text" />
+                    </SearchForm>
+                </TitleContainer>
                 <Table>
                     <thead>
                         <tr>
