@@ -11,9 +11,9 @@ border-radius: 1rem;
 transition: border-radius 0.5s ease;
 background: whitesmoke;
 
-@media only screen and (max-width: 660px)  {
+@media only screen and (max-width: 460px)  {
         &{
-            width:12rem;
+            width:80%;
         }
     }
 
@@ -66,6 +66,12 @@ align-items:center;
 width:100%;
 gap:1rem;
 padding:0 2rem;
+
+@media only screen and (max-width:460px) {
+ &{
+    padding:0 0.25rem;
+ }   
+}
 
 &>button{
     width:2.5rem;

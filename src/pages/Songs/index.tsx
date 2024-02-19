@@ -28,9 +28,6 @@ const Songs = () => {
         setSongToDelete(song);
         setOpenModal(true);
     }
-    useEffect(() => {
-        dispatch(getSongsRequest());
-    }, [dispatch])
 
     useEffect(() => {
         dispatch(getSongsRequest());
@@ -38,8 +35,9 @@ const Songs = () => {
     return (
         <PageLayout pageIndex={1}>
             <Container>
-                <UpdateSongForm song={songToEdit} isOpen={openForm} formOpen={setOpenForm} />
-                <ConfirmModal isOpen={openModal} modalOpen={setOpenModal} song={songToDelete} />
+                {songToEdit && <UpdateSongForm song={songToEdit} isOpen={openForm} formOpen={setOpenForm} />}
+
+                {songToDelete && <ConfirmModal isOpen={openModal} modalOpen={setOpenModal} song={songToDelete} />}
                 <TableTitleText>
                     All Songs
                 </TableTitleText>
