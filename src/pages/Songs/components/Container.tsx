@@ -46,7 +46,7 @@ export const TitleContainer = styled.div`
     align-items:center;
 
     @media only screen and (max-width:760px) {
-        padding:1rem;
+        padding:0;
         width:100%; 
         display:block;
     }

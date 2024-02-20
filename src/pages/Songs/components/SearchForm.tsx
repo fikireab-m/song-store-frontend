@@ -13,7 +13,7 @@ background: whitesmoke;
 
 @media only screen and (max-width: 460px)  {
         &{
-            width:80%;
+            width:75%;
         }
     }
 

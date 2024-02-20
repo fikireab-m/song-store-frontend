@@ -102,6 +102,7 @@ const Home = () => {
                             <th>Album</th>
                             <th>Artist</th>
                             <th>Genre</th>
+                            <th>Date Added</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -111,6 +112,7 @@ const Home = () => {
                                 <td>{song.album.name}</td>
                                 <td>{song.artist.name}</td>
                                 <td>{song.genre}</td>
+                                <td>{new Date(song.createdAt!).toLocaleDateString()}</td>
                             </tr>
                         ))}
                     </tbody>
