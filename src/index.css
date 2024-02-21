@@ -19,3 +19,9 @@
 ::-webkit-scrollbar {
   width: 0;
 }
+
+@media(prefers-color-scheme:dark) {
+  body {
+    filter: invert(95%) hue-rotate(180deg);
+  }
+}
