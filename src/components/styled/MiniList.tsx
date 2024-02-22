@@ -41,8 +41,20 @@ export const MiniList = styled.div`
 
     span{
         color:#999;
-        padding:0.2rem;
+        padding:0.2rem 0.5rem;
         font-size:0.9rem
     }
+    }
+`;
+
+export const MiniLink = styled.span`
+    justify-content:flex-end;
+    align-items:center;
+    display:flex;
+
+    &>*{
+        margin-right:1rem;
+        color:#7360DF;
+        text-decoration:none;
     }
 `;

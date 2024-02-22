@@ -75,8 +75,7 @@ transition-duration: .5s;
 
 
 &:hover{
-    background:#7360DF;
-    color:white;
+    background:#7360df52;
     letter-spacing:5px;
     transition-duration: .5s;
 }

@@ -3,7 +3,7 @@ import { FaMusic, FaUsers } from "react-icons/fa"
 import { IoIosAlbums } from "react-icons/io"
 import { GiSoundWaves } from "react-icons/gi"
 import { rootState } from "../../features/interfaces"
-import { MiniList } from "../../components/styled/MiniList"
+import { MiniLink, MiniList } from "../../components/styled/MiniList"
 import PieChart from "./Components/PieChart"
 import { GridContainer } from "../../components/styled/GridContainer"
 import { Container, RightSide } from "./Components"
@@ -12,6 +12,7 @@ import { useSelector } from "react-redux"
 import PageLayout from "../Layout"
 import { Table } from "../../components/styled/TableLayout"
 import { TableTitleText } from "../Songs/components/TitleText"
+import { Link } from "react-router-dom"
 
 
 const Home = () => {
@@ -33,7 +34,12 @@ const Home = () => {
                             <MiniList>
                                 {songs.slice(0, 10).map((song, index) => (
                                     <div key={index}>
-                                        <span>{song.title}</span>
+                                        {index === 9
+                                            ? <MiniLink>
+                                                <Link to="/songs">View more</Link>
+                                            </MiniLink>
+                                            : <span>{song.title}</span>
+                                        }
                                     </div>
                                 ))}
                             </MiniList>
@@ -48,7 +54,12 @@ const Home = () => {
                             <MiniList>
                                 {artists.slice(0, 10).map((artist, index) => (
                                     <div key={index}>
-                                        <span>{artist.name}</span>
+                                        {index === 9
+                                            ? <MiniLink>
+                                                <Link to="/artists">View more</Link>
+                                            </MiniLink>
+                                            : <span>{artist.name}</span>
+                                        }
                                     </div>
                                 ))}
                             </MiniList>
@@ -63,7 +74,12 @@ const Home = () => {
                             <MiniList>
                                 {albums.slice(0, 10).map((album, index) => (
                                     <div key={index}>
-                                        <span>{album.name}</span>
+                                        {index === 9
+                                            ? <MiniLink>
+                                                <Link to="/albums">View more</Link>
+                                            </MiniLink>
+                                            : <span>{album.name}</span>
+                                        }
                                     </div>
                                 ))}
                             </MiniList>
@@ -78,7 +94,12 @@ const Home = () => {
                             <MiniList>
                                 {genres.slice(0, 10).map((genre, index) => (
                                     <div key={index}>
-                                        <span>{genre}</span>
+                                        {index === 9
+                                            ? <MiniLink>
+                                                <Link to="/genres">View more</Link>
+                                            </MiniLink>
+                                            : <span>{genre}</span>
+                                        }
                                     </div>
                                 ))}
                             </MiniList>

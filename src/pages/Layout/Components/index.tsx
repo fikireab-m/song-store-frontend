@@ -37,14 +37,15 @@ box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.3);
 `
 export const MainContainer = styled.div`
 margin-top:5rem;
-margin-left:15rem;
-margin-right:0.5rem;
+margin-left:15.5rem;
+margin-right:1rem;
 height: max-content;
 border-radius: 1rem;
 
 @media only screen and (max-width: 760px) {
   & {
     margin-left:4rem;
+    margin-right:0.5rem;
   }
 }
 `;
