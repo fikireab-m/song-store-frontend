@@ -38,8 +38,8 @@ button{
 
 
 export const TitleContainer = styled.div`
-    padding:0.5rem 2rem;
-    width:75%;
+    padding:0.5rem;
+    width:80%;
     display:flex;
     justify-content:flex-start;
     gap:2rem;

@@ -54,6 +54,6 @@ export const TableTitleText = styled.span`
     font-size:1.5rem;
     font-weight:bold;
     color:#afafaf;
-    padding-left:2rem;
+    padding-left:1rem;
     display:block;
 `

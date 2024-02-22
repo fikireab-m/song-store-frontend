@@ -39,10 +39,12 @@ const Sidebar = ({ pageIndex }: { pageIndex: number }) => {
 
     return (
         <SidebarComp>
-            <SidebarHeader>
-                <img src="/icon.svg" alt="logo" />
-                <span>Melody-Mall</span>
-            </SidebarHeader>
+            <a href="" style={{ textDecoration: "none" }}>
+                <SidebarHeader>
+                    <img src="/icon.svg" alt="logo" />
+                    <span>Melody-Mall</span>
+                </SidebarHeader>
+            </a>
             <Divider />
             {
                 routes.map((route, index) => (
