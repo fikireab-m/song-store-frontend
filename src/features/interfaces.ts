@@ -54,11 +54,11 @@ export interface SongActionType {
   payload: Song;
 }
 
-export interface FetchSongsAction {
-  type: 'FETCH_SONGS';
-  payload?: {
-    artist?: string;
-    album?: string;
-    genre?: string;
-  };
-}
+// export interface FetchSongsAction {
+//   type: 'FETCH_SONGS';
+//   payload?: {
+//     artist?: string;
+//     album?: string;
+//     genre?: string;
+//   };
+// }

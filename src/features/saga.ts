@@ -12,7 +12,7 @@ import {
 
 import { addSong, deleteSong, updateSong, getSongs, getAlbums, getArtists, getGenres } from "../api";
 import { AxiosResponse } from "axios";
-import { Album, Artist, FetchSongsAction, Song, SongActionType } from "./interfaces";
+import { Album, Artist, Song, SongActionType } from "./interfaces";
 import { getAlbumsFailure, getAlbumsSuccess } from "./album/albumSlice";
 import { getArtistsFailure, getArtistsSuccess } from "./artist/artistSlice";
 import { getGenresFailure, getGenresSuccess } from "./genre/genreSlice";
@@ -20,14 +20,14 @@ import { getGenresFailure, getGenresSuccess } from "./genre/genreSlice";
 /**
  * Saga for fetching songs
  */
-function* fetchSongs(action: FetchSongsAction) {
-  const { payload } = action;
+function* fetchSongs() {
+  // const { payload } = action;
   try {
-    let params: Record<string, string> = {};
-    if (payload && Object.keys(payload).length > 0) {
-      params = payload;
-    }
-    const response: AxiosResponse<Song[]> = yield call(getSongs, params);
+    // let params: Record<string, string> = {};
+    // if (payload && Object.keys(payload).length > 0) {
+    //   params = payload;
+    // }
+    const response: AxiosResponse<Song[]> = yield call(getSongs);
     const songs: Song[] = response.data;
     yield put(getSongsSuccess(songs));
   } catch (e: unknown) {

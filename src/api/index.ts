@@ -6,13 +6,9 @@ const BASE_URL = "https://addiss-software-test.onrender.com";
 /**
  * Song related calls
  */
-export const getSongs = (params?: {
-  artist?: string;
-  album?: string;
-  genre?: string;
-}): Promise<AxiosResponse<Song[]>> => {
-  let url = `${BASE_URL}/songs`
-  url = new URLSearchParams(params).toString() ? `${url}?${new URLSearchParams(params).toString()}` : url
+export const getSongs = (): Promise<AxiosResponse<Song[]>> => {
+  const url = `${BASE_URL}/songs`
+  // url = new URLSearchParams(params).toString() ? `${url}?${new URLSearchParams(params).toString()}` : url
   return axios.get<Song[]>(url);
 };
 
