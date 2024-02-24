@@ -7,7 +7,7 @@ right:1rem;
 left:15.5rem;
 z-index:10;
 grid-area: header;
-background-color: #ffffffc8;
+background-color: #ffffffc7;
 padding:0.5rem 0;
 border-radius:1rem;
 display:flex;
@@ -25,7 +25,7 @@ export const SidebarContainer = styled.div`
 position:fixed;
 top:0.5rem;
 left:0.5rem;
-background-color: white;
+background-color: var(--white);
 border-top-left-radius: 1rem;
 border-top-right-radius: 1rem;
 box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.3);

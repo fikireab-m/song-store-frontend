@@ -27,33 +27,29 @@ const Albums = () => {
             <GridContainer>
                 {
                     albums.map((album, index) => (
-                            <motion.div
-                                initial={{ y: 150, opacity: 0 }}
-                                animate={{ y: 0, opacity: 1 }}
-                                transition={{ duration: 0.5 * index }}>
-                                <AlbumCard key={index}>
+                        <motion.div
+                            initial={{ y: 150, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ duration: 0.5 * index }}>
+                            <AlbumCard key={index}>
+                                <div>
+                                    <div />
+                                </div>
+                                <div>
+                                    <span>{album.name}</span>
                                     <div>
-                                        <div />
-                                    </div>
-                                    <div>
-                                        <span>{album.name}</span>
                                         <div>
-                                            <div>
-                                                <span>{songsInAlbum(album).length}</span>
-                                                <span>Songs</span>
-                                            </div>
-                                            <div>
-                                                <span>{genresInAlbum(album).length}</span>
-                                                <span>Genres</span>
-                                            </div>
-                                            {/* <div>
-                                    <span>38,631</span>
-                                    <span>Contributers</span>
-                                </div> */}
+                                            <span>{songsInAlbum(album).length}</span>
+                                            <span>{songsInAlbum(album).length > 1 ? "Songs" : "Song"}</span>
+                                        </div>
+                                        <div>
+                                            <span>{genresInAlbum(album).length}</span>
+                                            <span>{genresInAlbum(album).length > 1 ? "Genres" : "Genre"}</span>
                                         </div>
                                     </div>
-                                </AlbumCard>
-                            </motion.div>
+                                </div>
+                            </AlbumCard>
+                        </motion.div>
                     ))
                 }
             </GridContainer>

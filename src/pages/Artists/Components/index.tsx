@@ -45,7 +45,7 @@ export const ArtistCard = styled.div`
         &>span{
             display: block;
             color:#999;
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: bolder;
             text-align: center;
             letter-spacing: 2px;
@@ -63,7 +63,7 @@ export const ArtistCard = styled.div`
                     font-size:1rem;
                 }
                 &>span:nth-child(1){
-                    font-size: 2.5rem;
+                    font-size: 2rem;
                     color:#999;
                     font-weight:800;
                     margin-right:0.25rem;

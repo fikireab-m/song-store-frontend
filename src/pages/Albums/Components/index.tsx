@@ -3,7 +3,7 @@ import styled from "@emotion/styled"
 export const AlbumCard = styled.div`
     min-width:18.5rem;
     border-radius: 1.5rem;
-    background: whitesmoke;
+    background: var(--white-smoke);
     padding: 0.5rem;
     overflow: hidden;
     box-shadow: 0px 0.58rem 1.3rem 0px rgba(0, 0, 0, 0.2) ;
@@ -34,17 +34,17 @@ export const AlbumCard = styled.div`
             height: 15px;
             width: 15px;
             border-top-left-radius: 15px;
-            box-shadow: -5px -5px 0 2px #ffffff;
+            box-shadow: -5px -5px 0 2px var(--white);
         }
 
     div{
         border-bottom-right-radius: 10px;
         height: 30px;
         width: 130px;
-        background: #fff;
+        background: var(--white);
         position: relative;
         transform: skew(-40deg);
-        box-shadow: -10px -10px 0 0 #fff;
+        box-shadow: -10px -10px 0 0 var(--white);
 
         &::before{
             content: "";
@@ -56,7 +56,7 @@ export const AlbumCard = styled.div`
             right: -15px;
             background: rgba(255, 255, 255, 0);
             border-top-left-radius: 10px;
-            box-shadow: -5px -5px 0 2px #fff;
+            box-shadow: -5px -5px 0 2px var(--white);
         }
         }
     }
@@ -66,7 +66,7 @@ export const AlbumCard = styled.div`
         &>span{
             display: block;
             color:#999;
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: bolder;
             text-align: center;
             letter-spacing: 2px;
@@ -84,7 +84,7 @@ export const AlbumCard = styled.div`
                     font-size:1rem;
                 }
                 &>span:nth-child(1){
-                    font-size: 2.5rem;
+                    font-size: 2rem;
                     color:#999;
                     font-weight:800;
                 }

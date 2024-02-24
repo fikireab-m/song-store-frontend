@@ -12,8 +12,8 @@ export const Table = styled.table`
   }
 
   th {
-    border-bottom: 1px solid #7360dfb9;
-    color:#7360dfac;
+    border-bottom: 1px solid var(--primary-light);
+    color:var(--primary-light);
     font-size:1rem;
     font-weight: 800;
     @media only screen and (max-width: 460px) {
@@ -23,6 +23,6 @@ export const Table = styled.table`
   }}
 
   tr:nth-child(even) {
-    background-color: #7360df39;
+    background-color: #7360df24;
   }
 `;

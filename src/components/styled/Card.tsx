@@ -3,7 +3,7 @@ import styled from "@emotion/styled"
 export const CardContainer = styled.div`
 min-width:18.5rem;
 height:12rem;
-background-color: #fff;
+background-color: var(--white);
 box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.2), 
 -0.5rem -0.5rem 0.5rem #c0c0c095 inset, 
 0.5rem 0.5rem 0.5rem #c0c0c095 inset;
@@ -26,7 +26,7 @@ box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.2);
     display:flex;
     justify-content:center;
     align-items:center;
-    color:#7360dfb9;
+    color:var(--primary-light);
     font-size:6rem;
 }
 
@@ -42,7 +42,7 @@ box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.2);
     &>span{
         font-size:1.5rem;
         font-weight:bold;
-        color:#aaa;
+        color:var(--light-grey);
     }
 
     &>p{

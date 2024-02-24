@@ -1,13 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Sofia&display=swap');
 
 :root {
+  --primary: #7360df;
+  --primary-light: #7360dfb9;
+  --grey: #777;
+  --light-grey: #aaa;
+  --default-color: #292929;
+  --white: #ffffff;
+  --white-smoke: #f5f5f5;
+  --light-text: #afafaf;
+
   font-family: Roboto, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light;
-  color: #292929;
+  color: var(--default-color);
   user-select: none;
-  background-color: whitesmoke;
+  background-color: var(--white-smoke);
   padding: 0;
   font-synthesis: none;
   text-rendering: optimizeLegibility;

@@ -6,8 +6,8 @@ import { rootState } from "../../features/interfaces"
 import { MiniLink, MiniList } from "../../components/styled/MiniList"
 import PieChart from "./Components/PieChart"
 import { GridContainer } from "../../components/styled/GridContainer"
-import { Container, RightSide } from "./Components"
-import { Container as TableContainer } from "../Songs/components/Container"
+import { Container, LinkContainer, RightSide } from "./Components"
+import { Container as TableContainer, TitleContainer } from "../Songs/components/Container"
 import { useSelector } from "react-redux"
 import PageLayout from "../Layout"
 import { Table } from "../../components/styled/TableLayout"
@@ -30,7 +30,7 @@ const Home = () => {
                             <FaMusic />
                         </span>
                         <div>
-                            <span>{songs.length} Songs</span>
+                            <span>{songs.length }{songs.length > 1 ? " Songs" : " Song"}</span>
                             <MiniList>
                                 {songs.slice(0, 10).map((song, index) => (
                                     <div key={index}>
@@ -50,7 +50,7 @@ const Home = () => {
                             <FaUsers />
                         </span>
                         <div>
-                            <span>{artists.length} Artists</span>
+                            <span>{artists.length}{artists.length > 1 ? " Artists" : " Artist"}</span>
                             <MiniList>
                                 {artists.slice(0, 10).map((artist, index) => (
                                     <div key={index}>
@@ -70,7 +70,7 @@ const Home = () => {
                             <IoIosAlbums />
                         </span>
                         <div>
-                            <span>{albums.length} Albums</span>
+                            <span>{albums.length}{albums.length > 1 ? " Albums" : " Albums"}</span>
                             <MiniList>
                                 {albums.slice(0, 10).map((album, index) => (
                                     <div key={index}>
@@ -90,7 +90,7 @@ const Home = () => {
                             <GiSoundWaves />
                         </span>
                         <div>
-                            <span>{genres.length} Genres</span>
+                            <span>{genres.length}{genres.length > 1 ? " Genres" : " Genre"}</span>
                             <MiniList>
                                 {genres.slice(0, 10).map((genre, index) => (
                                     <div key={index}>
@@ -113,9 +113,14 @@ const Home = () => {
             </Container>
 
             <TableContainer>
-                <TableTitleText>
-                    Recently Added Songs
-                </TableTitleText>
+                <TitleContainer>
+                    <TableTitleText>
+                        Recently Added Songs
+                    </TableTitleText>
+                    <LinkContainer>
+                        <Link to="/songs">view more</Link>
+                    </LinkContainer>
+                </TitleContainer>
                 <Table>
                     <thead>
                         <tr>

@@ -36,7 +36,7 @@ span:nth-child(3) {
 
 @keyframes scale-up4 {
   20% {
-    background-color: #7360DF;
+    background-color: var(--primary);
     transform: scaleY(1.5);
   }
 

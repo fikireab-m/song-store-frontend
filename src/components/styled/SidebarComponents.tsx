@@ -18,7 +18,7 @@ export const SidebarHeader = styled.div`
     display:flex;
     align-items:center;
     gap:0.5rem;
-    color:#7360DF;
+    color:var(--primary);
     font-family:Sofia;
     font-weight:700;
     font-size:1.4rem;
@@ -47,8 +47,8 @@ border: none;
 position: relative;
 font-size:1rem;
 cursor: pointer;
-background:${props => props.isActive ? "#7360DF" : "whiteSmoke"};
-color:${props => props.isActive ? "white" : "inherited"};
+background:${props => props.isActive ? "var(--primary)" : "var(--white-smoke)"};
+color:${props => props.isActive ? "var(--white)" : "inherited"};
 transition-duration: .5s;
 &>div{
     position: absolute;

@@ -29,7 +29,7 @@ const ConfirmModal = ({ modalOpen, isOpen, song }: ModalProp) => {
         width:24rem;
         border-radius:1rem;
         padding:1rem;
-        background-color:#fff;
+        background-color:var(--white);
         box-shadow: 0.5rem 0.5rem 1rem #ffffff68;
         @media only screen and (max-width: 760px) {
             & {
@@ -38,6 +38,7 @@ const ConfirmModal = ({ modalOpen, isOpen, song }: ModalProp) => {
             }
 
         div{
+            margin-top:1rem;
             display:flex;
             justify-content:center;
             align-items:center;
@@ -58,7 +59,7 @@ const ConfirmModal = ({ modalOpen, isOpen, song }: ModalProp) => {
     return (
         <Modal>
             <div>
-                <TitleText>Requesting Confiramtion</TitleText>
+                <TitleText>Requesting Confirmation</TitleText>
                 <span>Are you sure you want to delete this song?</span>
                 <div>
                     <SubmitButton onclick={handleCancel} color="#7360DF">Cancel</SubmitButton>

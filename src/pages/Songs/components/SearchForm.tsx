@@ -9,7 +9,8 @@ align-items: center;
 padding-inline: 0.8rem;
 border-radius: 1rem;
 transition: border-radius 0.5s ease;
-background: whitesmoke;
+background: var(--white-smoke);
+margin-left:1rem;
 
 @media only screen and (max-width: 460px)  {
         &{
@@ -20,7 +21,7 @@ background: whitesmoke;
 &>button{
     border: none;
     background: none;
-    color: #7360DF;
+    color: var(--primary);
 }
 &>input{
     font-size: 0.9rem;
@@ -38,7 +39,7 @@ background: whitesmoke;
 &:before{
     content: "";
     position: absolute;
-    background: #7360DF;
+    background: var(--primary);
     transform: scaleX(0);
     transform-origin: center;
     width: 100%;

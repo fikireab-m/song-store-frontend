@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const TitleText = styled.span`
 font-size: 2rem;
-color: #7360df;
+color: var(--primary);
 font-weight: 600;
 letter-spacing: -1px;
 position: relative;
@@ -33,13 +33,13 @@ height: 16px;
 width: 16px;
 border-radius: 50%;
 left: 0px;
-background-color: #7360df;
+background-color: var(--primary);
 }
 
 &::before {
 width: 18px;
 height: 18px;
-background-color: #7360df;
+background-color: var(--primary);
 }
 
 &::after {
@@ -49,11 +49,17 @@ animation: pulse 3s linear infinite;
 }
 `;
 
-
 export const TableTitleText = styled.span`
     font-size:1.5rem;
     font-weight:bold;
-    color:#afafaf;
+    color: var(--light-text);
     padding-left:1rem;
     display:block;
-`
+    @media only screen and (max-width:760px) {
+        &{
+            font-size:1rem;
+            font-weight:600;
+            padding-left:0.5rem;
+        }
+    }
+`;

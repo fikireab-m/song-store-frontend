@@ -16,22 +16,22 @@ padding:0 2rem;
 
 &>span{
     font-size:1rem;
-    color:#aaa;
+    color:var(--light-grey);
 }
 
 &>button{
     width:2.5rem;
     height:2.5rem;
-    color: #7360DF;
+    color: var(--primary);
     border-radius:50%;
     padding:0.5rem;
     background: none;
-    border:2px solid #7360DF;
+    border:2px solid var(--primary);
     cursor:pointer;
     transition: all .3s ease;
 
     &:hover{
-        background:#7360DF;
+        background:var(--primary);
         color:white;
     }
 }

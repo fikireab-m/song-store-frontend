@@ -1,11 +1,10 @@
 import React, { useRef } from 'react';
-import styled from '@emotion/styled';
 import { MdClose } from 'react-icons/md';
 import { Song } from '../../../features/interfaces';
 import { useDispatch } from 'react-redux';
 import { addSongRequest, getSongsRequest } from '../../../features/song/songSlice';
 import { TitleText } from '../components/TitleText';
-import { Form } from '../components/Form';
+import { Form, FormContainer } from '../components/Form';
 
 interface FormProps {
     isOpen: boolean;
@@ -13,44 +12,6 @@ interface FormProps {
 }
 
 export const NewSongForm = ({ isOpen, openForm }: FormProps) => {
-
-
-    const FormContainer = styled.div`
-    position:fixed;
-    z-index: 20;
-    width: 28rem;
-    top:0.5rem;;
-    right:0;
-    min-height:100vh;
-    background-color: white;
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
-    box-shadow: -4rem 0 32rem rgba(0,0,0,0.5);
-    opacity: ${isOpen ? 1 : 0};
-    transition: opacity 0.5s ease-in-out;
-
-    @media only screen and (max-width: 660px)  {
-        &{
-            width:100%;
-            top:0;
-        }
-    }
-    &>button{
-        margin:1rem;
-        font-size:2rem;
-        color: #7360DF;
-        background: none;
-        cursor:pointer;
-        border:none;
-        transition: all .3s ease;
-
-        &:hover{
-            font-weight:bolder;
-            color: #ff0062d6;
-            transform:scale(1.25);
-        }
-        }
-  `;
 
     const dispatch = useDispatch();
 
@@ -74,7 +35,7 @@ export const NewSongForm = ({ isOpen, openForm }: FormProps) => {
     return (
         <div>
             {isOpen && (
-                <FormContainer>
+                <FormContainer isOpen>
                     <button onClick={() => openForm(false)}>
                         <MdClose />
                     </button>

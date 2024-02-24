@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const MiniList = styled.div`
     width:100%;
     max-height:8rem;
-    background-color:#ffffff;
+    background-color:var(--white);
     padding:0.2rem;
     border-radius:1rem;
     box-shadow: -0.05rem 0 0.25rem #77777775;
@@ -20,12 +20,12 @@ export const MiniList = styled.div`
     }
 
     ::-webkit-scrollbar-thumb {
-    background: #7360df94; 
+    background: var(--primary-light); 
     border-radius: 0.75rem;
     }
 
     ::-webkit-scrollbar-thumb:hover {
-    background: #7360DF; 
+    background: var(--primary); 
     }
 
     div:not(:nth-child(1)){  
@@ -37,10 +37,10 @@ export const MiniList = styled.div`
         display:flex;
         flex-direction:column;
         justify-items:start;
-        background-color:#f7f7f7;
+        background-color: var(--white-smoke);
 
     span{
-        color:#999;
+        color: var(--grey);
         padding:0.2rem 0.5rem;
         font-size:0.9rem
     }
@@ -54,7 +54,7 @@ export const MiniLink = styled.span`
 
     &>*{
         margin-right:1rem;
-        color:#7360DF;
+        color: var(--primary);
         text-decoration:none;
     }
 `;

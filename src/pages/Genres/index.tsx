@@ -42,11 +42,11 @@ const Genres = () => {
                                     <div>
                                         <div>
                                             <span>{getSongsInGenre(genre).length}</span>
-                                            <span>Songs</span>
+                                            <span>{getSongsInGenre(genre).length > 1 ? "Songs" : "Song"}</span>
                                         </div>
                                         <div>
                                             <span>{getAlbumsInGenre(genre).length}</span>
-                                            <span>Albums</span>
+                                            <span>{getAlbumsInGenre(genre).length > 1 ? "Albums" : "Album"}</span>
                                         </div>
                                     </div>
                                 </div>

@@ -14,14 +14,14 @@ export const SubmitButton = ({ color, children, onclick }: SubmitBtnProp) => {
         background-color:${color};
         padding: 0.75rem;
         border-radius: 0.75rem;
-        color: #fff;
-        font-size: 16px;
+        color: var(--white);
+        cursor: pointer;
+        font-size: 1rem;
         margin-top:1rem;
         transform: .3s ease;
 
         &:hover {
         background-color: #60a2df;
-        cursor: pointer;
     }
 `
     return (

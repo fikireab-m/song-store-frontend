@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Container = styled.div`
-    background-color:#fff;
+    background-color: var(--white);
     border-radius:1rem;
     margin-bottom:1rem;
 
@@ -21,16 +21,16 @@ gap:0.5rem;
 button{
     width:2rem;
     height:2rem;
-    color: #7360DF;
+    color: var(--primary);
     border-radius:50%;
     padding:0.5rem;
     background: none;
-    border:2px solid #7360DF;
+    border:2px solid var(--primary);
     cursor:pointer;
     transition: all .3s ease;
 
     &:hover{
-        background:#7360DF;
+        background:var(--primary);
         color:white;
     }
 }
