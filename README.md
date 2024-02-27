@@ -14,7 +14,7 @@ Tech stacks
 - [**TypeScript**](https://www.typescriptlang.org/)
 - [**Redux** ](https://redux.js.org/)
 - [**Redux-saga**](https://redux-saga.js.org/)
-- [**@motion/stayled** ](https://emotion.sh/docs/styled)
+- [**@motion/styled** ](https://emotion.sh/docs/styled)
 - [**Vite**](https://vitejs.dev/)
 
 ## Getting started
