@@ -1,5 +1,13 @@
 # Song store frontend
 
+
+## [See how it looks live](https://song-store-frontend.vercel.app/)
+
+Also checkout  
+[The backend repository](https://github.com/fikireab-m/song-store-backend) 
+Or   
+[Backend on render](https://addiss-software-test.onrender.com)
+
 Tech stacks
 
 - [**React**](https://react.dev/)
@@ -29,22 +37,15 @@ npm i
 npm run dev
 ```
 
-## Live link
-
-[https://song-store-frontend.vercel.app](https://song-store-frontend.vercel.app/)
-
 ### How it looks
 
 !["Add song"](public/addS_capture.PNG)
-!["Add song"](public/home.PNG)
-!["Add song"](public/home1.PNG)
+!["home"](public/home.PNG)
 !["Songs page"](public/songs.PNG)
-!["Update Song"](public/updateSong.PNG)
-!["Artists page"](public/artists.PNG)
 !["Albums page"](public/albums.PNG)
-!["Genres page"](public/genres.PNG)
 
 ### Mobile view
+
 !["Home page"](public/mobilehome.PNG)
 !["Albums page"](public/mobileAlbums.PNG)
 !["Artists page"](public/mobileArtists.PNG)

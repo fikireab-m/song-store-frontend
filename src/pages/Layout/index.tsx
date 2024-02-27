@@ -34,7 +34,7 @@ const PageLayout = ({ pageIndex = 0, pageTitle, children }: LayoutProp) => {
         <>
             <NewSongForm isOpen={isOpen} openForm={setIsOpen} />
             <HeaderContainer>
-                <Header openForm={setIsOpen} page={pageTitle}/>
+                <Header openForm={setIsOpen} page={pageTitle} />
             </HeaderContainer>
             <SidebarContainer>
                 <Sidebar pageIndex={pageIndex} />
@@ -45,7 +45,9 @@ const PageLayout = ({ pageIndex = 0, pageTitle, children }: LayoutProp) => {
                         ? <motion.div
                             initial={{ y: 150, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
-                            transition={{ duration: 1 }}>{children}</motion.div>
+                            transition={{ duration: 1 }}>
+                            {children}
+                        </motion.div>
                         : <Loader />
 
                 }
