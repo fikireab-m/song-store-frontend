@@ -37,7 +37,6 @@ function* fetchSongs() {
 /**
  * Saga to add a new song
  * @param action 
- * @returns 
  */
 function* addsong(action: SongActionType) {
   try {

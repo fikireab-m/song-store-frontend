@@ -10,8 +10,8 @@ const Albums = () => {
     const albums = useSelector((state: rootState) => state.albums.albums);
 
     const songsInAlbum = (album: Album) => {
-        const songsByArtist = songs.filter((song) => song.album.name === album.name);
-        return songsByArtist;
+        const songsAl = songs.filter((song) => song.album.name === album.name);
+        return songsAl;
     }
     const genresInAlbum = (album: Album) => {
         const filteredSongs = songsInAlbum(album);
