@@ -11,7 +11,7 @@ const Genres = () => {
     const genres = useSelector((state: rootState) => state.genres.genres);
 
     const getSongsInGenre = (genre: string) => {
-        const songsInGenre = songs.filter((song) => song.genre === genre);
+        const songsInGenre = songs.filter((song) => song.genre.name === genre);
         return songsInGenre;
     }
 
@@ -38,15 +38,15 @@ const Genres = () => {
                                     <div />
                                 </div>
                                 <div>
-                                    <span>{genre[0].toUpperCase() + genre.slice(1,)}</span>
+                                    <span>{genre.name[0].toUpperCase() + genre.name.slice(1,)}</span>
                                     <div>
                                         <div>
-                                            <span>{getSongsInGenre(genre).length}</span>
-                                            <span>{getSongsInGenre(genre).length > 1 ? "Songs" : "Song"}</span>
+                                            <span>{getSongsInGenre(genre.name).length}</span>
+                                            <span>{getSongsInGenre(genre.name).length > 1 ? "Songs" : "Song"}</span>
                                         </div>
                                         <div>
-                                            <span>{getAlbumsInGenre(genre).length}</span>
-                                            <span>{getAlbumsInGenre(genre).length > 1 ? "Albums" : "Album"}</span>
+                                            <span>{getAlbumsInGenre(genre.name).length}</span>
+                                            <span>{getAlbumsInGenre(genre.name).length > 1 ? "Albums" : "Album"}</span>
                                         </div>
                                     </div>
                                 </div>

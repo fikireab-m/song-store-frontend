@@ -10,7 +10,7 @@ const Artists = () => {
     const artists = useSelector((state: rootState) => state.artists.artists);
 
     const getArtistSongs = (artist: Artist) => {
-        const songsByArtist = songs.filter((song) => song.artist.name === artist.name);
+        const songsByArtist = songs.filter((song) => song.artist.fname === artist.fname && song.artist.lname === artist.lname);
         return songsByArtist;
     }
 
@@ -39,7 +39,7 @@ const Artists = () => {
                                     </div>
                                 </div>
                                 <div>
-                                    <span>{artist.name}</span>
+                                    <span>{artist.fname} {artist.lname}</span>
                                     <div>
                                         <div>
                                             <span>{getArtistSongs(artist).length}</span>

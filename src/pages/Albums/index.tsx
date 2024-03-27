@@ -18,7 +18,7 @@ const Albums = () => {
 
         const genresInAlbum = new Set<string>();
         for (const song of filteredSongs) {
-            genresInAlbum.add(song.genre.trim());
+            genresInAlbum.add(song.genre.name.trim());
         }
         return [...genresInAlbum];
     }
