@@ -62,7 +62,7 @@ margin-left:1rem;
 `
 export const ThSearchForm = styled.form`
 position: relative;
-width: 8rem;
+width: 12rem;
 display: flex;
 align-items: center;
 font-size:1rem;
@@ -70,7 +70,7 @@ transition: border-radius 0.5s ease;
 
 @media only screen and (max-width: 460px)  {
         &{
-            width:75%;
+            width:50%;
         }
     }
 
