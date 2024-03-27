@@ -2,7 +2,13 @@ import axios, { AxiosResponse } from "axios";
 import { Song, Album, Artist } from "../features/interfaces";
 const BASE_URL = "http://localhost:5000/api";
 // const BASE_URL = "https://addiss-software-test.onrender.com";
-
+type Qparams = {
+  key?: string,
+  title?: string,
+  album?: string,
+  artist?: string,
+  genre?: string
+};
 /**
  * Song related calls
  */
@@ -13,8 +19,16 @@ export const getSongs = (): Promise<AxiosResponse<Song[]>> => {
 /**
  * Song related calls
  */
-export const searchSongs = (key: string): Promise<AxiosResponse<Song[]>> => {
-  return axios.get<Song[]>(`${BASE_URL}/songs/search`, { params: { "key": key } });
+export const searchSongs = (qParams: Qparams): Promise<AxiosResponse<Song[]>> => {
+  return axios.get<Song[]>(`${BASE_URL}/songs/search`, {
+    params: {
+      key: qParams.key,
+      title:qParams.title,
+      artist:qParams.artist,
+      album:qParams.album,
+      genre:qParams.genre
+    }
+  });
 };
 
 export const addSong = (song: Song): Promise<AxiosResponse<Song>> => {

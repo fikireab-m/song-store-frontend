@@ -5,12 +5,12 @@ export interface Album {
 
 export interface Artist {
   fname: string;
-  lname:string;
+  lname: string;
   avatarUrl?: string;
 }
 
-export interface Genre{
-  name:string;
+export interface Genre {
+  name: string;
 }
 export interface Song {
   _id?: string;
@@ -60,5 +60,11 @@ export interface SongActionType {
 
 export interface SearchSongsAction {
   type: 'string';
-  payload:string
+  payload: {
+    key?: string,
+    title?: string,
+    album?: string,
+    artist?: string,
+    genre?: string
+  }
 }

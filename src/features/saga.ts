@@ -1,4 +1,4 @@
-import { call, all, put, takeEvery } from "redux-saga/effects";
+import { call, all, put, takeEvery, takeLatest } from "redux-saga/effects";
 import {
   getSongsSuccess,
   getSongsFailure,
@@ -8,6 +8,8 @@ import {
   deleteSongFailure,
   updateSongSuccess,
   updateSongFailure,
+  searchSongsSuccess,
+  searchSongsFailure,
 } from "./song/songSlice";
 
 import { addSong, deleteSong, updateSong, getSongs, getAlbums, getArtists, getGenres, searchSongs } from "../api";
@@ -39,15 +41,11 @@ function* fetchSongs() {
  */
 function* searchSong(action: SearchSongsAction) {
   try {
-    // let params: Record<string, string> = {};
-    // if (payload && Object.keys(payload).length > 0) {
-    //   params = payload;
-    // }
     const response: AxiosResponse<Song[]> = yield call(searchSongs, action.payload);
     const songs: Song[] = response.data;
-    yield put(getSongsSuccess(songs));
+    yield put(searchSongsSuccess(songs));
   } catch (e: unknown) {
-    yield put(getSongsFailure(e));
+    yield put(searchSongsFailure(e));
   }
 }
 /**
@@ -137,7 +135,7 @@ function* fetchGenres() {
 function* watcherSaga() {
   yield takeEvery("songs/addSongRequest", addsong);
   yield takeEvery("songs/getSongsRequest", fetchSongs);
-  yield takeEvery("songs/searchSongsRequest", searchSong);
+  yield takeLatest("songs/searchSongsRequest", searchSong);
   yield takeEvery("songs/deleteSongRequest", deletesong);
   yield takeEvery("songs/updateSongRequest", updatesong);
   yield takeEvery("albums/getAlbumsRequest", fetchAlbums);

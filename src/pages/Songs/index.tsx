@@ -3,7 +3,7 @@ import { Song, rootState } from '../../features/interfaces';
 import { Table } from '../../components/styled/TableLayout';
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
 import { UpdateSongForm } from './updatesSong/UpdateSongForm';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchSongsRequest } from '../../features/song/songSlice';
 import ConfirmModal from './deleteSong/ConfirmModal';
@@ -24,9 +24,11 @@ const Songs = () => {
     const [openModal, setOpenModal] = useState<boolean>(false);
 
     const [filterData, setFilterData] = useState({
+        key: "",
         title: "",
         album: "",
-        artist: ""
+        artist: "",
+        genre: ""
     });
     // const [suggestions, setSuggestions] = useState<string[]>([]);
     const [titleSuggestions, setTitleSuggestions] = useState<string[]>([]);
@@ -34,12 +36,27 @@ const Songs = () => {
     const [artistSuggestions, setAritstSuggestions] = useState<string[]>([]);
 
     const { title, album, artist } = filterData;
+
     const titleValues: string[] = [];
-    songs.forEach(s => { titleValues.push(s.title) });
+    songs.forEach(s => {
+        if (!titleValues.includes(s.title)) {
+            titleValues.push(s.title)
+        }
+    });
+
     const albumValues: string[] = [];
-    songs.forEach(s => { albumValues.push(s.album.name) });
+    songs.forEach(s => {
+        if (!albumValues.includes(s.album.name)) {
+            albumValues.push(s.album.name)
+        }
+    });
+
     const artistValues: string[] = [];
-    songs.forEach(s => { artistValues.push(s.artist.fname + " " + s.artist.lname) });
+    songs.forEach(s => {
+        if (!artistValues.includes(s.artist.fname + " " + s.artist.lname)) {
+            artistValues.push(s.artist.fname + " " + s.artist.lname)
+        }
+    });
 
     const onInputchange = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
@@ -79,9 +96,10 @@ const Songs = () => {
         setFilterData(prev => ({
             ...prev,
             title: value
-        }));
-
+        }))
         setTitleSuggestions([]);
+        dispatch(searchSongsRequest(filterData))
+        console.log(filterData)
     };
 
     const handleAlbumSuggestionClick = (value: string) => {
@@ -90,6 +108,7 @@ const Songs = () => {
             album: value
         }));
         setAlbumSuggestions([]);
+        console.log(filterData)
     }
 
     const handleArtistSuggestionClick = (value: string) => {
@@ -97,8 +116,8 @@ const Songs = () => {
             ...prev,
             artist: value
         }));
-
         setAritstSuggestions([]);
+        console.log(filterData)
     };
 
     const searchRef = useRef<HTMLInputElement>(null);
@@ -115,10 +134,12 @@ const Songs = () => {
 
     const handleSearch = (e: React.FormEvent<HTMLElement>) => {
         e.preventDefault();
-        const keyword = searchRef.current!.value;
-        dispatch(searchSongsRequest(keyword));
-        console.log(keyword);
+        dispatch(searchSongsRequest(filterData));
     }
+
+    // useEffect(() => {
+    //     dispatch(searchSongsRequest(filterData))
+    // }, [dispatch, filterData])
 
     return (
         <PageLayout pageIndex={1} pageTitle="Melody-Mall/Songs">
