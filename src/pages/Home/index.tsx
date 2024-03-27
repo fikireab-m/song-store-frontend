@@ -20,7 +20,7 @@ const Home = () => {
     const albums = useSelector((state: rootState) => state.albums.albums);
     const artists = useSelector((state: rootState) => state.artists.artists);
     const genres = useSelector((state: rootState) => state.genres.genres);
-
+  
     return (
         <PageLayout pageTitle="Melody-Mall">
             <Container>
@@ -30,7 +30,7 @@ const Home = () => {
                             <FaMusic />
                         </span>
                         <div>
-                            <span>{songs.length }{songs.length > 1 ? " Songs" : " Song"}</span>
+                            <span>{songs.length}{songs.length > 1 ? " Songs" : " Song"}</span>
                             <MiniList>
                                 {songs.slice(0, 10).map((song, index) => (
                                     <div key={index}>
@@ -58,7 +58,7 @@ const Home = () => {
                                             ? <MiniLink>
                                                 <Link to="/artists">View more</Link>
                                             </MiniLink>
-                                            : <span>{artist.name}</span>
+                                            : <span>{artist.fname} {artist.lname}</span>
                                         }
                                     </div>
                                 ))}
@@ -98,7 +98,7 @@ const Home = () => {
                                             ? <MiniLink>
                                                 <Link to="/genres">View more</Link>
                                             </MiniLink>
-                                            : <span>{genre}</span>
+                                            : <span>{genre.name}</span>
                                         }
                                     </div>
                                 ))}
@@ -136,8 +136,8 @@ const Home = () => {
                             <tr key={index}>
                                 <td>{song.title}</td>
                                 <td>{song.album.name}</td>
-                                <td>{song.artist.name}</td>
-                                <td>{song.genre}</td>
+                                <td>{song.artist.fname} {song.artist.lname}</td>
+                                <td>{song.genre.name}</td>
                                 <td>{new Date(song.createdAt!).toLocaleDateString()}</td>
                             </tr>
                         ))}

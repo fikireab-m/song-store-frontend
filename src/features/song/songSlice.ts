@@ -26,6 +26,20 @@ const songSlice = createSlice({
       state.isLoading = false;
       state.errorMessage = action.payload;
     },
+    
+    // get songs actions
+    searchSongsRequest: (state, _action) => {
+      state.isLoading = true;
+      state.errorMessage = null;
+    },
+    searchSongsSuccess: (state, action) => {
+      state.isLoading = false;
+      state.songs = action.payload;
+    },
+    searchSongsFailure: (state, action) => {
+      state.isLoading = false;
+      state.errorMessage = action.payload;
+    },
 
     // add song actions
     addSongRequest: (state, _action) => {
@@ -85,6 +99,9 @@ export const {
   getSongsRequest,
   getSongsSuccess,
   getSongsFailure,
+  searchSongsRequest,
+  searchSongsSuccess,
+  searchSongsFailure,
   addSongRequest,
   addSongSuccess,
   addSongFailure,

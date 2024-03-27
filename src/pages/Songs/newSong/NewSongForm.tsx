@@ -17,16 +17,17 @@ export const NewSongForm = ({ isOpen, openForm }: FormProps) => {
 
     const titleRef = useRef<HTMLInputElement>(null);
     const albumRef = useRef<HTMLInputElement>(null);
-    const artistRef = useRef<HTMLInputElement>(null);
+    const artistFnameRef = useRef<HTMLInputElement>(null);
+    const artistLnameRef = useRef<HTMLInputElement>(null);
     const genreRef = useRef<HTMLInputElement>(null);
 
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const newSong: Song = {
-            artist: { name: artistRef.current!.value },
+            artist: { fname: artistFnameRef.current!.value, lname: artistLnameRef.current!.value },
             title: titleRef.current!.value,
             album: { name: albumRef.current!.value },
-            genre: genreRef.current!.value,
+            genre: { name: genreRef.current!.value },
         };
         dispatch(addSongRequest(newSong));
         dispatch(getSongsRequest());
@@ -48,8 +49,12 @@ export const NewSongForm = ({ isOpen, openForm }: FormProps) => {
                             <span>Song title</span>
                         </label>
                         <label>
-                            <input type="text" required name="artistName" ref={artistRef} />
+                            <input type="text" required name="artistName" ref={artistFnameRef} />
                             <span>Artist name</span>
+                        </label>
+                        <label>
+                            <input type="text" required name="artistName" ref={artistLnameRef} />
+                            <span>Last name</span>
                         </label>
 
                         <label>
@@ -61,6 +66,14 @@ export const NewSongForm = ({ isOpen, openForm }: FormProps) => {
                             <input type="text" required name="genre" ref={genreRef} />
                             <span>Song genre</span>
                         </label>
+                        <label htmlFor="genres">Country:</label>
+                        <input type="text" id="myCountry" name="myCountry" list="countries" />
+                        <datalist id="countries">
+                            <option value="France" />
+                            <option value="Germany" />
+                            <option value="Italy" />
+                        </datalist>
+
                         {/* 
                         <span>Upload artist avatar(optional)</span>
                         <label>

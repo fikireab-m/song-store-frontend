@@ -4,16 +4,20 @@ export interface Album {
 }
 
 export interface Artist {
-  name: string;
+  fname: string;
+  lname:string;
   avatarUrl?: string;
 }
 
+export interface Genre{
+  name:string;
+}
 export interface Song {
   _id?: string;
   title: string;
   artist: Artist;
   album: Album;
-  genre: string;
+  genre: Genre;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -37,7 +41,7 @@ export interface ArtistState {
 }
 
 export interface GenreState {
-  genres: string[];
+  genres: Genre[];
   isLoading: boolean;
   errorMessage: string | null;
 }
@@ -54,11 +58,7 @@ export interface SongActionType {
   payload: Song;
 }
 
-// export interface FetchSongsAction {
-//   type: 'FETCH_SONGS';
-//   payload?: {
-//     artist?: string;
-//     album?: string;
-//     genre?: string;
-//   };
-// }
+export interface SearchSongsAction {
+  type: 'string';
+  payload:string
+}

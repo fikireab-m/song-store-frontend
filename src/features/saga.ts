@@ -10,9 +10,9 @@ import {
   updateSongFailure,
 } from "./song/songSlice";
 
-import { addSong, deleteSong, updateSong, getSongs, getAlbums, getArtists, getGenres } from "../api";
+import { addSong, deleteSong, updateSong, getSongs, getAlbums, getArtists, getGenres, searchSongs } from "../api";
 import { AxiosResponse } from "axios";
-import { Album, Artist, Song, SongActionType } from "./interfaces";
+import { Album, Artist, SearchSongsAction, Song, SongActionType } from "./interfaces";
 import { getAlbumsFailure, getAlbumsSuccess } from "./album/albumSlice";
 import { getArtistsFailure, getArtistsSuccess } from "./artist/artistSlice";
 import { getGenresFailure, getGenresSuccess } from "./genre/genreSlice";
@@ -28,6 +28,22 @@ function* fetchSongs() {
     //   params = payload;
     // }
     const response: AxiosResponse<Song[]> = yield call(getSongs);
+    const songs: Song[] = response.data;
+    yield put(getSongsSuccess(songs));
+  } catch (e: unknown) {
+    yield put(getSongsFailure(e));
+  }
+}
+/**
+ * Saga for searching songs
+ */
+function* searchSong(action: SearchSongsAction) {
+  try {
+    // let params: Record<string, string> = {};
+    // if (payload && Object.keys(payload).length > 0) {
+    //   params = payload;
+    // }
+    const response: AxiosResponse<Song[]> = yield call(searchSongs, action.payload);
     const songs: Song[] = response.data;
     yield put(getSongsSuccess(songs));
   } catch (e: unknown) {
@@ -95,7 +111,7 @@ function* fetchAlbums() {
  */
 function* fetchArtists() {
   try {
-    const response: AxiosResponse<Album[]> = yield call(getArtists);
+    const response: AxiosResponse<Artist[]> = yield call(getArtists);
     const artists: Artist[] = response.data;
     yield put(getArtistsSuccess(artists));
   } catch (e: unknown) {
@@ -121,6 +137,7 @@ function* fetchGenres() {
 function* watcherSaga() {
   yield takeEvery("songs/addSongRequest", addsong);
   yield takeEvery("songs/getSongsRequest", fetchSongs);
+  yield takeEvery("songs/searchSongsRequest", searchSong);
   yield takeEvery("songs/deleteSongRequest", deletesong);
   yield takeEvery("songs/updateSongRequest", updatesong);
   yield takeEvery("albums/getAlbumsRequest", fetchAlbums);
