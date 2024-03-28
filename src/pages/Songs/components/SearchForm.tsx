@@ -125,3 +125,20 @@ transition: border-radius 0.5s ease;
     transform: scale(1);
   }  
 `
+
+export const FilterButton = styled.button`
+    width:2.5rem;
+    height:2.5rem;
+    color: var(--primary);
+    border-radius:50%;
+    padding:0.5rem;
+    background: none;
+    border:2px solid var(--primary);
+    cursor:pointer;
+    transition: all .3s ease;
+
+    &:hover{
+        background:var(--primary);
+        color:white;
+    }
+`;

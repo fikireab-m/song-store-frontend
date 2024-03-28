@@ -10,9 +10,10 @@ import ConfirmModal from './deleteSong/ConfirmModal';
 import { TableTitleText } from './components/TitleText';
 import { ActionBar, Container, TitleContainer } from './components/Container';
 import PageLayout from '../Layout';
-import { SearchForm, ThSearchForm } from './components/SearchForm';
+import { FilterButton, SearchForm, ThSearchForm } from './components/SearchForm';
 import { BiSearchAlt } from 'react-icons/bi';
-import { IoClose } from 'react-icons/io5';
+// import { IoClose } from 'react-icons/io5';
+import { FiFilter } from 'react-icons/fi';
 
 const Songs = () => {
     const dispatch = useDispatch();
@@ -34,6 +35,7 @@ const Songs = () => {
     const [titleSuggestions, setTitleSuggestions] = useState<string[]>([]);
     const [albumSuggestions, setAlbumSuggestions] = useState<string[]>([]);
     const [artistSuggestions, setAritstSuggestions] = useState<string[]>([]);
+    const [showFilter, setShowFilter] = useState(false);
 
     const { title, album, artist } = filterData;
 
@@ -98,9 +100,9 @@ const Songs = () => {
             title: value
         }))
         setTitleSuggestions([]);
-        dispatch(searchSongsRequest(filterData))
         console.log(filterData)
     };
+
 
     const handleAlbumSuggestionClick = (value: string) => {
         setFilterData(prev => ({
@@ -137,9 +139,20 @@ const Songs = () => {
         dispatch(searchSongsRequest(filterData));
     }
 
-    // useEffect(() => {
-    //     dispatch(searchSongsRequest(filterData))
-    // }, [dispatch, filterData])
+    const handleFilter = () => dispatch(searchSongsRequest(filterData));
+
+    const handleSubmit = (e: React.FormEvent<HTMLElement>) => {
+        e.preventDefault();
+        dispatch(searchSongsRequest(filterData));
+    }
+
+    useEffect(() => {
+        if (title.length || album.length || artist.length) {
+            setShowFilter(true);
+        } else {
+            setShowFilter(false);
+        }
+    }, [album.length, artist.length, title.length])
 
     return (
         <PageLayout pageIndex={1} pageTitle="Melody-Mall/Songs">
@@ -157,21 +170,24 @@ const Songs = () => {
                         </button>
                         <input ref={searchRef} placeholder="Search here ..." required type="text" />
                     </SearchForm>
+                    {showFilter && <FilterButton onClick={handleFilter}>
+                        <FiFilter />
+                    </FilterButton>}
                 </TitleContainer>
                 <Table>
                     <thead>
                         <tr>
                             <th>
                                 <div className="autocomplete-wrapper">
-                                    <ThSearchForm >
+                                    <ThSearchForm onSubmit={handleSubmit}>
                                         <input value={title} name='title' onChange={onInputchange} placeholder="Title" autoComplete='Title' />
-                                        {title.length > 0
+                                        {/* {title.length > 0
                                             && <button onClick={() => {
                                                 setFilterData(prev => ({ ...prev, title: "" }));
                                                 setTitleSuggestions([]);
                                             }}>
                                                 <IoClose size={16} />
-                                            </button>}
+                                            </button>} */}
                                     </ThSearchForm>
                                     {titleSuggestions.length > 0 && (
                                         <ul className="suggestions-list">
@@ -188,15 +204,15 @@ const Songs = () => {
                             </th>
                             <th>
                                 <div className="autocomplete-wrapper">
-                                    <ThSearchForm >
+                                    <ThSearchForm onSubmit={handleSubmit}>
                                         <input value={album} name='album' onChange={onInputchange} placeholder="Album" />
-                                        {album.length > 0
+                                        {/* {album.length > 0
                                             && <button onClick={() => {
                                                 setFilterData(prev => ({ ...prev, album: "" }));
                                                 setAlbumSuggestions([]);
                                             }}>
                                                 <IoClose size={16} />
-                                            </button>}
+                                            </button>} */}
                                     </ThSearchForm>
                                     {albumSuggestions.length > 0 && (
                                         <ul className="suggestions-list">
@@ -213,15 +229,15 @@ const Songs = () => {
                             </th>
                             <th>
                                 <div className="autocomplete-wrapper">
-                                    <ThSearchForm >
+                                    <ThSearchForm onSubmit={handleSubmit}>
                                         <input value={artist} name='artist' onChange={onInputchange} placeholder="Artist" />
-                                        {artist.length > 0
+                                        {/* {artist.length > 0
                                             && <button onClick={() => {
                                                 setFilterData(prev => ({ ...prev, artist: "" }));
                                                 setAritstSuggestions([]);
                                             }}>
                                                 <IoClose size={16} />
-                                            </button>}
+                                            </button>} */}
                                     </ThSearchForm>
                                     {artistSuggestions.length > 0 && (
                                         <ul className="suggestions-list">
