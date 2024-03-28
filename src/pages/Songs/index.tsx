@@ -3,17 +3,17 @@ import { Song, rootState } from '../../features/interfaces';
 import { Table } from '../../components/styled/TableLayout';
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
 import { UpdateSongForm } from './updatesSong/UpdateSongForm';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchSongsRequest } from '../../features/song/songSlice';
 import ConfirmModal from './deleteSong/ConfirmModal';
 import { TableTitleText } from './components/TitleText';
 import { ActionBar, Container, TitleContainer } from './components/Container';
 import PageLayout from '../Layout';
-import { FilterButton, SearchForm, ThSearchForm } from './components/SearchForm';
+import { SearchForm, ThSearchForm } from './components/SearchForm';
 import { BiSearchAlt } from 'react-icons/bi';
 // import { IoClose } from 'react-icons/io5';
-import { FiFilter } from 'react-icons/fi';
+// import { FiFilter } from 'react-icons/fi';
 
 const Songs = () => {
     const dispatch = useDispatch();
@@ -31,11 +31,10 @@ const Songs = () => {
         artist: "",
         genre: ""
     });
-    // const [suggestions, setSuggestions] = useState<string[]>([]);
     const [titleSuggestions, setTitleSuggestions] = useState<string[]>([]);
     const [albumSuggestions, setAlbumSuggestions] = useState<string[]>([]);
     const [artistSuggestions, setAritstSuggestions] = useState<string[]>([]);
-    const [showFilter, setShowFilter] = useState(false);
+    // const [showFilter, setShowFilter] = useState(false);
 
     const { title, album, artist } = filterData;
 
@@ -139,20 +138,20 @@ const Songs = () => {
         dispatch(searchSongsRequest(filterData));
     }
 
-    const handleFilter = () => dispatch(searchSongsRequest(filterData));
+    // const handleFilter = () => dispatch(searchSongsRequest(filterData));
 
     const handleSubmit = (e: React.FormEvent<HTMLElement>) => {
         e.preventDefault();
         dispatch(searchSongsRequest(filterData));
     }
 
-    useEffect(() => {
-        if (title.length || album.length || artist.length) {
-            setShowFilter(true);
-        } else {
-            setShowFilter(false);
-        }
-    }, [album.length, artist.length, title.length])
+    // useEffect(() => {
+    //     if (title.length || album.length || artist.length) {
+    //         setShowFilter(true);
+    //     } else {
+    //         setShowFilter(false);
+    //     }
+    // }, [album.length, artist.length, title.length])
 
     return (
         <PageLayout pageIndex={1} pageTitle="Melody-Mall/Songs">
@@ -170,9 +169,6 @@ const Songs = () => {
                         </button>
                         <input ref={searchRef} placeholder="Search here ..." required type="text" />
                     </SearchForm>
-                    {showFilter && <FilterButton onClick={handleFilter}>
-                        <FiFilter />
-                    </FilterButton>}
                 </TitleContainer>
                 <Table>
                     <thead>
