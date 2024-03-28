@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { TitleText } from "../pages/Songs/components/TitleText";
 
 const LoaderContainer = styled.div`
 display: flex;
@@ -48,6 +49,7 @@ span:nth-child(3) {
 const Loader = () => {
   return (
     <LoaderContainer>
+      <TitleText>Looking For Data</TitleText>
       <div>
         <span></span>
         <span></span>

@@ -7,14 +7,12 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchSongsRequest } from '../../features/song/songSlice';
 import ConfirmModal from './deleteSong/ConfirmModal';
-import { TableTitleText } from './components/TitleText';
+import { TableTitleText, TitleText } from './components/TitleText';
 import { ActionBar, Container, TitleContainer } from './components/Container';
 import PageLayout from '../Layout';
 import { SearchForm, ThSearchForm } from './components/SearchForm';
 import { BiSearchAlt } from 'react-icons/bi';
 import { IoClose } from 'react-icons/io5';
-// import { IoClose } from 'react-icons/io5';
-// import { FiFilter } from 'react-icons/fi';
 
 const Songs = () => {
     const dispatch = useDispatch();
@@ -37,6 +35,12 @@ const Songs = () => {
     const [albumSuggestions, setAlbumSuggestions] = useState<string[]>([]);
     const [artistSuggestions, setAritstSuggestions] = useState<string[]>([]);
     const [genreSuggestions, setGenreSuggestions] = useState<string[]>([]);
+
+    const [selected, setSelected] = useState({
+        title: "",
+        album: "",
+        artist: ""
+    });
 
     const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
     const [unselectedGenres, setunSelectedGenres] = useState<string[]>([]);
@@ -104,14 +108,21 @@ const Songs = () => {
         setFilterData(prev => ({
             ...prev,
             title: value
-        }))
+        }));
+        setSelected(prev => ({
+            ...prev,
+            title: value
+        }));
         setTitleSuggestions([]);
-        console.log(filterData)
     };
 
 
     const handleAlbumSuggestionClick = (value: string) => {
         setFilterData(prev => ({
+            ...prev,
+            album: value
+        }));
+        setSelected(prev => ({
             ...prev,
             album: value
         }));
@@ -121,6 +132,10 @@ const Songs = () => {
 
     const handleArtistSuggestionClick = (value: string) => {
         setFilterData(prev => ({
+            ...prev,
+            artist: value
+        }));
+        setSelected(prev => ({
             ...prev,
             artist: value
         }));
@@ -143,8 +158,11 @@ const Songs = () => {
                 setunSelectedGenres(unselectedGenres?.filter(genre => genre !== value));
             }
         }
-        setGenreSuggestions([]);
     };
+
+    const handleApplyGenre = () => {
+        setGenreSuggestions([]);
+    }
 
     const handleEdit = (song: Song) => {
         setSong(song);
@@ -177,7 +195,7 @@ const Songs = () => {
     useEffect(() => {
         applyFilter();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [selectedGenres])
+    }, [selectedGenres, selected])
 
     return (
         <PageLayout pageIndex={1} pageTitle="Melody-Mall/Songs">
@@ -185,6 +203,7 @@ const Songs = () => {
                 {songToEdit && <UpdateSongForm song={songToEdit} isOpen={openForm} formOpen={setOpenForm} />}
 
                 {songToDelete && <ConfirmModal isOpen={openModal} modalOpen={setOpenModal} song={songToDelete} />}
+
                 <TitleContainer>
                     <TableTitleText>
                         All Songs
@@ -203,6 +222,14 @@ const Songs = () => {
                                 <div className="autocomplete-wrapper">
                                     <ThSearchForm onSubmit={handleSubmit}>
                                         <input value={title} name='title' onChange={onInputchange} placeholder="Title" autoComplete='Title' />
+                                        {selected.title.length > 0
+                                            && <button onClick={() => {
+                                                setSelected(prev => ({ ...prev, title: "" }));
+                                                setFilterData(prev => ({ ...prev, title: "" }));
+                                                setTitleSuggestions([]);
+                                            }}>
+                                                <IoClose size={16} />
+                                            </button>}
                                     </ThSearchForm>
                                     {titleSuggestions.length > 0 && (
                                         <ul className="suggestions-list">
@@ -221,6 +248,14 @@ const Songs = () => {
                                 <div className="autocomplete-wrapper">
                                     <ThSearchForm onSubmit={handleSubmit}>
                                         <input value={album} name='album' onChange={onInputchange} placeholder="Album" />
+                                        {selected.album.length > 0
+                                            && <button onClick={() => {
+                                                setSelected(prev => ({ ...prev, album: "" }));
+                                                setFilterData(prev => ({ ...prev, album: "" }));
+                                                setAlbumSuggestions([]);
+                                            }}>
+                                                <IoClose size={16} />
+                                            </button>}
                                     </ThSearchForm>
                                     {albumSuggestions.length > 0 && (
                                         <ul className="suggestions-list">
@@ -239,6 +274,14 @@ const Songs = () => {
                                 <div className="autocomplete-wrapper">
                                     <ThSearchForm onSubmit={handleSubmit}>
                                         <input value={artist} name='artist' onChange={onInputchange} placeholder="Artist" />
+                                        {selected.artist.length > 0
+                                            && <button onClick={() => {
+                                                setSelected(prev => ({ ...prev, artist: "" }));
+                                                setFilterData(prev => ({ ...prev, artist: "" }));
+                                                setAritstSuggestions([]);
+                                            }}>
+                                                <IoClose size={16} />
+                                            </button>}
                                     </ThSearchForm>
                                     {artistSuggestions.length > 0 && (
                                         <ul className="suggestions-list">
@@ -260,6 +303,7 @@ const Songs = () => {
                                         {selectedGenres.length > 0
                                             && <button onClick={() => {
                                                 setSelectedGenres([]);
+                                                setFilterData(prev => ({ ...prev, genre: "" }));
                                                 setGenreSuggestions([]);
                                             }}>
                                                 <IoClose size={16} />
@@ -281,6 +325,9 @@ const Songs = () => {
                                                     {suggestion}
                                                 </li>
                                             ))}
+                                            <button className='close-btn' onClick={handleApplyGenre}>
+                                                Close
+                                            </button>
                                         </ul>
                                     )}
                                 </div>
@@ -288,7 +335,7 @@ const Songs = () => {
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    {songs.length > 0 && <tbody>
+                    {songs.length > 0 ? <tbody>
                         {songs.map((song, index) => (
                             <tr key={index}>
                                 <td>{song.title}</td>
@@ -303,7 +350,7 @@ const Songs = () => {
                                 </td>
                             </tr>
                         ))}
-                    </tbody>}
+                    </tbody> : <div className="loader-container"><TitleText >No Song Found</TitleText></div>}
                 </Table>
             </Container>
         </PageLayout>

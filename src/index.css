@@ -73,3 +73,23 @@
   background-color: var(--primary);
   color: var(--white);
 }
+.loader-container{
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.close-btn{
+  background-color:#a8000ed5;
+  color: white;
+  font-size: 0.8rem;
+  cursor: pointer;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  width: 100%;
+  margin-top: 2rem;
+  outline: none;
+  border: none;
+}

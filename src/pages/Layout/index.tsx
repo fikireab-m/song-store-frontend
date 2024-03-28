@@ -40,16 +40,12 @@ const PageLayout = ({ pageIndex = 0, pageTitle, children }: LayoutProp) => {
                 <Sidebar pageIndex={pageIndex} />
             </SidebarContainer>
             <MainContainer>
-                {
-                    !loading
-                        ? <motion.div
-                            initial={{ y: 150, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{ duration: 1 }}>
-                            {children}
-                        </motion.div>
-                        : <Loader />
-
+                {<motion.div
+                    initial={{ y: 150, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 1 }}>
+                    {children}
+                </motion.div>
                 }
             </MainContainer>
 
