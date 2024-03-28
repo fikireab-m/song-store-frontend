@@ -36,7 +36,7 @@ const Songs = () => {
     const [artistSuggestions, setAritstSuggestions] = useState<string[]>([]);
     // const [showFilter, setShowFilter] = useState(false);
 
-    const { title, album, artist } = filterData;
+    const { key, title, album, artist } = filterData;
 
     const titleValues: string[] = [];
     songs.forEach(s => {
@@ -133,13 +133,6 @@ const Songs = () => {
         setOpenModal(true);
     }
 
-    const handleSearch = (e: React.FormEvent<HTMLElement>) => {
-        e.preventDefault();
-        dispatch(searchSongsRequest(filterData));
-    }
-
-    // const handleFilter = () => dispatch(searchSongsRequest(filterData));
-
     const handleSubmit = (e: React.FormEvent<HTMLElement>) => {
         e.preventDefault();
         dispatch(searchSongsRequest(filterData));
@@ -163,11 +156,11 @@ const Songs = () => {
                     <TableTitleText>
                         All Songs
                     </TableTitleText>
-                    <SearchForm onSubmit={handleSearch}>
+                    <SearchForm onSubmit={handleSubmit}>
                         <button>
                             <BiSearchAlt size={16} />
                         </button>
-                        <input ref={searchRef} placeholder="Search here ..." required type="text" />
+                        <input value={key} name='key' onChange={onInputchange} placeholder="Search here ..." required type="text" />
                     </SearchForm>
                 </TitleContainer>
                 <Table>
@@ -250,7 +243,7 @@ const Songs = () => {
                             </th>
                             <th>
                                 <ThSearchForm >
-                                    <input ref={searchRef} defaultValue="Genre" autoComplete='Genre' />
+                                    <input ref={searchRef} placeholder="Genre"/>
                                     {/* <button>
                                         <IoClose size={16}/>
                                     </button> */}
