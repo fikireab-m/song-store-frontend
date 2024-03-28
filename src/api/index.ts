@@ -7,7 +7,7 @@ type Qparams = {
   title?: string,
   album?: string,
   artist?: string,
-  genre?: string
+  genres?: string[]
 };
 /**
  * Song related calls
@@ -26,7 +26,7 @@ export const searchSongs = (qParams: Qparams): Promise<AxiosResponse<Song[]>> =>
       title:qParams.title,
       artist:qParams.artist,
       album:qParams.album,
-      genre:qParams.genre
+      genres:qParams.genres
     }
   });
 };

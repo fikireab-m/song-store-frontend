@@ -65,6 +65,6 @@ export interface SearchSongsAction {
     title?: string,
     album?: string,
     artist?: string,
-    genre?: string
+    genres?: string[]
   }
 }

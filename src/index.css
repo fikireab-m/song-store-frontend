@@ -28,6 +28,7 @@
 ::-webkit-scrollbar {
   width: 0;
 }
+
 /*
 @media(prefers-color-scheme:dark) {
   body {
@@ -56,12 +57,19 @@
 
 .suggestions-list li {
   font-weight: 400;
-  padding: 0.5rem;
+  padding: 0.25rem;
+  padding-left: 1rem;
   cursor: pointer;
+  margin-top: 2px;
   transition: all 0.3s ease;
 }
 
 .suggestions-list li:hover {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.selected {
   background-color: var(--primary);
   color: var(--white);
 }

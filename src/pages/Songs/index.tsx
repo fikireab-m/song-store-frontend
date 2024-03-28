@@ -3,7 +3,7 @@ import { Song, rootState } from '../../features/interfaces';
 import { Table } from '../../components/styled/TableLayout';
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
 import { UpdateSongForm } from './updatesSong/UpdateSongForm';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchSongsRequest } from '../../features/song/songSlice';
 import ConfirmModal from './deleteSong/ConfirmModal';
@@ -18,6 +18,7 @@ import { BiSearchAlt } from 'react-icons/bi';
 const Songs = () => {
     const dispatch = useDispatch();
     const songs = useSelector((state: rootState) => state.songs.songs);
+    const allGenres = useSelector((state: rootState) => state.genres.genres);
 
     const [songToEdit, setSong] = useState<Song>(songs[0]);
     const [openForm, setOpenForm] = useState<boolean>(false);
@@ -34,30 +35,29 @@ const Songs = () => {
     const [titleSuggestions, setTitleSuggestions] = useState<string[]>([]);
     const [albumSuggestions, setAlbumSuggestions] = useState<string[]>([]);
     const [artistSuggestions, setAritstSuggestions] = useState<string[]>([]);
-    // const [showFilter, setShowFilter] = useState(false);
+    const [genreSuggestions, setGenreSuggestions] = useState<string[]>([]);
 
-    const { key, title, album, artist } = filterData;
+    const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
+
+    const { key, title, album, artist, genre } = filterData;
 
     const titleValues: string[] = [];
+    const albumValues: string[] = [];
+    const artistValues: string[] = [];
+    const genreValues: string[] = [];
+
     songs.forEach(s => {
         if (!titleValues.includes(s.title)) {
             titleValues.push(s.title)
         }
-    });
-
-    const albumValues: string[] = [];
-    songs.forEach(s => {
         if (!albumValues.includes(s.album.name)) {
             albumValues.push(s.album.name)
         }
-    });
-
-    const artistValues: string[] = [];
-    songs.forEach(s => {
         if (!artistValues.includes(s.artist.fname + " " + s.artist.lname)) {
             artistValues.push(s.artist.fname + " " + s.artist.lname)
         }
     });
+    allGenres.forEach(genre => genreValues.push(genre.name));
 
     const onInputchange = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
@@ -82,6 +82,9 @@ const Songs = () => {
                 filteredSuggestions = artistValues.filter(suggestion =>
                     suggestion.toLowerCase().includes(value.toLowerCase()));
                 setAritstSuggestions(filteredSuggestions)
+            } else if (name === 'genre') {
+                filteredSuggestions = genreValues.filter(suggestion => suggestion.toLowerCase().includes(value.toLowerCase()));
+                setGenreSuggestions(filteredSuggestions);
             }
         } else {
             if (name === 'title') {
@@ -90,6 +93,8 @@ const Songs = () => {
                 setAlbumSuggestions([])
             } else if (name === 'artist') {
                 setAritstSuggestions([])
+            } else if (name === 'genre') {
+                setGenreSuggestions([])
             }
         }
     }
@@ -121,7 +126,21 @@ const Songs = () => {
         console.log(filterData)
     };
 
-    const searchRef = useRef<HTMLInputElement>(null);
+    const handleGenreSuggestionClick = (value: string) => {
+        setFilterData(prev => ({
+            ...prev,
+            genre: value
+        }));
+
+        if (selectedGenres.includes(value)) {
+            setSelectedGenres(selectedGenres.filter(genre => genre !== value));
+        } else {
+            if (genreValues.includes(value)) {
+                setSelectedGenres(prev => [...prev, value]);
+            }
+        }
+        setGenreSuggestions([]);
+    };
 
     const handleEdit = (song: Song) => {
         setSong(song);
@@ -132,19 +151,24 @@ const Songs = () => {
         setSongToDelete(song);
         setOpenModal(true);
     }
-
+    const applyFilter = () => {
+        dispatch(searchSongsRequest({
+            key: filterData.key,
+            title: filterData.title,
+            album: filterData.album,
+            artist: filterData.artist,
+            genres: [...selectedGenres]
+        }));
+    }
     const handleSubmit = (e: React.FormEvent<HTMLElement>) => {
         e.preventDefault();
-        dispatch(searchSongsRequest(filterData));
+        applyFilter();
     }
 
-    // useEffect(() => {
-    //     if (title.length || album.length || artist.length) {
-    //         setShowFilter(true);
-    //     } else {
-    //         setShowFilter(false);
-    //     }
-    // }, [album.length, artist.length, title.length])
+    useEffect(() => {
+        applyFilter();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedGenres])
 
     return (
         <PageLayout pageIndex={1} pageTitle="Melody-Mall/Songs">
@@ -220,13 +244,6 @@ const Songs = () => {
                                 <div className="autocomplete-wrapper">
                                     <ThSearchForm onSubmit={handleSubmit}>
                                         <input value={artist} name='artist' onChange={onInputchange} placeholder="Artist" />
-                                        {/* {artist.length > 0
-                                            && <button onClick={() => {
-                                                setFilterData(prev => ({ ...prev, artist: "" }));
-                                                setAritstSuggestions([]);
-                                            }}>
-                                                <IoClose size={16} />
-                                            </button>} */}
                                     </ThSearchForm>
                                     {artistSuggestions.length > 0 && (
                                         <ul className="suggestions-list">
@@ -242,17 +259,28 @@ const Songs = () => {
                                 </div>
                             </th>
                             <th>
-                                <ThSearchForm >
-                                    <input ref={searchRef} placeholder="Genre"/>
-                                    {/* <button>
-                                        <IoClose size={16}/>
-                                    </button> */}
-                                </ThSearchForm>
+                                <div className="autocomplete-wrapper">
+                                    <ThSearchForm onSubmit={handleSubmit}>
+                                        <input value={genre} name='genre' onChange={onInputchange} placeholder="Genre" />
+                                    </ThSearchForm>
+                                    {genreSuggestions.length > 0 && (
+                                        <ul className="suggestions-list">
+
+                                            {genreSuggestions.map((suggestion, index) => (
+                                                <li className={`${selectedGenres.includes(suggestion) ? "selected" : ""}`}
+                                                    key={index}
+                                                    onClick={() => handleGenreSuggestionClick(suggestion)}>
+                                                    {suggestion}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+                                </div>
                             </th>
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    {songs.length > 0 && <tbody>
                         {songs.map((song, index) => (
                             <tr key={index}>
                                 <td>{song.title}</td>
@@ -267,7 +295,7 @@ const Songs = () => {
                                 </td>
                             </tr>
                         ))}
-                    </tbody>
+                    </tbody>}
                 </Table>
             </Container>
         </PageLayout>
